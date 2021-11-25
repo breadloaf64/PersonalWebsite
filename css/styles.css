@@ -1,0 +1,22 @@
+body {
+    background: white;
+}
+
+h1 {
+    font-weight: bolder;
+    font-family: monospace;
+    text-align: center;
+}
+
+div {
+    align-content: center;
+    margin: 0 auto;
+    width: 19%;
+    /*border: 5px solid #FFFF00;
+    padding: 10px; */
+}
+
+p {
+    font-family: monospace;
+    text-align: center;
+}
