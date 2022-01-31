@@ -12,6 +12,11 @@ function draw() {
     text("window.innerHeight: " + window.innerHeight, 100, 150);
 }
 
+function touchMoved() {
+  // prevent the display from moving around when you touch it
+  return false;
+}
+
 function createMetaTag() {
 	let meta = createElement('meta');
 	meta.attribute('name', 'viewport');
