@@ -1,6 +1,8 @@
 function setup() {
 	createMetaTag();
-	createCanvas(window.innerWidth, window.innerHeight);
+
+	let canvas = createCanvas(windowWidth, windowHeight);
+    canvas.style('display', 'block');
 }
 
 function draw() {
