@@ -35,10 +35,14 @@ function draw() {
 	handleSound();
 	render();
 	counter++;
-	text("window.innerWidth: " + window.innerWidth, 100, 100);
-    text("window.innerHeight: " + window.innerHeight, 100, 150);
-	text("width: " + width, 100, 200);
-	text("Height: " + height, 100, 250);
+
+	strokeWeight(1);
+	fill(255, 0, 0);
+	stroke(255, 0, 0);
+	text("window.innerWidth: " + window.innerWidth, 40, 100);
+    text("window.innerHeight: " + window.innerHeight, 40, 150);
+	text("width: " + width, 40, 200);
+	text("Height: " + height, 40, 250);
 }
 
 function handleCurrentMouse() {
