@@ -79,15 +79,15 @@ function createMetaTag() {
 }
 
 function windowResized() {
-
-	if (forceSquare) {
-		size = min(window.innerWidth, window.innerHeight);
-		print("window.innerWidth: " + window.innerWidth);
-		print("window.innerHeight: " + window.innerHeight);
-		print("size: " + size);
-		resizeCanvas(size, size);
-	}
-	else {
-		resizeCanvas(window.innerWidth, window.innerHeight);
-	}
+	resizeCanvas(window.innerWidth, window.innerHeight);
+	// if (forceSquare) {
+	// 	size = min(window.innerWidth, window.innerHeight);
+	// 	print("window.innerWidth: " + window.innerWidth);
+	// 	print("window.innerHeight: " + window.innerHeight);
+	// 	print("size: " + size);
+	// 	resizeCanvas(size, size);
+	// }
+	// else {
+	// 	resizeCanvas(window.innerWidth, window.innerHeight);
+	// }
 }
