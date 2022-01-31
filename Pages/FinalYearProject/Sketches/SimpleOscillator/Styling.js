@@ -81,7 +81,7 @@ function createMetaTag() {
 function windowResized() {
 	if (forceSquare) {
 		let size = min(window.innerWidth, window.innerHeight);
-		resizeCanvas(window.innerWidth, window.innerHeight);
+		resizeCanvas(size, size);
 	}
 	else {
 		resizeCanvas(window.innerWidth, window.innerHeight);
