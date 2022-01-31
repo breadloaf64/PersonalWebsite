@@ -50,7 +50,7 @@ function myStandardSetup() {
 function setCanvas() {
 	// set this to true if you want the standard square sketch size
 	let forceSquare = true;
-	
+
 	if (forceSquare) {
 		size = min(window.innerWidth, window.innerHeight) * 0.8;
 		createCanvas(size, size);
@@ -58,6 +58,11 @@ function setCanvas() {
 	else {
 		createCanvas(window.innerWidth, window.innerHeight);
 	}
+}
+
+function touchMoved() {
+  // prevent the display from moving around when you touch it
+  return false;
 }
 
 function createMetaTag() {
