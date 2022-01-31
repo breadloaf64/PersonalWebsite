@@ -1,3 +1,6 @@
+// set this to true if you want the standard square sketch size
+let forceSquare = true;
+
 var imgNoiseTexture;
 
 var colFrame;
@@ -48,8 +51,6 @@ function myStandardSetup() {
 }
 
 function setCanvas() {
-	// set this to true if you want the standard square sketch size
-	let forceSquare = false;
 
 	if (forceSquare) {
 		size = min(window.innerWidth, window.innerHeight) * 0.8;
@@ -77,6 +78,17 @@ function createMetaTag() {
 	meta.parent(head);
 }
 
-function windowResized() {
-  resizeCanvas(window.innerWidth, window.innerHeight);
+function windowResized() {}
+
+	if (forceSquare) {
+		size = min(window.innerWidth, window.innerHeight);
+		print("window.innerWidth: " + window.innerWidth);
+		print("window.innerHeight: " + window.innerHeight);
+		print("size: " + size);
+		resizeCanvas(size, size);
+	}
+	else {
+		resizeCanvas(window.innerWidth, window.innerHeight);
+	}
+
 }
