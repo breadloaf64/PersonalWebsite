@@ -9,7 +9,7 @@ function draw() {
 	ellipse(width / 2, height / 2, 100, 100);
     fill(255, 0, 0);
     text("window.innerWidth: " + window.innerWidth, 100, 100);
-    text("window.innerHeight: " + window.innerHeight, 100, 100);
+    text("window.innerHeight: " + window.innerHeight, 100, 150);
 }
 
 function createMetaTag() {
