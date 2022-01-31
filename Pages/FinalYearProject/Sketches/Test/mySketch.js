@@ -1,7 +1,7 @@
 function setup() {
 	createMetaTag();
 
-	let canvas = createCanvas(windowWidth, windowHeight);
+	let canvas = createCanvas(window.innerWidth, window.innerHeight);
     canvas.style('display', 'block');
 }
 
@@ -26,4 +26,8 @@ function createMetaTag() {
 
 	let head = select('head');
 	meta.parent(head);
+}
+
+function windowResized() {
+  resizeCanvas(window.innerWidth, window.innerHeight);
 }

@@ -49,7 +49,7 @@ function myStandardSetup() {
 
 function setCanvas() {
 	// set this to true if you want the standard square sketch size
-	let forceSquare = true;
+	let forceSquare = false;
 
 	if (forceSquare) {
 		size = min(window.innerWidth, window.innerHeight) * 0.8;
@@ -75,4 +75,8 @@ function createMetaTag() {
 
 	let head = select('head');
 	meta.parent(head);
+}
+
+function windowResized() {
+  resizeCanvas(window.innerWidth, window.innerHeight);
 }
