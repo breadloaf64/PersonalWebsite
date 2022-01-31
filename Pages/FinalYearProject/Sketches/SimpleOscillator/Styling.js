@@ -53,6 +53,9 @@ function setCanvas() {
 
 	if (forceSquare) {
 		size = min(window.innerWidth, window.innerHeight) * 0.8;
+		print("window.innerWidth: " + window.innerWidth);
+		print("window.innerHeight: " + window.innerHeight);
+		print("size: " + size);
 		createCanvas(size, size);
 	}
 	else {
