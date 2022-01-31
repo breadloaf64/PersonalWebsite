@@ -78,7 +78,7 @@ function createMetaTag() {
 	meta.parent(head);
 }
 
-function windowResized() {}
+function windowResized() {
 
 	if (forceSquare) {
 		size = min(window.innerWidth, window.innerHeight);
@@ -90,5 +90,4 @@ function windowResized() {}
 	else {
 		resizeCanvas(window.innerWidth, window.innerHeight);
 	}
-
 }
