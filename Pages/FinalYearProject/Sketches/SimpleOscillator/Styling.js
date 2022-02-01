@@ -44,24 +44,13 @@ function drawFrame() {
 }
 
 function myStandardSetup() {
-	setCanvas();
+	// Move the canvas so it’s inside our <div id="sketch-holder">.
+	let canvas = createCanvas(100, 100);
+  	canvas.parent('sketch-holder');
+	windowResized();
 	createMetaTag();
 	setColours();
 	setNoiseTexture();
-}
-
-function setCanvas() {
-
-	if (forceSquare) {
-		let size = min(window.innerWidth, window.innerHeight) * 0.8;
-		print("window.innerWidth: " + window.innerWidth);
-		print("window.innerHeight: " + window.innerHeight);
-		print("size: " + size);
-		createCanvas(size, size);
-	}
-	else {
-		createCanvas(window.innerWidth, window.innerHeight);
-	}
 }
 
 function touchMoved() {
@@ -79,11 +68,16 @@ function createMetaTag() {
 }
 
 function windowResized() {
-	if (forceSquare) {
-		let size = min(window.innerWidth, window.innerHeight);
-		resizeCanvas(size, size);
-	}
-	else {
-		resizeCanvas(window.innerWidth, window.innerHeight);
-	}
+	// const css = getComputedStyle(canvas.parentElement),
+    //     marginWidth = round(float(css.marginLeft) + float(css.marginRight)),
+    //     marginHeight = round(float(css.marginTop) + float(css.marginBottom)),
+    //     w = windowWidth - marginWidth, h = windowHeight - marginHeight;
+
+	let parent = canvas.parentElement;
+	let w = parent.clientWidth;
+	let h = parent.clientHeight;
+
+	print(w);
+	let size = min(w, h);
+  	resizeCanvas(size, size, true);
 }

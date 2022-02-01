@@ -18,6 +18,9 @@ function keyPressed() {
 	if (key == ' '){ //this means space bar, since it is a space inside of the single quotes
     playPause();
   }
+
+  // stops page from scrolling
+  return false;
 }
 
 function playPause() {
