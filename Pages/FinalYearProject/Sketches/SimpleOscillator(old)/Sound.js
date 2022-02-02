@@ -3,11 +3,10 @@ var sine;
 var baseFrequency;
 
 var minSpeedMultiplier = 0.01;
-var maxSpeedMultiplier = 10;
+var maxSpeedMultiplier = 2;
 var minFrequency;
 var maxFrequency;
 
-var muted = true;;
 var frequency = 0;
 var volume = 0;
 
@@ -18,6 +17,7 @@ function preloadSound() {
 }
 
 function setupSound() {
+	sine.loop();
 	minFrequency = baseFrequency * minSpeedMultiplier;
 	maxFrequency = baseFrequency * maxSpeedMultiplier;
 }
@@ -29,28 +29,16 @@ function handleSound() {
 
 function setVolume() {
 	// Set the volume according to mouse height
-  volume = map(mouseY, 0, height, 1, 0, true);
+  volume = map(currentMouseY, 0, height, 1, 0, true);
   sine.amp(volume);
 }
 
 function setFrequency() {
 	// Set the rate to a range between 0.1 and 4
   // Changing the rate alters the pitch
-  let speedMultiplier = map(mouseX, 0.0, width, minSpeedMultiplier, maxSpeedMultiplier, true);
+  let speedMultiplier = map(currentMouseX, 0.0, width, minSpeedMultiplier, maxSpeedMultiplier, true);
   sine.rate(speedMultiplier);
-
+	
 	// figure out actual frequency
 	frequency = baseFrequency * speedMultiplier;
-}
-
-function muteUnmute() {
-	muted = !muted;
-	if (!muted) {
-		sine.loop();
-		btnMute.text = "mute";
-	}
-	else {
-		sine.stop();
-		btnMute.text = "unmute";
-	}
 }

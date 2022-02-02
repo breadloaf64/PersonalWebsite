@@ -15,13 +15,6 @@ function drawGrid() {
 	}
 }
 
-function drawButton() {
-	noStroke();
-	txtSize = width / 30;
-	textFont("monospace", txtSize);
-	btnMute.draw();
-}
-
 function drawWave() {
 	stroke(colWave);
 	strokeWeight(5);
@@ -76,20 +69,19 @@ function drawReadouts() {
 	text("Volume: " + txtVolume + " %", 20, height - 20 - txtSize);
 }
 
-function drawBeginScreen() {
-	if (begin) {
-		// tint background darker
+function drawPauseScreen() {
+	if (pause) {
 		noStroke();
 		fill(0, 0, 0, 100);
 		rect(0, 0, width, height);
 		
 		fill(255);
-
-		// draw instruction
-		txtSize = width / 12;
+		noStroke();
+		txtSize = width / 3;
 		textFont("monospace", txtSize);
-		let instruction = "tap/click to play";
-		txtWidth = textWidth(instruction);
-		text("tap/click to play", (width - txtWidth) / 2, height * 0.5);
+		textStyle(BOLD);
+		let txtWidth = textWidth("||");
+		
+		text("||", (width - txtWidth) / 2, height * 0.6);
 	}
 }

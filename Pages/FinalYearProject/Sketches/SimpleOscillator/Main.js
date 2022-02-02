@@ -1,9 +1,13 @@
+var embeddedOnWebsite = true; // changing this to true will put it inside of the div called sketch-holder
+
 var counter = 0;
 
-var pause = false;
+var begin = true;
 
 var currentMouseX = 0;
 var currentMouseY = 0;
+
+var btnMute;
 
 function preload() {
 	preloadSound();
@@ -12,47 +16,29 @@ function preload() {
 function setup() {
 	myStandardSetup();
 	setupSound();
+	makeMuteButton();
 }
 
 function keyPressed() {
-	if (key == ' '){ //this means space bar, since it is a space inside of the single quotes
-    playPause();
+	if (key == ' ' || key == 'm'){ //this means space bar, since it is a space inside of the single quotes
+    muteUnmute();
   }
-
-  // stops page from scrolling
-  return false;
 }
 
-function playPause() {
-	pause = ! pause;
-	if (pause) {
-		sine.stop();
-	}
-	else {
-		sine.loop();
-	}
+function mouseClicked() {
+	if (begin) beginSketch();
+	btnMute.tryClick();
+}
+
+function beginSketch() {
+	begin = false;
+	muteUnmute();
 }
 
 function draw() {
-	handleCurrentMouse();
 	handleSound();
 	render();
 	counter++;
-
-	strokeWeight(1);
-	fill(255, 0, 0);
-	stroke(255, 0, 0);
-	text("window.innerWidth: " + window.innerWidth, 40, 100);
-    text("window.innerHeight: " + window.innerHeight, 40, 150);
-	text("width: " + width, 40, 200);
-	text("Height: " + height, 40, 250);
-}
-
-function handleCurrentMouse() {
-	if (!pause) {
-		currentMouseX = mouseX;
-		currentMouseY = mouseY;
-	}
 }
 
 function render() {
@@ -60,8 +46,9 @@ function render() {
 	drawGrid();
 	drawWave();
 	drawCrosshair();
+	drawButton();
 	drawReadouts();
-	drawPauseScreen();
+	drawBeginScreen();
 	image(imgNoiseTexture, 0, 0);
 	drawFrame();
 }

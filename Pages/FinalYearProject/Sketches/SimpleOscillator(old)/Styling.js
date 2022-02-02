@@ -1,3 +1,6 @@
+// set this to true if you want the standard square sketch size
+let forceSquare = true;
+
 var imgNoiseTexture;
 
 var colFrame;
@@ -6,8 +9,6 @@ var colReadouts;
 var colCrosshair;
 var colWave;
 var colGrid;
-var colMuteButtonBorder;
-var colMuteButton;
 
 function setColours() {
 	colFrame = color("#2f3e46");
@@ -16,10 +17,6 @@ function setColours() {
 	colCrosshair = color("#84a98c");
 	colWave = color("#cad2c5");
 	colGrid = color("#52796f");
-	colMuteButtonBorder = color(0, 0);
-
-	colMuteButton = color("#2f3e46");
-	colMuteButton.setAlpha(100);
 }
 
 function setNoiseTexture() {
@@ -48,26 +45,20 @@ function drawFrame() {
 
 function myStandardSetup() {
 	setCanvas();
+	windowResized();
 	createMetaTag();
 	setColours();
 	setNoiseTexture();
 }
 
 function setCanvas () {
-	if (embeddedOnWebsite) {
-		// Move the canvas so it’s inside our <div id="sketch-holder">.
-		let canvas = createCanvas(100, 100);
+	// Move the canvas so it’s inside our <div id="sketch-holder">.
+	let canvas = createCanvas(100, 100);
 
-		try {
-			canvas.parent('sketch-holder');
-		}
-		catch {}
-		windowResized();
+	try {
+		canvas.parent('sketch-holder');
 	}
-	else {
-		let size = min(windowWidth, windowHeight) * 0.8;
-		createCanvas(size, size);
-	}
+	catch {}
 }
 
 function touchMoved() {
@@ -90,16 +81,5 @@ function windowResized() {
 	let h = parent.clientHeight;
 
 	let size = min(w, h);
-  resizeCanvas(size, size, true);
-	makeMuteButton();
-}
-
-function makeMuteButton() {
-	let btnHeight = height * 0.04;
-	let btnWidth = btnHeight * 7/2;
-	let text = "mute";
-	if (muted) {
-		text = "unmute"
-	}
-	btnMute = new Button(width - btnWidth - 20, height - btnHeight - 20, btnWidth, btnHeight, muteUnmute, text);
+  	resizeCanvas(size, size, true);
 }
