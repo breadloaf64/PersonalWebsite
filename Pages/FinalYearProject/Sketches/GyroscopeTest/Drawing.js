@@ -8,21 +8,21 @@ function render() {
 }
 
 function drawReadouts() {
-	
+
 	// font formatting
 	fill(colReadouts);
 	noStroke();
 	txtSize = width / 30;
 	textFont("monospace", txtSize);
 	//textStyle(BOLD);
-	
-	let alphaText = "alpha: " + gyroAlpha;
-	let betaText = "beta: " + gyroBeta;
-	let gammaText = "gamma: " + gyroGamma;
-	
-	text(alphaText, 20, height - 20 - 2 * (txtSize * 1.1));
-	text(betaText , 20, height - 20 - 1 * (txtSize * 1.1));
-	text(gammaText, 20, height - 20 - 0 * (txtSize * 1.1));
+
+	let rotXText = "rot x: " + rotationX;
+	let rotYText = "rot y: " + rotationY;
+	let rotZText = "rot z: " + rotationZ;
+
+	text(rotXText, 20, height - 20 - 2 * (txtSize * 1.1));
+	text(rotYText , 20, height - 20 - 1 * (txtSize * 1.1));
+	text(rotZText, 20, height - 20 - 0 * (txtSize * 1.1));
 }
 
 function drawPauseButton() {
@@ -40,7 +40,7 @@ function drawPauseScreen() {
 		noStroke();
 		fill(0, 0, 0, 100);
 		rect(0, 0, width, height);
-		
+
 		fill(255);
 
 		// draw instruction
