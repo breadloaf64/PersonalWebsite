@@ -2,6 +2,9 @@ let rx = 0;
 let ry = 0;
 let rz = 0;
 
+permissionGranted = false;
+
+
 function setup() {
   createMetaTag();
   createCanvas(window.innerWidth, window.innerHeight);
