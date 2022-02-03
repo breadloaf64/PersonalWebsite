@@ -6,37 +6,37 @@ class Button {
 		this.h = h;
 		this.text = text;
 		this.f = f; // function to call on click
-
+		
 		this.state = true;
 	}
-
+	
 		tryClick() {
 		// check if mouse is over the button
 		if (this.x < mouseX &&
 			mouseX < this.x + this.w &&
 			this.y < mouseY &&
 			mouseY < this.y + this.h) {
-
+			
 			this.click();
 		}
 	}
-
+	
 	click() {
 		this.f();
 	}
-
+	
 	draw() {
 		// draw button
 		strokeWeight(5);
 		stroke(colPauseButtonBorder);
 		fill(colPauseButton);
-
+		
 		rect(this.x, this.y, this.w, this.h, 5);
-
+		
 		//draw text
 		noStroke();
 		fill(colReadouts);
-
+		
 		text(this.text, this.x + (this.w - textWidth(this.text)) / 2, this.y  + this.h / 2 + 0.25 * textSize());
 	}
 }

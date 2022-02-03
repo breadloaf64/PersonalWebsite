@@ -3,19 +3,19 @@ var imgNoiseTexture;
 var colFrame;
 var colBackground;
 var colReadouts;
-var colCrosshair;
-var colWave;
 var colGrid;
+var colSequence;
+var colPlayHead;
 var colPauseButtonBorder;
 var colPauseButton;
 
 function setColours() {
-	colFrame = color("#2f3e46");
-	colBackground = color("#354f52");
-	colReadouts = color("#84a98c");
-	colCrosshair = color("#84a98c");
-	colWave = color("#cad2c5");
-	colGrid = color("#52796f");
+	colFrame = color("#231942");
+	colBackground = color("#f4f3ee");
+	colReadouts = color("#5e548e");
+	colGrid = color("#be95c4");
+	colSequence = color("#5e548e");
+	colPlayHead = color("#9f86c0");
 
 	colPauseButtonBorder = color(0, 0);
 	colPauseButton = color("#2f3e46");
@@ -48,9 +48,9 @@ function drawFrame() {
 
 function myStandardSetup() {
 	setCanvas();
-	createMetaTag();
 	setColours();
 	setNoiseTexture();
+	makePauseButton();
 }
 
 function setCanvas () {
@@ -75,15 +75,6 @@ function touchMoved() {
   return false;
 }
 
-function createMetaTag() {
-	let meta = createElement('meta');
-	meta.attribute('name', 'viewport');
-	meta.attribute('content', 'user-scalable=no,initial-scale=1,maximum-scale=1,minimum-scale=1,width=device-width,height=device-height');
-
-	let head = select('head');
-	meta.parent(head);
-}
-
 function windowResized() {
 	let parent = canvas.parentElement;
 	let w = parent.clientWidth;
@@ -92,6 +83,15 @@ function windowResized() {
 	let size = min(w, h);
   resizeCanvas(size, size, true);
 	makePauseButton();
+}
+
+function createMetaTag() {
+	let meta = createElement('meta');
+	meta.attribute('name', 'viewport');
+	meta.attribute('content', 'user-scalable=no,initial-scale=1,maximum-scale=1,minimum-scale=1,width=device-width,height=device-height');
+
+	let head = select('head');
+	meta.parent(head);
 }
 
 function makePauseButton() {

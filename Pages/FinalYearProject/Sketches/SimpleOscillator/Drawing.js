@@ -1,13 +1,25 @@
+function render() {
+	background(colBackground);
+	drawGrid();
+	drawWave();
+	drawCrosshair();
+	drawButton();
+	drawReadouts();
+	drawPauseScreen();
+	image(imgNoiseTexture, 0, 0);
+	drawFrame();
+}
+
 function drawGrid() {
-	
+
 	// formatting
 	stroke(colGrid);
 	strokeWeight(1);
 	noFill();
-	
+
 	let n = 4; // we will draw 2n lines across the grid
 	let dist = width / (2 * n);
-	
+
 	for (let i = -n; i < n; i++) {
 		let p = width / 2 + i * dist;
 		line(p, 0, p, height); // vertical
@@ -16,22 +28,24 @@ function drawGrid() {
 }
 
 function drawButton() {
-	noStroke();
-	txtSize = width / 30;
-	textFont("monospace", txtSize);
-	btnMute.draw();
+	if (!paused) {
+		noStroke();
+		txtSize = width / 30;
+		textFont("monospace", txtSize);
+		btnPause.draw();
+	}
 }
 
 function drawWave() {
 	stroke(colWave);
 	strokeWeight(5);
 	noFill();
-	
+
 	let drawAmplitude = map(volume, 0, 1, 0, height / 2 * 0.8);
 	let drawFrequency = map(frequency, minFrequency, maxFrequency, 0.015, 0.4, true);
-	
+
 	let samples = 80; // twice this many vertices will be used to draw the wave
-	
+
 	// forwards from centre
 	beginShape();
 	vertex(width / 2, height / 2);
@@ -43,10 +57,10 @@ function drawWave() {
 		pointOffset = map(volume, 0, 1, 3, 6);
 		noisePeriod = 1 / frequency;
 		noiseZOffset = sin(counter / noisePeriod * TWO_PI);
-		
+
 		x += noise(x, y, noiseZOffset) * pointOffset;
 		y += noise(x, y + 100, noiseZOffset) * pointOffset;
-		
+
 		curveVertex(x, y);
 	}
 	endShape();
@@ -55,34 +69,34 @@ function drawWave() {
 function drawCrosshair() {
 	stroke(colCrosshair);
 	strokeWeight(3);
-	
+
 	line(0, currentMouseY, width, currentMouseY); // horizontal
 	line(currentMouseX, 0, currentMouseX, height); // vertical
 }
 
 function drawReadouts() {
-	
+
 	// font formatting
 	fill(colReadouts);
 	noStroke();
 	txtSize = width / 30;
 	textFont("monospace", txtSize);
 	//textStyle(BOLD);
-	
+
 	let txtFrequency = frequency.toFixed(2);
 	let txtVolume = (volume * 100).toFixed(2);
-	
+
 	text("Frequency: " + txtFrequency + " Hz", 20, height - 20);
 	text("Volume: " + txtVolume + " %", 20, height - 20 - txtSize);
 }
 
-function drawBeginScreen() {
-	if (begin) {
+function drawPauseScreen() {
+	if (paused) {
 		// tint background darker
 		noStroke();
 		fill(0, 0, 0, 100);
 		rect(0, 0, width, height);
-		
+
 		fill(255);
 
 		// draw instruction

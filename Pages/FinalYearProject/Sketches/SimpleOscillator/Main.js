@@ -2,12 +2,11 @@ var embeddedOnWebsite = true; // changing this to true will put it inside of the
 
 var counter = 0;
 
-var begin = true;
-
 var currentMouseX = 0;
 var currentMouseY = 0;
 
-var btnMute;
+var btnPause;
+var paused = true;
 
 function preload() {
 	preloadSound();
@@ -16,39 +15,41 @@ function preload() {
 function setup() {
 	myStandardSetup();
 	setupSound();
-	makeMuteButton();
+	makePauseButton();
 }
 
 function keyPressed() {
-	if (key == ' ' || key == 'm'){ //this means space bar, since it is a space inside of the single quotes
-    muteUnmute();
+	if (key == ' ' || key == 'p'){ //spacebar or p to pause/unpause
+    pauseUnpause();
   }
+	return false;
+}
+
+function pauseUnpause() {
+	paused = !paused;
+	if (!paused) {
+		sine.loop();
+	}
+	else {
+		sine.stop();
+	}
 }
 
 function mouseClicked() {
-	if (begin) beginSketch();
-	btnMute.tryClick();
+	if (paused) pauseUnpause();
+	btnPause.tryClick();
 }
 
-function beginSketch() {
-	begin = false;
-	muteUnmute();
+function handleCurrentMouse() {
+	if (!paused) {
+		currentMouseX = mouseX;
+		currentMouseY = mouseY;
+	}
 }
 
 function draw() {
 	handleSound();
+	handleCurrentMouse();
 	render();
 	counter++;
-}
-
-function render() {
-	background(colBackground);
-	drawGrid();
-	drawWave();
-	drawCrosshair();
-	drawButton();
-	drawReadouts();
-	drawBeginScreen();
-	image(imgNoiseTexture, 0, 0);
-	drawFrame();
 }
