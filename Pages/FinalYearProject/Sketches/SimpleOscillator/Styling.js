@@ -72,7 +72,7 @@ function setCanvas () {
 
 function touchMoved() {
   // prevent the display from moving around when you touch it
-  return false;
+  //return false;
 }
 
 function createMetaTag() {
