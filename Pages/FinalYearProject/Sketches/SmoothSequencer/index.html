@@ -1,8 +1,12 @@
 <html>
     <head>
-        <link rel="stylesheet" , href="../../../../css/squareSketches.css">
-        <script src="https://unpkg.com/@free-side/audioworklet-polyfill/dist/audioworklet-polyfill.js" type="text/javascript"></script>
+        <!-- Bootstrap -->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
+        <!-- My css -->
+        <link rel="stylesheet" , href="../../../../css/squareSketches.css">
+
+        <!-- Sketch -->
         <script src="Main.js" type="text/javascript"></script><script src="Styling.js" type="text/javascript"></script>
         <script src="Sound.js" type="text/javascript"></script>
         <script src="Drawing.js" type="text/javascript"></script>
@@ -10,19 +14,35 @@
         <script src="Button.js" type="text/javascript"></script>
         <script src="Gyroscope.js" type="text/javascript"></script>
         <script src="WebsiteMobileSetup.js" type="text/javascript"></script>
+
+        <!-- P5js -->
         <script src="https://cdn.jsdelivr.net/npm/p5@v1.3.1/lib/p5.js" type="text/javascript"></script>
-        <script src="https://cdn.jsdelivr.net/npm/p5@v1.4.0/lib/addons/p5.sound.min.js" type="text/javascript"></script>
+        <script src="https://cdn.jsdelivr.net/npm/p5@vv1.4.0/lib/addons/p5.sound.min.js" type="text/javascript"></script>
+
+        <!-- Don't forget this one if using sound! -->
+        <script src="https://unpkg.com/@free-side/audioworklet-polyfill/dist/audioworklet-polyfill.js" type="text/javascript"></script>
     </head>
 <body>
+
+    <!-- sketch holder -->
     <div class='square-box'>
         <div id="sketch-holder" class = "square-content">
           <!-- Our sketch will go here! -->
         </div>
     </div>
 
+    <div class = 'container'>
+        <div class='col-sm'>
+            <!-- sketch title and description -->
+            <h1 class="sketch-title">Smooth Sequencer</h1>
+            <p class="sketch-desc">Use your finger/mouse to draw yourself a melody.</p>
 
-    <h1>Smooth Sequencer</h1>
-    <p>Draw yourself a happy sequence</p>
+            <!-- Sketch info -->
+            <p>I began with the simplest implementation of pitch sequencing - by defining an array, which holds a y value for every pixel x along the width of the sketch. As the playhead wipes along the screen, the y value for the current x is mapped linearly to frequencies.</p>
+            <p>The problem with this approach is that it does’t support “rests”, i.e. gaps in the sequence, nor does it support polyphony, i.e. more than one note playing at once. Both of these features are important for music sequencing, thus the final application should use a more advanced system!</p>
+            <p>A fun interaction I added was the mouse (or tilt, for mobile) controlling the speed of playback. This allows the user to control tempo in a way that I’ve never seen before in music production software.</p>
+        </div>
+    </div>
 </body>
 
 </html>

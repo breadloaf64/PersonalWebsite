@@ -1,9 +1,12 @@
 <html>
     <head>
-        <link rel="stylesheet" , href="../../../../css/squareSketches.css">
-        <script src="https://unpkg.com/@free-side/audioworklet-polyfill/dist/audioworklet-polyfill.js" type="text/javascript"></script>
+        <!-- Bootstrap -->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
-        <!-- Scripts -->
+        <!-- My css -->
+        <link rel="stylesheet" , href="../../../../css/squareSketches.css">
+
+        <!-- Sketch -->
         <script src="Main.js" type="text/javascript"></script>
         <script src="Drawing.js" type="text/javascript"></script>
         <script src="Sound.js" type="text/javascript"></script>
@@ -13,19 +16,37 @@
         <script src="RectToggleButton.js" type="text/javascript"></script>
         <script src="Button.js" type="text/javascript"></script>
         <script src="WebsiteMobileSetup.js" type="text/javascript"></script>
+
+        <!-- P5js -->
         <script src="https://cdn.jsdelivr.net/npm/p5@v1.3.1/lib/p5.js" type="text/javascript"></script>
-        <script src="https://cdn.jsdelivr.net/npm/p5@v1.4.0/lib/addons/p5.sound.min.js" type="text/javascript"></script>
+        <script src="https://cdn.jsdelivr.net/npm/p5@vv1.4.0/lib/addons/p5.sound.min.js" type="text/javascript"></script>
+
+        <!-- Don't forget this one if using sound! -->
+        <script src="https://unpkg.com/@free-side/audioworklet-polyfill/dist/audioworklet-polyfill.js" type="text/javascript"></script>
     </head>
 <body>
+
+    <!-- sketch holder -->
     <div class='square-box'>
         <div id="sketch-holder" class = "square-content">
           <!-- Our sketch will go here! -->
         </div>
     </div>
 
+    <div class = 'container'>
+        <div class='col-sm'>
+            <!-- sketch title and description -->
+            <h1 class="sketch-title">Scales</h1>
+            <p class="sketch-desc">Tap the buttons to define the scale. Move your mouse/finger to control the note.</p>
 
-    <h1>Scales</h1>
-    <p>Tap the buttons to define the scale. More your mouse/finger to control the pitch, which will snap to the chosen scale.</p>
+            <!-- Sketch info -->
+            <p>The focus behind this sketch was pitch quantisation. That is, how can we map the continuous spectrum of pitch onto a musical scale? This will become important if we want to use the final program to come up with harmonious melodies.</p>
+            <p>To make this work, I came up with a way to index notes. By convection we start with <a href="https://en.wikipedia.org/wiki/A440_(pitch_standard)">A4</a> (440hz) which we index note with 0. Then the semitone up is index 1, the next index 2 and so on. In the same way, the semitone below is index -1 etc. So each musical note is given an integer.</p>
+            <p>The second part of the puzzle is a continuous bijection between frequencies and notes (including the real numbers between note indices). There are many ways to do this, but the standard western way is by using <a href="https://en.wikipedia.org/wiki/12_equal_temperament">12-tone equal temperament</a> (12-TET). You can spend hours in the music theory rabbit hole of why this works, but here’s the function f which maps notes to frequencies where n is the index of a note: f(n) =  440 * (sqrt(2))^n.</p>
+            <p>So to quantise a frequency to the chromatic scale, apply f^-1(freq) to get the real value of the note. Round it, to get the index of the nearest note in the scale, then apply f again to get the quantised frequency.</p>
+            <p>Finally, in order to quantise to a scale, I created a Scale class, which takes a set of notes in one octave relative to some tonic (root) note and generates an array of all the notes in the scale across all octaves in the <a href="https://en.wikipedia.org/wiki/Hearing_range">audible range</a>. We can then use binary search to get the nearest note in the scale to a given note!</p>
+        </div>
+    </div>
 </body>
 
 </html>
