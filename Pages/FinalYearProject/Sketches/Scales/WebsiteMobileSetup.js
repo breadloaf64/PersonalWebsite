@@ -22,7 +22,7 @@ function windowResized() {
 	let size = min(w, h);
   resizeCanvas(size, size, true);
 	makePauseButton();
-    if (btnArrScaleDegrees) {
+    if (btnArrScaleDegrees) {  // we need this check, because on mobile window is resized before setup (this our object doesn't exist yet)
 		setSizeScaleDegreesButtons();
 	}
 }
