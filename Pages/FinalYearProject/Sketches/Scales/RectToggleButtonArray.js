@@ -14,6 +14,25 @@ class RectToggleButtonArray {
 		this.initialise();
 	}
 	
+	setSize(x, y, w, h) {
+		this.x = x;
+		this.y = y;
+		this.w = w;
+		this.h = h;
+		
+		let buttonWidth = this.w / this.numCols;
+		let buttonHeight = this.h / this.numRows;
+		
+		for (let r = 0; r < this.numRows; r++) {
+			for (let c = 0; c < this.numCols; c++) {
+				let x = this.x + c * buttonWidth;
+				let y = this.y + r * buttonHeight;
+				
+				this.buttons[r][c].setSize(x, y, buttonWidth, buttonHeight);
+			}
+		}
+	}
+	
 	initialise() {
 		
 		let buttonWidth = this.w / this.numCols;

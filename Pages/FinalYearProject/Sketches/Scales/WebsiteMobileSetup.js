@@ -22,4 +22,7 @@ function windowResized() {
 	let size = min(w, h);
   resizeCanvas(size, size, true);
 	makePauseButton();
+    if (btnArrScaleDegrees) {
+		setSizeScaleDegreesButtons();
+	}
 }

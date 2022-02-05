@@ -9,6 +9,14 @@ class RectToggleButton {
 		this.state = true;
 	}
 	
+	setSize(x, y, w, h) {
+		this.x = x;
+		this.y = y;
+		this.w = w;
+		this.h = h;
+		print("set");
+	}
+	
 	tryClick() {
 		// check if mouse is over the button
 		if (this.x < mouseX &&
