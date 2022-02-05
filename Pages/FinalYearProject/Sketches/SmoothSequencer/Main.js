@@ -1,19 +1,11 @@
-var embeddedOnWebsite = true;
-
-var sine;
-
-var sequence;
-var arr;
-
 var counter = 0;
-
-var period;
 
 var btnPause;
 var paused = true;
 
 var currentMouseX = 0;
 var currentMouseY = 0;
+var prevMouseIsPressed = false; // counts if finger is pressed too
 
 function preload() {
 	preloadSound();

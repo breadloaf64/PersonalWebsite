@@ -16,7 +16,7 @@ function setColours() {
 	colGrid = color("#be95c4");
 	colSequence = color("#5e548e");
 	colPlayHead = color("#9f86c0");
-
+	
 	colPauseButtonBorder = color(0, 0);
 	colPauseButton = color("#2f3e46");
 	colPauseButton.setAlpha(100);
@@ -68,30 +68,6 @@ function setCanvas () {
 		let size = min(windowWidth, windowHeight) * 0.8;
 		createCanvas(size, size);
 	}
-}
-
-function touchMoved() {
-  // prevent the display from moving around when you touch it
-  return false;
-}
-
-function windowResized() {
-	let parent = canvas.parentElement;
-	let w = parent.clientWidth;
-	let h = parent.clientHeight;
-
-	let size = min(w, h);
-  resizeCanvas(size, size, true);
-	makePauseButton();
-}
-
-function createMetaTag() {
-	let meta = createElement('meta');
-	meta.attribute('name', 'viewport');
-	meta.attribute('content', 'user-scalable=no,initial-scale=1,maximum-scale=1,minimum-scale=1,width=device-width,height=device-height');
-
-	let head = select('head');
-	meta.parent(head);
 }
 
 function makePauseButton() {

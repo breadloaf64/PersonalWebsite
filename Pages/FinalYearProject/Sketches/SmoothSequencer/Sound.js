@@ -1,6 +1,7 @@
 var frequency = 0;
 var volume = 0;
 
+var sine; // sound file of the sine wave
 var baseFrequency;
 
 var minSpeedMultiplier = 0.01;
