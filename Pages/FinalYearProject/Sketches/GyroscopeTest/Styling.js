@@ -10,12 +10,12 @@ var colPauseButtonText;
 function setColours() {
 	colFrame = color("#000000");
 	colBackground = color("#ffffff");
-
+	
 	colPauseButtonBorder = color(0);
 	colPauseButton = color("#ffffff");
 	colPauseButton.setAlpha(255);
 	colPauseButtonText = color(0);
-
+	
 	colReadouts = color(0);
 }
 
