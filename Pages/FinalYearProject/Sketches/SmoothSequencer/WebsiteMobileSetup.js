@@ -1,10 +1,5 @@
 var embeddedOnWebsite = true;
 
-function touchMoved() {
-  // prevent the display from moving around when you touch it
-  return false;
-}
-
 function createMetaTag() {
 	let meta = createElement('meta');
 	meta.attribute('name', 'viewport');
@@ -20,6 +15,6 @@ function windowResized() {
 	let h = parent.clientHeight;
 
 	let size = min(w, h);
-  resizeCanvas(size, size, true);
+    resizeCanvas(size, size, true);
 	makePauseButton();
 }

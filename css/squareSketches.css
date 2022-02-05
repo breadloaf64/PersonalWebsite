@@ -12,33 +12,14 @@ canvas {
     touch-action: none;
 }
 
-h1 {
-    font-weight: bolder;
+.sketch-title {
     font-family: monospace;
     text-align: center;
 }
 
-h2 {
-    font-weight: bolder;
+.sketch-desc {
     font-family: monospace;
     text-align: center;
-}
-
-p {
-    font-family: sans-serif;
-}
-
-ul {
-    font-family: monospace;
-}
-
-/* .description {
-    max-width: 50%;
-} */
-
-.grid {
-    display: grid;
-    place-items: center;
 }
 
 .square-box{

@@ -36,6 +36,11 @@ function pauseUnpause() {
 }
 
 function mouseClicked() {
+	if (embeddedOnWebsite && (mouseX < 0 || width < mouseX || mouseY < 0 || height < mouseY)) {
+		// if on a website, don't register the click if it's off the sketch
+		return;
+	}
+
 	if (paused) pauseUnpause();
 	btnPause.tryClick();
 }
