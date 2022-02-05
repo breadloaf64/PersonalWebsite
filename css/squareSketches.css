@@ -32,9 +32,9 @@ ul {
     font-family: monospace;
 }
 
-.description {
+/* .description {
     max-width: 50%;
-}
+} */
 
 .grid {
     display: grid;

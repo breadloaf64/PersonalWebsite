@@ -70,11 +70,6 @@ function setCanvas () {
 	}
 }
 
-function touchMoved() {
-  // prevent the display from moving around when you touch it
-  //return false;
-}
-
 function createMetaTag() {
 	let meta = createElement('meta');
 	meta.attribute('name', 'viewport');
