@@ -12,8 +12,6 @@ var volume = 1;
 
 var userScale;
 
-var btnArrScaleDegrees;
-
 function preloadSound() {
 	// Load a sound file
   wave = loadSound('1kHz_44100Hz_16bit_05sec.wav');
@@ -23,7 +21,7 @@ function preloadSound() {
 function setupSound() {
 	minNote = round(frequencyToNote(minFrequency));
 	maxNote = round(frequencyToNote(maxFrequency));
-	
+
 	initialiseScales();
 	userScale = new Scale(3, [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]);
 	btnArrScaleDegrees = new RectToggleButtonArray(50, height / 2 - 80, width - 100, 100, 1, 12, false, false);
@@ -43,7 +41,7 @@ function setVolume() {
 
 function setFrequency() {
 	let xProp = mouseX / width; // proportional distance up the screen
-	
+
 	// use exponential scale to match how frequency maps to pitch
 	frequency = propToFrequency_exp(xProp, true);
 	if (userScale.degrees.length > 0) {
@@ -58,13 +56,13 @@ function setFrequency() {
 function noteIndexToText(noteIndex) {
 	// recall we treat A4 as the 0th note
 	let noteNames = ["A", "A#", "B", "C", "C#", "D", "D#", "E", "F", "F#", "G", "G#"];
-	
+
 	let note = round(noteIndex);
 	let cents = round((noteIndex - note) * 100);
-	
+
 	let noteName = noteNames[(note % 12 + 12) % 12];
 	let oct = ((note + 9) - (((note + 9) % 12) + 12) % 12) / 12 + 4;
-	
+
 	let noteText = noteName + oct.toString();
 	if (cents != 0) {
 		noteText = noteText + " " + cents + " cents";
@@ -74,7 +72,7 @@ function noteIndexToText(noteIndex) {
 
 function propToFrequency_exp(prop, constrainFreq) {
 	// takes a value from 0 to 1 and maps it on an exponential scale to a frequency
-	
+
 	let f =  minFrequency * exp((prop) * log(maxFrequency / minFrequency));
 	if (constrainFreq) f = constrain(f, minFrequency, maxFrequency);
 	return f;
