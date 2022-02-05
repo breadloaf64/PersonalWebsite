@@ -11,6 +11,16 @@ h1 {
     font-size: 60px;
 }
 
+h2 {
+    font-family: monospace;
+    text-align: center;
+}
+
+h3 {
+    font-family: monospace;
+    text-align: center;
+}
+
 p {
     font-family: monospace;
     text-align: center;
