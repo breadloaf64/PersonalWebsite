@@ -22,6 +22,10 @@ canvas {
     text-align: center;
 }
 
+.sketch-info {
+    text-align:justify;
+}
+
 .square-box{
     position: relative;
     width: 100%;
