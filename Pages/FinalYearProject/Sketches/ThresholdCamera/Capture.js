@@ -1,4 +1,5 @@
 var capture; // capture <video> dom element
+let facingUser = true;
 
 function setupCapture() {
 	// initialise capture
@@ -7,7 +8,7 @@ function setupCapture() {
 		video: {
 			width: h,
 			height: w,
-			facingMode: false ? 'user' : 'environment'
+			facingMode: facingUser ? 'user' : 'environment'
 		}
 	}, function() {
 		//console.log('capture ready.')
@@ -15,4 +16,11 @@ function setupCapture() {
 	capture.elt.setAttribute('playsinline', '');
 	capture.size(w, h);
 	capture.hide();
+}
+
+function removeCapture() {
+	if (capture) {
+		capture.parentElement.removeChild(e);
+		capture.remove();
+	}
 }
