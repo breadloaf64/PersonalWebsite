@@ -1,0 +1,47 @@
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta charset="utf-8">
+        <title>Threshold Camera</title>
+
+        <!-- Bootstrap -->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+        <!-- My css -->
+        <link rel="stylesheet" , href="../../css/squareSketches.css">
+
+        <!-- Sketch -->
+        <script src="Main.js" type="text/javascript"></script>
+        <script src="Drawing.js" type="text/javascript"></script>
+        <script src="CV.js" type="text/javascript"></script>
+        <script src="Capture.js" type="text/javascript"></script>
+        <script src="WebsiteMobileSetup.js" type="text/javascript"></script>
+        <script src="Styling.js" type="text/javascript"></script>
+        <script src="https://cdn.jsdelivr.net/npm/p5@1.2.0/lib/p5.js" type="text/javascript"></script>
+
+        <!-- P5js -->
+        <script src="https://www.openprocessing.org/assets/js/vendor/p5jsLibraries/opencv/opencv-4.0.1.js" type="text/javascript"></script>
+    </head>
+<body>
+    <!-- sketch holder -->
+    <div class='square-box'>
+        <div id="sketch-holder" class = "square-content">
+          <!-- Our sketch will go here! -->
+        </div>
+    </div>
+
+    <div class = 'container'>
+        <div class='col-sm'>
+            <!-- sketch title and description -->
+            <h1 class="sketch-title">Threshold Camera</h1>
+            <p class="sketch-desc">Tap to take a photo! The height of the tap determines the thresholding value.</p>
+
+            <!-- Sketch info -->
+            <!-- <p class="sketch-info">I began with a very simple implementation of pitch sequencing - by defining an array, which holds a y value for every pixel x along the width of the sketch. As the playhead wipes along the screen, the y value for the x value of the playhead is mapped linearly to frequencies.</p>
+            <p class="sketch-info">The problem with this approach is that it doesn’t support rests, i.e. gaps in the sequence where no note is playing, nor does it support polyphony, i.e. more than one note playing at once. Both of these features are important for music sequencing, thus the final application should use a more advanced system!</p>
+            <p class="sketch-info">A fun interaction I added was using the mouse (or tilt, for mobile) controlling the speed of playback. This allows the user to control tempo in a way that I’ve never seen before in music production software.</p> -->
+        </div>
+    </div>
+</body>
+
+</html>
