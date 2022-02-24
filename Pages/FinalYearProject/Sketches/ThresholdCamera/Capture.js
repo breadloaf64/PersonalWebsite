@@ -6,7 +6,8 @@ function setupCapture() {
 		audio: false,
 		video: {
 			width: h,
-			height: w
+			height: w,
+			facingMode: false ? 'user' : 'environment'
 		}
 	}, function() {
 		//console.log('capture ready.')
