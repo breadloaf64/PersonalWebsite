@@ -20,12 +20,9 @@ function mouseClicked() {
 		// if on a website, don't register the click if it's off the sketch
 		return;
 	}
-	
-	//if (takingPhoto) takePhoto();
-	//else takingPhoto = true;
-	facingUser = !facingUser;
-	capture.remove();
-	setupCapture();
+
+	if (takingPhoto) takePhoto();
+	else takingPhoto = true;
 }
 
 function takePhoto() {

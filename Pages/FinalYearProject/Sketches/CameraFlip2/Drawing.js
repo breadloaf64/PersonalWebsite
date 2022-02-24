@@ -1,8 +1,8 @@
 function render() {
 	background(colBackground);
-	
+
 	drawCapture();
-	
+
 	image(imgNoiseTexture, 0, 0);
 	drawFrame();
 }

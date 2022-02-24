@@ -20,5 +20,5 @@ function windowResized() {
   resizeCanvas(size, size, true);
 	w = size;
 	h = size;
-	createCapture();
+	setupCapture();
 }

@@ -1,5 +1,5 @@
 var capture; // capture <video> dom element
-let facingUser = true;
+let facingUser = false;
 
 function setupCapture() {
 	// initialise capture
