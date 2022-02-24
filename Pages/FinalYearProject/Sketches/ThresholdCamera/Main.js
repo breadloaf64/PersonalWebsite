@@ -16,13 +16,18 @@ function draw() {
 }
 
 function mouseClicked() {
+	if (embeddedOnWebsite && (mouseX < 0 || width < mouseX || mouseY < 0 || height < mouseY)) {
+		// if on a website, don't register the click if it's off the sketch
+		return;
+	}
+
 	if (takingPhoto) takePhoto();
 	else takingPhoto = true;
 }
 
 function takePhoto() {
-	poster = thresholdFilter(capture.get(0, 0, w, h));
 	thresholdVal = map(mouseY, height, 0, 0, 100);
+	poster = thresholdFilter(capture.get(0, 0, w, h));
 	takingPhoto = false;
 	print("converted");
 }
