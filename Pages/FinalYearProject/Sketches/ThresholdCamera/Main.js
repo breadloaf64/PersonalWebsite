@@ -2,6 +2,9 @@ var poster;
 var takingPhoto = true;
 var thresholdVal;
 
+var FlipCamera;
+var buttonPressedThisFrame = false;
+
 // canvas and capture size
 var w = 400;
 var h = 400;
@@ -9,10 +12,20 @@ var h = 400;
 function setup() {
 	myStandardSetup();
 	setupCapture();
+	makeFlipCameraButton();
+}
+
+function makeFlipCameraButton() {
+	let btnHeight = height * 0.04;
+	let btnWidth = btnHeight * 7/2;
+	let text = "flip";
+	btnFlipCamera = new Button(width - btnWidth - 20, height - btnHeight - 20, btnWidth, btnHeight, flipCamera, text,
+														 colFlipCameraButtonFill, colFlipCameraButtonBorder, colFlipCameraButtonText);
 }
 
 function draw() {
 	render();
+	buttonPressedThisFrame = false;
 }
 
 function mouseClicked() {
@@ -20,8 +33,10 @@ function mouseClicked() {
 		// if on a website, don't register the click if it's off the sketch
 		return;
 	}
-
-	if (takingPhoto) takePhoto();
+	
+	btnFlipCamera.tryClick();
+	
+	if (takingPhoto && !buttonPressedThisFrame) takePhoto();
 	else takingPhoto = true;
 }
 

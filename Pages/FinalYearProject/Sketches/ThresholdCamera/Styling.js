@@ -3,9 +3,17 @@ var imgNoiseTexture;
 var colFrame;
 var colBackground;
 
+var colFlipCameraButtonFill;
+var colFlipCameraButtonBorder;
+var colFlipCameraButtonText;
+
 function setColours() {
 	colFrame = color("#000000");
 	colBackground = color("#ffffff");
+	
+	colFlipCameraButtonFill = color("#FFFFFF");
+	colFlipCameraButtonBorder = color("#000000");
+	colFlipCameraButtonText = color("#000000");
 }
 
 function setNoiseTexture() {

@@ -2,6 +2,8 @@ var capture; // capture <video> dom element
 let facingUser = false;
 
 function setupCapture() {
+	removeCapture();
+	
 	// initialise capture
 	capture = createCapture({
 		audio: false,
@@ -20,7 +22,12 @@ function setupCapture() {
 
 function removeCapture() {
 	if (capture) {
-		capture.parentElement.removeChild(e);
 		capture.remove();
 	}
+}
+
+function flipCamera() {
+	facingUser = !facingUser;
+	setupCapture();
+	buttonPressedThisFrame = true;
 }
