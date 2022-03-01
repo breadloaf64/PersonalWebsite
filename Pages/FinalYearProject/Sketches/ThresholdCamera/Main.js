@@ -43,6 +43,33 @@ function mouseClicked() {
 function takePhoto() {
 	thresholdVal = map(mouseY, height, 0, 0, 100);
 	poster = thresholdFilter(capture.get(0, 0, w, h));
+	poster = recolourFromBlackWhite(poster);
 	takingPhoto = false;
 	print("converted");
+}
+
+function recolourFromBlackWhite(img) {
+	img.loadPixels();
+	
+	let outImg = createImage(img.width, height);
+	outImg.loadPixels();
+	
+	for (let i = 0; i < outImg.pixels.length; i += 4) {
+	  if (img.pixels[i] == 0) {
+			outImg.pixels[i + 0] = red(colDark);
+			outImg.pixels[i + 1] = green(colDark);
+			outImg.pixels[i + 2] = blue(colDark);
+			outImg.pixels[i + 3] = alpha(colDark);
+		}
+		else {
+			outImg.pixels[i + 0] = red(colBright);
+			outImg.pixels[i + 1] = green(colBright);
+			outImg.pixels[i + 2] = blue(colBright);
+			outImg.pixels[i + 3] = alpha(colBright);
+		}
+		
+	}
+	
+	outImg.updatePixels();
+	return outImg;
 }

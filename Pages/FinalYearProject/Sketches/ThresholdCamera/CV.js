@@ -44,8 +44,13 @@ function thresholdFilter(inputImage) {
 			dst[j++] = src[i];
 			dst[j++] = 255; // alpha
 		}
-
+		
 		newImg.updatePixels();
+		
+		captureMat.delete();
+		gray.delete();
+		blurred.delete();
+		thresholded.delete();
 
 		return newImg;
 	}

@@ -3,17 +3,23 @@ var imgNoiseTexture;
 var colFrame;
 var colBackground;
 
+var colDark;
+var colBright;
+
 var colFlipCameraButtonFill;
 var colFlipCameraButtonBorder;
 var colFlipCameraButtonText;
 
 function setColours() {
-	colFrame = color("#000000");
+	colFrame = color("#cb997e");
 	colBackground = color("#ffffff");
 	
-	colFlipCameraButtonFill = color("#FFFFFF");
-	colFlipCameraButtonBorder = color("#000000");
-	colFlipCameraButtonText = color("#000000");
+	colDark = color("#6b705c");
+	colBright = color("#ffe8d6");
+	
+	colFlipCameraButtonFill = color("#ffe8d6");
+	colFlipCameraButtonBorder = color("#cb997e");
+	colFlipCameraButtonText = color("#cb997e");
 }
 
 function setNoiseTexture() {
@@ -45,6 +51,7 @@ function myStandardSetup() {
 	createMetaTag();
 	setColours();
 	setNoiseTexture();
+	pixelDensity(1);
 }
 
 function setCanvas () {
