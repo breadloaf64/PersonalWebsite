@@ -9,7 +9,7 @@ function setup() {
 
   pixelDensity(1);
 
-  setupCampture();
+  setupCapture();
 
   frameRate(60);
 }
