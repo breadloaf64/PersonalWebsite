@@ -1,5 +1,5 @@
 let capture;
-let facingUser = true;
+let facingUser = false;
 
 // canvas and capture size
 var w = 400;
@@ -33,7 +33,7 @@ function setupCapture() {
     video: {
 			width: w,
 			height: h,
-      facingMode: facingUser ? 'user' : 'environment'
+      //facingMode: facingUser ? 'user' : 'environment'
     },
     audio: false
   });
