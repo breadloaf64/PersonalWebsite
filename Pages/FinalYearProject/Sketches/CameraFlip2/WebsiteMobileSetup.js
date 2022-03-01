@@ -1,10 +1,5 @@
 var embeddedOnWebsite = true; // changing this to true will put it inside of the div called sketch-holder
 
-function touchMoved() {
-  // prevent the display from moving around when you touch it
-  return false;
-}
-
 function createMetaTag() {
 	let meta = createElement('meta');
 	meta.attribute('name', 'viewport');
