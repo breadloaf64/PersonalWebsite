@@ -33,7 +33,7 @@ function setupCapture() {
     video: {
 			width: w,
 			height: h,
-      //facingMode: facingUser ? 'user' : 'environment'
+      facingMode: facingUser ? 'user' : 'environment'
     },
     audio: false
   });

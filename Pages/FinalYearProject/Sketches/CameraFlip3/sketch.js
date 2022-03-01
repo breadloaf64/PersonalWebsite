@@ -23,7 +23,7 @@ function draw() {
   // }
   // image(capture, 0, 0, w, h);
 
-  drawCapture(0, 0, w, h);
+  drawCapture(0, 0, w, h, facingUser);
 }
 
 function drawCapture(x, y, wi, he, flip) {
