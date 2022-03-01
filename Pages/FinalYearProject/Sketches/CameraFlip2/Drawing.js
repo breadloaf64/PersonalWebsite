@@ -8,7 +8,7 @@ function render() {
 }
 
 function drawCapture() {
-	if (facingUser) {
+	if (false) {
     // flip camera horizontally
     translate(width, 0);
     scale(-1, 1);
