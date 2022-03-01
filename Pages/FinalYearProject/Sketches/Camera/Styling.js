@@ -2,13 +2,6 @@ var imgNoiseTexture;
 
 var colFrame;
 var colBackground;
-var colReadouts;
-var colCrosshair;
-var colWave;
-var colGrid;
-var colPauseButton;
-var colPauseButtonBorder;
-var colPauseButtonText;
 
 function setColours() {
 	colFrame = color("#000000");
@@ -44,6 +37,7 @@ function myStandardSetup() {
 	createMetaTag();
 	setColours();
 	setNoiseTexture();
+	pixelDensity(1);
 }
 
 function setCanvas () {
@@ -60,5 +54,7 @@ function setCanvas () {
 	else {
 		let size = min(windowWidth, windowHeight) * 0.8;
 		createCanvas(size, size);
+		w = size;
+		h = size;
 	}
 }

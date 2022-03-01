@@ -1,9 +1,4 @@
-var embeddedOnWebsite = false; // changing this to true will put it inside of the div called sketch-holder
-
-function touchMoved() {
-  // prevent the display from moving around when you touch it
-  return false;
-}
+var embeddedOnWebsite = true; // changing this to true will put it inside of the div called sketch-holder
 
 function createMetaTag() {
 	let meta = createElement('meta');
@@ -16,9 +11,9 @@ function createMetaTag() {
 
 function windowResized() {
 	let parent = canvas.parentElement;
-	let w = parent.clientWidth;
-	let h = parent.clientHeight;
-
-	let size = min(w, h);
-  resizeCanvas(size, size, true);
+	let size = min(parent.clientWidth, parent.clientHeight);
+    resizeCanvas(size, size, true);
+	w = size;
+	h = size;
+	setupCapture();
 }

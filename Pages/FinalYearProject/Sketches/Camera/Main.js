@@ -1,23 +1,41 @@
-function preload() {}
+let capture;
+let facingUser = false;
+
+// canvas and capture size
+var w = 400;
+var h = 400;
 
 function setup() {
-	myStandardSetup();
-	
-	pixelDensity(1);
-  setupCamera();
+  myStandardSetup();
+  setupCapture();
 }
 
-function keyPressed() {
-	if (key == ' ' || key == 'p'){ //spacebar or p to pause/unpause
-    
-  } 
-	return false;
+function draw() {
+  render();
 }
 
 function mouseClicked() {
+	if (embeddedOnWebsite && (mouseX < 0 || width < mouseX || mouseY < 0 || height < mouseY)) {
+		// if on a website, don't register the click if it's off the sketch
+		return;
+	}
+
+  facingUser = !facingUser;
+  setupCapture();
 }
 
+function setupCapture() {
+  if (capture) {
+    capture.remove();
+  }
 
-function draw() {
-	render();
+  capture = createCapture({
+    video: {
+			width: w,
+			height: h,
+      facingMode: facingUser ? 'user' : 'environment'
+    },
+    audio: false
+  });
+  capture.hide();
 }
