@@ -1,6 +1,9 @@
 let capture;
 let facingUser = true;
 
+var w = 100;
+var h = 100;
+
 function setup() {
   createMetaTag();
   createCanvas(window.innerWidth, window.innerHeight);
@@ -18,7 +21,7 @@ function draw() {
     translate(width, 0);
     scale(-1, 1);
   }
-  image(capture, 0, 0, width, height);
+  image(capture, 0, 0, w, h);
 }
 
 function touchStarted() {
@@ -33,8 +36,8 @@ function setupCamera() {
 
   capture = createCapture({
     video: {
-			width: 100,
-			height: 100,
+			width: w,
+			height: h,
       facingMode: facingUser ? 'user' : 'environment'
     },
     audio: false
