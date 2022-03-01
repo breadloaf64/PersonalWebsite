@@ -26,7 +26,7 @@ function draw() {
   drawCapture(0, 0, w, h);
 }
 
-function drawcapture(x, y, wi, he, flip) {
+function drawCapture(x, y, wi, he, flip) {
     if (flip) {
         push();
 		translate(x + wi, y);
