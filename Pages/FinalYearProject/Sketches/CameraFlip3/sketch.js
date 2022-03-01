@@ -1,5 +1,7 @@
 let capture;
 let facingUser = true;
+var w;
+var h;
 
 function setup() {
   createMetaTag();
@@ -7,7 +9,7 @@ function setup() {
 
   pixelDensity(1);
 
-  setupCamera();
+  setupCampture();
 
   frameRate(60);
 }
@@ -23,10 +25,10 @@ function draw() {
 
 function touchStarted() {
   facingUser = !facingUser;
-  setupCamera();
+  setupCapture();
 }
 
-function setupCamera() {
+function setupCapture() {
   if (capture) {
     capture.remove();
   }
@@ -54,4 +56,13 @@ function createMetaTag() {
 
   let head = select('head');
   meta.parent(head);
+}
+
+function windowResized() {
+	let parent = canvas.parentElement;
+	let size = min(parent.clientWidth, parent.clientHeight);
+    resizeCanvas(size, size, true);
+	w = size;
+	h = size;
+	setupCapture();
 }
