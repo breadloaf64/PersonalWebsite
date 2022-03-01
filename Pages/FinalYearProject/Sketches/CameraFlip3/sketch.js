@@ -16,12 +16,30 @@ function setup() {
 }
 
 function draw() {
-  if (facingUser) {
-    // flip camera horizontally
-    translate(width, 0);
-    scale(-1, 1);
-  }
-  image(capture, 0, 0, w, h);
+  // if (facingUser) {
+  //   // flip camera horizontally
+  //   translate(width, 0);
+  //   scale(-1, 1);
+  // }
+  // image(capture, 0, 0, w, h);
+
+  drawCapture(0, 0, w, h);
+}
+
+function drawcapture(x, y, wi, he, flip) {
+    if (flip) {
+        push();
+		translate(x + wi, y);
+        scale(-1, 1);
+
+		image(capture, 0, 0, wi, he);
+
+		pop();
+    }
+    else {
+        image(capture, x, y, wi, he);
+    }
+
 }
 
 function touchStarted() {
