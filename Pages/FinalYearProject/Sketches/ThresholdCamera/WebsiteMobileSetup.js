@@ -12,8 +12,9 @@ function createMetaTag() {
 function windowResized() {
 	let parent = canvas.parentElement;
 	let size = min(parent.clientWidth, parent.clientHeight);
-  resizeCanvas(size, size, true);
+  	resizeCanvas(size, size, true);
 	w = size;
 	h = size;
 	setupCapture();
+	makeFlipCameraButton();
 }
