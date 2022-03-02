@@ -3,13 +3,13 @@ let facingUser = false;
 
 function setupCapture() {
 	removeCapture();
-	
+
 	// initialise capture
 	capture = createCapture({
 		audio: false,
 		video: {
-			width: h,
-			height: w,
+			width: w,
+			height: h,
 			facingMode: facingUser ? 'user' : 'environment'
 		}
 	}, function() {
