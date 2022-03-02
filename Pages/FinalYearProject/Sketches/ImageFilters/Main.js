@@ -32,9 +32,11 @@ function mouseClicked() {
 		// if on a website, don't register the click if it's off the sketch
 		return;
 	}
-	
+
 	btnFlipCamera.tryClick();
-	
-	filterSelection++;
-	if (filterSelection >= 8) filterSelection = 0;
+
+	if (!buttonPressedThisFrame) {
+		filterSelection++;
+		if (filterSelection >= 8) filterSelection = 0;
+	}
 }
