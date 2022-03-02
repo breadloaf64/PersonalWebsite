@@ -22,6 +22,9 @@ function mouseClicked() {
 
   facingUser = !facingUser;
   setupCapture();
+  print("capture size: " + capture.width + " " + capture.height);
+  print("canvas size: " + width + " " + height);
+  print("w/h: " + w + " " + h);
 }
 
 function setupCapture() {
