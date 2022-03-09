@@ -34,13 +34,15 @@
     <div class = 'container'>
         <div class='col-sm'>
             <!-- sketch title and description -->
-            <h1 class="sketch-title">Threshold Camera badoobap</h1>
+            <h1 class="sketch-title">Threshold Camera</h1>
             <p class="sketch-desc">Tap to take a photo! The height of the tap determines the thresholding value.</p>
 
             <!-- Sketch info -->
-            <!-- <p class="sketch-info">I began with a very simple implementation of pitch sequencing - by defining an array, which holds a y value for every pixel x along the width of the sketch. As the playhead wipes along the screen, the y value for the x value of the playhead is mapped linearly to frequencies.</p>
-            <p class="sketch-info">The problem with this approach is that it doesn’t support rests, i.e. gaps in the sequence where no note is playing, nor does it support polyphony, i.e. more than one note playing at once. Both of these features are important for music sequencing, thus the final application should use a more advanced system!</p>
-            <p class="sketch-info">A fun interaction I added was using the mouse (or tilt, for mobile) controlling the speed of playback. This allows the user to control tempo in a way that I’ve never seen before in music production software.</p> -->
+            <!-- <p class="sketch-info"></p> -->
+            <p class="sketch-info">Now we have the camera image coming through, we can move to the next step. Remember: our final goal is to take images of doodles on a post-it note and convert it into a musical sequence. So we will need the computer to “see” the drawn lines!</p>
+            <p class="sketch-info">To make it easier, we first simplify the image. The process we use here is called thresholding. For each pixel in the image, we compare its grayscale “brightness” value to a predefined thresholding limit. If it is brighter than the limit, we colour the pixel white, else we colour it black. This way we obtain an image composed of only fully black and fully white pixels.</p>
+            <p class="sketch-info">Just before we apply the threshold filter to the image, we actually introduce a bit of blur. Why? To deal with noise, which is a phenomenon found in photography where stray photons hitting the camera sensor cause nearby pixels to take on different values, where in a perfect world they should be the same colour. If we do not apply this blur, then in the thresholded image we can get specky looking regions of pixels which have values near to the thresholding limit.</p>
+            <p class="sketch-info">Finally, for purely aesthetic reasons we remap the black and white pixels to two lovely contrasting pastel shades!</p>
         </div>
     </div>
 </body>
