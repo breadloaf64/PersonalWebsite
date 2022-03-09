@@ -43,6 +43,7 @@
             <p class="sketch-info">To make it easier, we first simplify the image. The process we use here is called thresholding. For each pixel in the image, we compare its grayscale “brightness” value to a predefined thresholding limit. If it is brighter than the limit, we colour the pixel white, else we colour it black. This way we obtain an image composed of only fully black and fully white pixels.</p>
             <p class="sketch-info">Just before we apply the threshold filter to the image, we actually introduce a bit of blur. Why? To deal with noise, which is a phenomenon found in photography where stray photons hitting the camera sensor cause nearby pixels to take on different values, where in a perfect world they should be the same colour. If we do not apply this blur, then in the thresholded image we can get specky looking regions of pixels which have values near to the thresholding limit.</p>
             <p class="sketch-info">Finally, for purely aesthetic reasons we remap the black and white pixels to two lovely contrasting pastel shades!</p>
+            <p class="sketch-info">This sketch was my first time using openCV, which is a very widely used computer vision library. I used the javascript distribution which is, in contrast, not widely used at all and I had to make do with little documentation and help on stack exchange! I owe a lot of credit to <a href="https://openprocessing.org/sketch/1049343">this sketch</a>, which laid the groundwork for me.</p>
         </div>
     </div>
 </body>
