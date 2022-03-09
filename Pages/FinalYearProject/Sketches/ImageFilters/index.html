@@ -36,9 +36,9 @@
             <p class="sketch-desc">Tap to switch filter! The height of the tap affects filter parameters where relevant.</p>
 
             <!-- Sketch info -->
-            <!-- <p class="sketch-info">I began with a very simple implementation of pitch sequencing - by defining an array, which holds a y value for every pixel x along the width of the sketch. As the playhead wipes along the screen, the y value for the x value of the playhead is mapped linearly to frequencies.</p>
-            <p class="sketch-info">The problem with this approach is that it doesn’t support rests, i.e. gaps in the sequence where no note is playing, nor does it support polyphony, i.e. more than one note playing at once. Both of these features are important for music sequencing, thus the final application should use a more advanced system!</p>
-            <p class="sketch-info">A fun interaction I added was using the mouse (or tilt, for mobile) controlling the speed of playback. This allows the user to control tempo in a way that I’ve never seen before in music production software.</p> -->
+            <!-- <p class="sketch-info"></p> -->
+            <p class="sketch-info">After the fun, albeit rather frustrating challenge of implementing thresholding with openCV, I realised that p5.js already comes with a bunch of filters implemented! So I kicked myself, then put together this simple sketch to see how those filters behaved.</p>
+            <p class="sketch-info">The best part is that they are well optimised and have little impact on frame rate (which was not the case with my openCV version)! Thus I will most likely utilise these in my final project. Make sure to wiggle the mouse around to change the filter parameters in real time.</p>
         </div>
     </div>
 </body>
