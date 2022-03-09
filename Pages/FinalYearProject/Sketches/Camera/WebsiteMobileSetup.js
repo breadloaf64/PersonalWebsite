@@ -1,4 +1,4 @@
-var embeddedOnWebsite = false; // changing this to true will put it inside of the div called sketch-holder
+var embeddedOnWebsite = true; // changing this to true will put it inside of the div called sketch-holder
 
 function createMetaTag() {
 	let meta = createElement('meta');
