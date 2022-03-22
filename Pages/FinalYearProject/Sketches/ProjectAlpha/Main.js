@@ -31,6 +31,11 @@ function setupScenes() {
 	currentScene = scene_takePhoto;
 }
 
+function changeScene(newScene) {
+	newScene.windowResized();
+	currentScene = newScene;
+}
+
 function draw() {
 	currentScene.mainLoop();
 	render();

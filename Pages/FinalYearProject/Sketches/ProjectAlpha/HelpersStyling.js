@@ -57,7 +57,6 @@ function setCanvas () {
 			canvas.parent('sketch-holder');
 		}
 		catch {}
-		windowResized();
 	}
 	else {
 		let size = min(windowWidth, windowHeight) * 0.8;
@@ -65,8 +64,5 @@ function setCanvas () {
 		w = size;
 		h = size;
 	}
-	
-	capSquareL = w * 0.7;
-	capSquareX = (width - capSquareL) / 2;
-	capSquareY = height * 0.1;
+	windowResized();
 }

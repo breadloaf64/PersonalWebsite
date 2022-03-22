@@ -77,7 +77,7 @@ class Scene_takePhoto {
 		
 		const buttonPressFunction = function() {
 			takePhoto();
-			currentScene = scene_setThreshold;
+			changeScene(scene_setThreshold);
 			buttonPressedThisFrame = true;
 		}
 		

@@ -7,28 +7,28 @@ class Scene_sequence {
 		this.makePauseButton();
 		this.makeNewPhotoButton();
 	}
-	
+
 	makePauseButton() {
 		const txtSize = width / 30;
 		const typeface = "monospace";
 		const text = " pause ";
-		
+
 		textFont(typeface, txtSize);
-		
+
 		const btnHeight = txtSize * 1.1;
 		const btnWidth = textWidth(text) * 1.1;
-		
+
 		const scene = this;
 		const buttonPressFunction = function() {
 			scene.pauseUnPause();
 		}
-		
+
 		this.btnPause = new Button(width - btnWidth - 20, height - btnHeight - 20, btnWidth, btnHeight,
 															 buttonPressFunction, text, txtSize, typeface,
 															colButtonFill, colButtonBorder, colButtonText);
 		this.btnPause.scene = scene;
 	}
-	
+
 	pauseUnPause() {
 		this.paused = !this.paused;
 		if (!this.paused) {
@@ -38,17 +38,17 @@ class Scene_sequence {
 			this.sequence.silence();
 		}
 	}
-	
+
 	makeQuantiseButton() {
 		const txtSize = width / 30;
 		const typeface = "monospace";
 		const text = "quantise";
-		
+
 		textFont(typeface, txtSize);
-		
+
 		const btnHeight = txtSize * 1.1;
 		const btnWidth = textWidth(text) * 1.1;
-		
+
 		const sequence = this.sequence;
 		const buttonPressFunction = function() {
 			currentScene.sequence.changeQuantisation();
@@ -57,39 +57,41 @@ class Scene_sequence {
 																	buttonPressFunction, text, txtSize, typeface,
 																 colButtonFill, colButtonBorder, colButtonText);
 	}
-	
+
 	makeNewPhotoButton() {
 		const txtSize = width / 30;
 		const typeface = "monospace";
 		const text = "new photo";
-		
+
 		textFont(typeface, txtSize);
-		
+
 		const btnHeight = txtSize * 1.1;
 		const btnWidth = textWidth(text) * 1.1;
-		
+
 		const buttonPressFunction = function() {
 			currentScene.sequence.silence();
-			currentScene = scene_takePhoto;
+			changeScene(scene_takePhoto);
 		}
 		this.btnNewPhoto = new Button(width / 2 - btnWidth / 2, height - btnHeight - 20, btnWidth * 1.3, btnHeight,
 																	buttonPressFunction, text, txtSize, typeface,
 																 colButtonFill, colButtonBorder, colButtonText);
 	}
-	
+
 	windowResized() { // essential
 		this.makeQuantiseButton();
 		this.makePauseButton();
 		this.makeNewPhotoButton();
+		this.sequence.setBox(capSquareX, capSquareY, capSquareL);
+		this.playHead.setBox(capSquareX, capSquareY, capSquareL);
 	}
-	
+
 	mainLoop() { // essential
 		if (!this.paused) {
 			this.playHead.advance();
 			this.handleSound();
 		}
 	}
-	
+
 	render() { // essential
 		this.drawGrid();
 		this.sequence.draw();
@@ -100,7 +102,7 @@ class Scene_sequence {
 		this.btnQuantise.draw();
 		this.btnNewPhoto.draw();
 	}
-	
+
 	drawGrid() {
 		stroke(colGrid);
 		strokeWeight(1);
@@ -120,14 +122,14 @@ class Scene_sequence {
 			}
 		}
 	}
-	
+
 	posMod(a, b) {
 		// returns how far a is from the closest lower multiple of b
 		let result = a % b;
 		if (result < 0) result += b;
 		return result;
 	}
-	
+
 	drawCapSquare() {
 		stroke(colCapSquare);
 		strokeWeight(5);
@@ -135,7 +137,7 @@ class Scene_sequence {
 
 		rect(capSquareX, capSquareY, capSquareL, capSquareL);
 	}
-	
+
 		drawPauseScreen() {
 		if (this.paused) {
 			// tint background darker
@@ -153,13 +155,13 @@ class Scene_sequence {
 			text(displayText, capSquareX + (capSquareL - txtWidth) / 2, capSquareY + capSquareL * 0.5);
 		}
 	}
-	
+
 	mouseClicked() { // essential
 		this.btnPause.tryClick();
 		this.btnQuantise.tryClick();
 		this.btnNewPhoto.tryClick();
 	}
-	
+
 	handleSound() {
 		this.sequence.play(this.playHead.position);
 	}

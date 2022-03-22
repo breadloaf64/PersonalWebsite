@@ -3,10 +3,24 @@ class Sequence {
 		this.initialiseVoices();
 		this.voices.push(new Voice());
 		this.quantiseMode = 0;
+		
+		this.boxX = capSquareX;
+		this.boxY = capSquareY;
+		this.boxL = capSquareL;
 	}
 	
 	initialiseVoices() {
 		this.voices = [];
+	}
+	
+	setBox(x, y, l) {
+		this.boxX = x;
+		this.boxY = y;
+		this.boxL = l;
+		
+		for (let voice of this.voices) {
+			voice.setBox(x, y, l);
+		}
 	}
 	
 	draw() {
@@ -64,6 +78,12 @@ class Voice {
 		this.boxL = capSquareL;
 	}
 	
+	setBox(x, y, l) {
+		this.boxX = x;
+		this.boxY = y;
+		this.boxL = l;
+	}
+	
 	freshSequence() {
 		// returns a blank sequence initialised to -1 for each timestep
 		let seq = [];
@@ -84,7 +104,6 @@ class Voice {
 	}
 	
 	updateSequenceLerp(t1, v1, t2, v2) {
-		
 		if (t1 > t2) { // switch ts and vs to ensure t1 is an earlier time than t2;
 			let temp = t1;
 			t1 = t2;

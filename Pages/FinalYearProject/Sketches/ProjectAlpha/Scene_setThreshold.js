@@ -8,6 +8,7 @@ class Scene_setThreshold {
 	
 	windowResized() { // essential
 		this.makeConvertToSequenceButton();
+		this.makeRetakePhotoButton();
 	}
 	
 	mainLoop() { // essential
@@ -42,7 +43,7 @@ class Scene_setThreshold {
 		
 		const buttonPressFunction = function() {
 			buttonPressedThisFrame = true;
-			currentScene = scene_takePhoto;
+			changeScene(scene_takePhoto);
 		}
 		
 		this.btnRetakePhoto = new Button(20, height - btnHeight - 20, btnWidth, btnHeight,
@@ -70,7 +71,7 @@ class Scene_setThreshold {
 			// get thresholded image, convert to sequence
 			scene_sequence.sequence = convertImageToSequence2(thresholded);
 			
-			currentScene = scene_sequence;
+			changeScene(scene_sequence);
 		}
 		
 		this.btnConvertToSequence = new Button(width - btnWidth - 20, height - btnHeight - 20, btnWidth, btnHeight,

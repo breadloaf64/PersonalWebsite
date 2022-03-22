@@ -1,4 +1,4 @@
-var embeddedOnWebsite = false; // changing this to true will put it inside of the div called sketch-holder
+var embeddedOnWebsite = true; // changing this to true will put it inside of the div called sketch-holder
 
 function createMetaTag() {
 	let meta = createElement('meta');
@@ -12,9 +12,15 @@ function createMetaTag() {
 function windowResized() {
 	let parent = canvas.parentElement;
 	let size = min(parent.clientWidth, parent.clientHeight);
-  resizeCanvas(size, size, true);
+  	resizeCanvas(size, size, true);
 	w = size;
 	h = size;
-	
-	currentScene.windowResized();
+
+	capSquareL = w * 0.7;
+	capSquareX = (width - capSquareL) / 2;
+	capSquareY = height * 0.1;
+
+	if (currentScene) {
+		currentScene.windowResized();
+	}
 }
