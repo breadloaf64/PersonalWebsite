@@ -68,7 +68,7 @@ function setParameters() {
 			variance = meanPeriod / 2;
 		}
 	}
-	
+
 }
 
 function mouseClicked() {
@@ -98,13 +98,13 @@ function drawReadouts() {
 		// textbox background
 		fill(255, 150);
 		rect(70, 70, width / 2, height /2);
-		
+
 		// font formatting
 		fill(colReadouts);
 		noStroke();
 		txtSize = width / 30;
 		textFont("monospace", txtSize);
-		
+
 		text("meanPeriod: " + nf(meanPeriod, 4, 2), 100, 100);
 		text("variance: " + nf(variance, 4, 2), 100, 100 + 2 * txtSize);
 		text("countdown: " + nf(secondsUntilScream, 4, 2), 100, 100 + 4 * txtSize);
@@ -126,5 +126,5 @@ function handleSound() {
 
 function scream() {
 	sound.play();
-	secondsUntilScream = random(meanPeriod - variance / 2, meanPeriod + variance / 2);
+	secondsUntilScream = map(random(1), 0, 1, meanPeriod - variance / 2, meanPeriod + variance / 2);
 }
