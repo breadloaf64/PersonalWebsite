@@ -74,8 +74,21 @@ function makeSequence(voiceCount, source, mapsCentresToVoices, colsCentres) {
 
 		out.voices.push(currentVoice);
 	}
-	
+	out.setMaxSimultaneousVoices(getMaxSimultaneousVoices(colsCentres));
+	out.setVols();
 	return out;
+}
+
+function getMaxSimultaneousVoices(colsCentres) {
+	// outputs the largest number of voices that are ever played at the same time, i.e. max(len(colCentres) | for colCentres in colsCentres)
+	let max = 0;
+	for (let colCentres of colsCentres) {
+		let len = colCentres.length;
+		if (len > max) {
+			max = len;
+		}
+	}
+	return max;
 }
 
 function getJagged2DArrMax(arr) {

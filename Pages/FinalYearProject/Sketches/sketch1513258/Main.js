@@ -27,7 +27,7 @@ function setupScenes() {
 	scene_takePhoto = new Scene_takePhoto();
 	scene_setThreshold = new Scene_setThreshold();
 	scene_sequence = new Scene_sequence();
-
+	
 	currentScene = scene_takePhoto;
 }
 
@@ -40,7 +40,6 @@ function draw() {
 	currentScene.mainLoop();
 	render();
 	buttonPressedThisFrame = false;
-	clickedThisFrame = false;
 }
 
 function render() {
