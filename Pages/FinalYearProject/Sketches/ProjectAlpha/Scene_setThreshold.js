@@ -22,7 +22,7 @@ class Scene_setThreshold {
 		let filtered = copyImage(photo);
 		let filtered2 = copyImage(debugimg);
 
-		//filtered.filter(THRESHOLD, this.threshold);
+		filtered.filter(THRESHOLD, this.threshold);
 		filtered2.filter(THRESHOLD, this.threshold);
 
 		drawImage(photo, capSquareX, capSquareY, capSquareL / 2, capSquareL / 2); //tl
