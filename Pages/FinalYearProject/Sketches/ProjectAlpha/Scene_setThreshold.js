@@ -23,12 +23,13 @@ class Scene_setThreshold {
 		let filtered2 = copyImage(debugimg);
 
 		filtered.filter(THRESHOLD, this.threshold);
-		filtered2.filter(THRESHOLD, this.threshold);
+		//filtered2.filter(THRESHOLD, this.threshold);
 
 		drawImage(photo, capSquareX, capSquareY, capSquareL / 2, capSquareL / 2); //tl
 		drawImage(filtered, capSquareX + capSquareL / 2, capSquareY, capSquareL / 2, capSquareL / 2); //tr
 		drawImage(debugimg, capSquareX, capSquareY + capSquareL / 2, capSquareL / 2, capSquareL / 2); //bl
 		drawImage(filtered2, capSquareX + capSquareL / 2, capSquareY + capSquareL / 2, capSquareL / 2, capSquareL / 2); //br
+
 		this.btnRetakePhoto.draw();
 		this.btnConvertToSequence.draw();
 
@@ -41,6 +42,7 @@ class Scene_setThreshold {
 		text("canvas size: " + width + ", " + height, width / 11, width / 11 + 0 * txtSize * 1.3);
 		text("threshold: " + this.threshold, width / 11, width / 11 + 1 * txtSize * 1.3);
 		text("mouse: " + mouseX + ", " + mouseY, width / 11, width / 11 + 2 * txtSize * 1.3);
+		text("filtered: " + filtered.width + ", " + filtered.height, width / 11, width / 11 + 3 * txtSize * 1.3);
 	}
 
 	mouseClicked() { // essential
