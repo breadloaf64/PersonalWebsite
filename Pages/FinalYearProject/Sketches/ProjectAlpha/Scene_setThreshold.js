@@ -24,6 +24,13 @@ class Scene_setThreshold {
 		this.btnRetakePhoto.draw();
 		this.btnConvertToSequence.draw();
 
+		// DEBUG STUFF
+		// debug rect
+		strokeWeight(3);
+		stroke(255, 0, 0);
+		noFill();
+		rect(capSquareX, capSquareY, capSquareL, capSquareL);
+
 		// font formatting
 		fill(0);
 		noStroke();
