@@ -4,15 +4,15 @@ function setColours() {
 	// scene_title
 	colTitleText = color(0);
 	colSubtitleText = color(0);
-	
+
 	colBackground = color("#f0ead2");
-	
+
 	colCapSquare = color("#a98467");
-	
+
 	colButtonFill = color("#f0ead2");
 	colButtonBorder = color("#adc178");
 	colButtonText = color("#6c584c");
-	
+
 	//colReadout = color("#000000");
 	colGrid = color("#dde5b6");
 	colPlayHead = color("#adc178");
@@ -54,12 +54,14 @@ function myStandardSetup() {
 function setCanvas () {
 	if (embeddedOnWebsite) {
 		// Move the canvas so it’s inside our <div id="sketch-holder">.
-		createCanvas(100, 100);
-
+		let canvas = createCanvas(100, 100);
 		try {
 			canvas.parent('sketch-holder');
+
 		}
-		catch {}
+		catch {
+			print("failed to set parent as sketch holder");
+		}
 	}
 	else {
 		createCanvas(windowWidth, windowHeight);
