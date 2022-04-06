@@ -19,20 +19,13 @@ class Scene_setThreshold {
 
 	render() { // essential
 		let filtered = copyImage(photo);
-		filtered.filter(THRESHOLD, this.threshold);
+		filtered.filter(THRESHOLD, 0.5);
 		drawImage(filtered, capSquareX, capSquareY, capSquareL, capSquareL);
 		this.btnRetakePhoto.draw();
 		this.btnConvertToSequence.draw();
 
-		// DEBUG STUFF
-		// debug rect
-		strokeWeight(3);
-		stroke(255, 0, 0);
-		noFill();
-		rect(capSquareX, capSquareY, capSquareL, capSquareL);
-
 		// font formatting
-		fill(0);
+		fill(255, 0, 0);
 		noStroke();
 		let txtSize = width / 30;
 		textFont("monospace", txtSize);
