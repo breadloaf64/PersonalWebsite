@@ -21,15 +21,6 @@ class Scene_takePhoto {
 		this.drawCapSquare();
 		this.btnFlipCamera.draw();
 		this.btnTakePhoto.draw();
-
-		// font formatting
-		fill(0);
-		noStroke();
-		let txtSize = width / 30;
-		textFont("monospace", txtSize);
-
-		text("canvas size: " + width + ", " + height, width / 11, width / 11 + 0 * txtSize * 1.3);
-		text("capture size: " + this.camera.capture.width + ", " + this.camera.capture.height, width / 11, width / 11 + 1 * txtSize * 1.3);
 	}
 
 	drawCapSquare() {
