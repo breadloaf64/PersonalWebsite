@@ -19,11 +19,11 @@ class Scene_setThreshold {
 	}
 
 	render() { // essential
-		let filtered = copyImage(photo);
+		let filtered = copyImage(debugimg);
 		//filtered.filter(THRESHOLD, 0.5);
 		//filtered.filter(GRAY);
-		debugimg.filter(THRESHOLD, this.threshold);
-		drawImage(debugimg, capSquareX, capSquareY, capSquareL, capSquareL);
+		filtered.filter(THRESHOLD, this.threshold);
+		drawImage(filtered, capSquareX, capSquareY, capSquareL, capSquareL);
 		this.btnRetakePhoto.draw();
 		this.btnConvertToSequence.draw();
 
