@@ -13,8 +13,8 @@ class Scene_setThreshold {
 
 	mainLoop() { // essential
 		if (mouseIsPressed & mouseIsOnScreen() & !buttonPressedThisFrame & mouseY < this.btnConvertToSequence.y) {
-			//this.threshold = map(mouseY, 0, this.btnConvertToSequence.y, 0, 1, true);
-			this.threshold = 0.5;
+			this.threshold = map(mouseY, 0, this.btnConvertToSequence.y, 0, 1, true);
+			//this.threshold = 0.5;
 		}
 	}
 
@@ -22,7 +22,7 @@ class Scene_setThreshold {
 		let filtered = copyImage(photo);
 		//filtered.filter(THRESHOLD, 0.5);
 		//filtered.filter(GRAY);
-		debugimg.filter(GRAY);
+		debugimg.filter(THRESHOLD, this.threshold);
 		drawImage(debugimg, capSquareX, capSquareY, capSquareL, capSquareL);
 		this.btnRetakePhoto.draw();
 		this.btnConvertToSequence.draw();
