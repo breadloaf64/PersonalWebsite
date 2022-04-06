@@ -13,7 +13,8 @@ class Scene_setThreshold {
 
 	mainLoop() { // essential
 		if (mouseIsPressed & mouseIsOnScreen() & !buttonPressedThisFrame & mouseY < this.btnConvertToSequence.y) {
-			this.threshold = map(mouseY, 0, this.btnConvertToSequence.y, 0, 1, true);
+			//this.threshold = map(mouseY, 0, this.btnConvertToSequence.y, 0, 1, true);
+			this.threshold = 0.5;
 		}
 	}
 
@@ -32,6 +33,7 @@ class Scene_setThreshold {
 
 		text("canvas size: " + width + ", " + height, width / 11, width / 11 + 0 * txtSize * 1.3);
 		text("threshold: " + this.threshold, width / 11, width / 11 + 1 * txtSize * 1.3);
+		text("mouse: " + mouseX + ", " + mouseY, width / 11, width / 11 + 2 * txtSize * 1.3);
 	}
 
 	mouseClicked() { // essential
