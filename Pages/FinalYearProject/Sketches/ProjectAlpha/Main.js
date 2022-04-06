@@ -20,7 +20,7 @@ var capSquareY;
 var capSquareL;
 
 function setup() {
-	debugimg = loadImage("test.png")
+	debugimg = loadImage("test.jpg")
 	myStandardSetup();
 	setupSound();
 	setupScenes();
