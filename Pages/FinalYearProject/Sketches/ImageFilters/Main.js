@@ -54,7 +54,6 @@ function touchEnded() {
 		clickedThisFrame = true;
 		click();
 	}
-
 }
 
 function click() {
