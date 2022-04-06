@@ -22,6 +22,7 @@ class Scene_setThreshold {
 		let filtered = copyImage(photo);
 		//filtered.filter(THRESHOLD, 0.5);
 		//filtered.filter(GRAY);
+		debugimg.filter(GRAY);
 		drawImage(debugimg, capSquareX, capSquareY, capSquareL, capSquareL);
 		this.btnRetakePhoto.draw();
 		this.btnConvertToSequence.draw();
