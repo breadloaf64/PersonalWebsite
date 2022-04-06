@@ -18,9 +18,9 @@ class Scene_setThreshold {
 	}
 
 	render() { // essential
-		let filtered = copyImage(photo);
-		filtered.filter(THRESHOLD, this.threshold);
-		drawImage(debugimg, capSquareX, capSquareY, capSquareL, capSquareL);
+		//let filtered = copyImage(photo);
+		//filtered.filter(THRESHOLD, this.threshold);
+		drawImage(photo, capSquareX, capSquareY, capSquareL, capSquareL);
 		this.btnRetakePhoto.draw();
 		this.btnConvertToSequence.draw();
 
@@ -38,7 +38,7 @@ class Scene_setThreshold {
 		textFont("monospace", txtSize);
 
 		text("canvas size: " + width + ", " + height, width / 11, width / 11 + 0 * txtSize * 1.3);
-		text("image size: " + filtered.width + ", " + filtered.height, width / 11, width / 11 + 1 * txtSize * 1.3);
+		//text("image size: " + filtered.width + ", " + filtered.height, width / 11, width / 11 + 1 * txtSize * 1.3);
 	}
 
 	mouseClicked() { // essential
