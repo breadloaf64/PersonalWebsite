@@ -42,7 +42,8 @@ class Scene_setThreshold {
 		text("canvas size: " + width + ", " + height, width / 11, width / 11 + 0 * txtSize * 1.3);
 		text("threshold: " + this.threshold, width / 11, width / 11 + 1 * txtSize * 1.3);
 		text("mouse: " + mouseX + ", " + mouseY, width / 11, width / 11 + 2 * txtSize * 1.3);
-		text("filtered: " + filtered.width + ", " + filtered.height, width / 11, width / 11 + 3 * txtSize * 1.3);
+		text("photo: " + photo.width + ", " + photo.height, width / 11, width / 11 + 3 * txtSize * 1.3);
+		text("filtered: " + filtered.width + ", " + filtered.height, width / 11, width / 11 + 4 * txtSize * 1.3);
 	}
 
 	mouseClicked() { // essential
