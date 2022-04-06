@@ -15,7 +15,7 @@ function setup() {
 }
 
 function makeFlipCameraButton() {
-	let btnHeight = height * 0.04;
+	let btnHeight = height * 0.08;
 	let btnWidth = btnHeight * 7/2;
 	let text = "flip";
 	btnFlipCamera = new Button(width - btnWidth - 20, height - btnHeight - 20, btnWidth, btnHeight, flipCamera, text,
@@ -25,9 +25,33 @@ function makeFlipCameraButton() {
 function draw() {
 	render();
 	buttonPressedThisFrame = false;
+	clickedThisFrame = false;
 }
 
+var clickedThisFrame = false;
+
 function mouseClicked() {
+	if (clickedThisFrame) return false;
+
+	clickedThisFrame = true;
+	click();
+}
+
+function touchStarted() {
+	if (embeddedOnWebsite && mouseIsOnScreen()) {
+		// if on a website, don't register the click if it's off the sketch
+		return false;
+	}
+}
+
+function touchEnded() {
+	if (clickedThisFrame) return false;
+
+	clickedThisFrame = true;
+	click();
+}
+
+function click() {
 	if (embeddedOnWebsite && (mouseX < 0 || width < mouseX || mouseY < 0 || height < mouseY)) {
 		// if on a website, don't register the click if it's off the sketch
 		return;
