@@ -1,3 +1,5 @@
+var debugimg;
+
 var photo;
 var thresholdVal;
 
@@ -18,6 +20,7 @@ var capSquareY;
 var capSquareL;
 
 function setup() {
+	debugimg = loadImage("test.png")
 	myStandardSetup();
 	setupSound();
 	setupScenes();
