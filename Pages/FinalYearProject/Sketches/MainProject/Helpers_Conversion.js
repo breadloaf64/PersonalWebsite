@@ -45,7 +45,7 @@ function convertImageToSequence2(source) {
 }
 
 function makeSequence(voiceCount, source, mapsCentresToVoices, colsCentres) {
-	let out = new Sequence();
+	let voices = [];
 	
 	for (let i = 0; i < voiceCount; i++) { // loop through the voices that need to be added to the sequence
 		let currentVoice = new Voice();
@@ -72,11 +72,19 @@ function makeSequence(voiceCount, source, mapsCentresToVoices, colsCentres) {
 			}
 		}
 
-		out.voices.push(currentVoice);
+		voices.push(currentVoice);
 	}
-	out.setMaxSimultaneousVoices(getMaxSimultaneousVoices(colsCentres));
-	out.setVols();
-	return out;
+	
+	sequences[currentSequenceIndex].voices = voices;
+	
+	// passes sequence information down into child voices
+	sequences[currentSequenceIndex].refreshQuantisation(); // update voice quantisation variables to reflect quantisationMode
+	sequences[currentSequenceIndex].refreshNumBeats();
+	
+	sequences[currentSequenceIndex].setMaxSimultaneousVoices(getMaxSimultaneousVoices(colsCentres));
+	sequences[currentSequenceIndex].setVols();
+	
+	return sequences[currentSequenceIndex];
 }
 
 function getMaxSimultaneousVoices(colsCentres) {

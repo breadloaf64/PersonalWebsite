@@ -1,81 +1,94 @@
 class Scene_setThreshold {
 	constructor() {
 		this.name = "setThreshold";
-		this.makeRetakePhotoButton();
-		this.makeConvertToSequenceButton();
+		
 		this.threshold = 0.5;
+		
+		this.makeButtons();
+	}
+	
+	makeButtons() {
+		const txtSize = layout.subSecondarySquare_w / 15;
+		const typeface = "monospace";
+		textFont(typeface, txtSize);
+		
+		const x = layout.subSecondarySquare_x;
+		const y = layout.subSecondarySquare_y;
+		const h = layout.subSecondarySquare_h / 4;
+		const w = layout.subSecondarySquare_w;
+		
+		// retake photo
+			
+		const retakePhotoButtonPressFunction = function() {
+			buttonPressedThisFrame = true;
+			changeScene(scene_takePhoto);
+		}
+		this.btnRetakePhoto = new Button(x, y + h * 0, w, h,
+															 retakePhotoButtonPressFunction, "retake photo", txtSize, typeface,
+															colButtonFill, colButtonBorder, colButtonText);
+		
+		// convert to sequence
+		const convertToSequenceButtonPressFunction = function() {
+			buttonPressedThisFrame = true;
+			
+			let thresholded = get(layout.subSubPrimarySquare_x, layout.subSubPrimarySquare_y, layout.subSubPrimarySquare_w, layout.subSubPrimarySquare_h);
+			// thresholded.save('filtered', 'png');
+			
+			// get thresholded image, convert to sequence
+			let converted = convertImageToSequence2(thresholded);
+			sequences[currentSequenceIndex] = converted;
+			scene_sequence.setSequence(currentSequenceIndex);
+			changeScene(scene_sequence);
+		}
+		this.btnConvertToSequence = new Button(x, y + h * 1, w, h,
+																	convertToSequenceButtonPressFunction, "convert to sequence", txtSize, typeface,
+																 colButtonFill, colButtonBorder, colButtonText);
+		
+		// cancel and return to previous scene
+		const cancelButtonPressFunction = function() {
+			if (sequences[currentSequenceIndex].voices.length == 0) {
+				changeScene(scene_main);
+			}
+			else changeScene(scene_sequence);
+		}
+		this.btnCancel = new Button(x, y + h * 2, w, h,
+																	cancelButtonPressFunction, "cancel", txtSize, typeface,
+																 colButtonFill, colButtonBorder, colButtonText);
+		
+		this.buttons = [this.btnRetakePhoto, this.btnConvertToSequence, this.btnCancel];
 	}
 	
 	windowResized() { // essential
-		this.makeConvertToSequenceButton();
-		this.makeRetakePhotoButton();
+		this.makeButtons();
 	}
 	
 	mainLoop() { // essential
-		if (mouseIsPressed & mouseIsOnScreen() & !buttonPressedThisFrame & mouseY < this.btnConvertToSequence.y) {
-			this.threshold = map(mouseY, 0, this.btnConvertToSequence.y, 0, 1, true);
+		if (mouseIsPressed &&
+				mouseIsInBounds(layout.subSubPrimarySquare_x, layout.subSubPrimarySquare_y, layout.subSubPrimarySquare_w, layout.subSubPrimarySquare_h) &&
+				!buttonPressedThisFrame) {
+			
+			this.threshold = map(mouseY, layout.subSubPrimarySquare_y, layout.subSubPrimarySquare_y + layout.subSubPrimarySquare_h, 0, 1, true);
 		}
 	}
 	
 	render() { // essential
 		let filtered = copyImage(photo);
 		filtered.filter(THRESHOLD, this.threshold);
-		drawImage(filtered, capSquareX, capSquareY, capSquareL, capSquareL);
-		this.btnRetakePhoto.draw();
-		this.btnConvertToSequence.draw();
+		drawImage(filtered, layout.subSubPrimarySquare_x, layout.subSubPrimarySquare_y, layout.subSubPrimarySquare_w, layout.subSubPrimarySquare_h);
+		this.drawButtons();
+		this.drawButtons();
+		image(imgNoiseTextureCut, 0, 0);
+	}
+	
+	drawButtons() {
+		for (let button of this.buttons) {
+			button.draw();
+		}
 	}
 	
 	mouseClicked() { // essential
-		this.btnRetakePhoto.tryClick();
-		this.btnConvertToSequence.tryClick();
-	}
-	
-	makeRetakePhotoButton() {
-		const txtSize = width / 30;
-		const typeface = "monospace";
-		const text = "retake photo";
-		
-		textFont(typeface, txtSize);
-		
-		const btnHeight = txtSize * 2;
-		const btnWidth = textWidth(text) * 1.1;
-		
-		
-		const buttonPressFunction = function() {
-			buttonPressedThisFrame = true;
-			changeScene(scene_takePhoto);
+		for (let button of this.buttons) {
+			button.tryClick();
 		}
-		
-		this.btnRetakePhoto = new Button(20, height - btnHeight - 20, btnWidth, btnHeight,
-																		 buttonPressFunction, text, txtSize, typeface,
-															 colButtonFill, colButtonBorder, colButtonText);
-	}
-	
-	makeConvertToSequenceButton() {
-		const txtSize = width / 30;
-		const typeface = "monospace";
-		const text = "convert to sequence";
-		
-		textFont(typeface, txtSize);
-		
-		const btnHeight = txtSize * 2;
-		const btnWidth = textWidth(text) * 1.1;
-		
-		
-		const buttonPressFunction = function() {
-			buttonPressedThisFrame = true;
-			
-			let thresholded = get(capSquareX, capSquareY, capSquareL, capSquareL);
-			// thresholded.save('filtered', 'png');
-			
-			// get thresholded image, convert to sequence
-			scene_sequence.sequence = convertImageToSequence2(thresholded);
-			
-			changeScene(scene_sequence);
-		}
-		
-		this.btnConvertToSequence = new Button(width - btnWidth - 20, height - btnHeight - 20, btnWidth, btnHeight,
-																		 buttonPressFunction, text, txtSize, typeface,
-															 colButtonFill, colButtonBorder, colButtonText);
 	}
 }

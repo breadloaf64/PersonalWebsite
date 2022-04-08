@@ -12,21 +12,21 @@ function mouseClicked() {
 	currentScene.mouseClicked();
 }
 
+var timeAtTouchStart = 0;
 function touchStarted() {
 	if (embeddedOnWebsite && mouseIsOnScreen()) {
 		// if on a website, don't register the click if it's off the sketch
 		return false;
 	}
+	timeAtTouchStart = millis();
 }
 
 function touchEnded() {
 	if (clickedThisFrame) return false;
-	
-	if (embeddedOnWebsite && !mouseIsOnScreen() || clickedThisFrame) {
-		// if on a website, don't register the click if it's off the sketch
-		return false;
+
+	// check for just a quick tap
+	if (millis() - timeAtTouchStart < 500) {
+		clickedThisFrame = true;
+		currentScene.mouseClicked();
 	}
-	
-	clickedThisFrame = true;
-	currentScene.mouseClicked();
 }

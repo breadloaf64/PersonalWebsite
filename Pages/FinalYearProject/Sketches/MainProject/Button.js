@@ -42,7 +42,7 @@ class Button {
 		noStroke();
 		textFont(this.typeface, this.textSize);
 		fill(this.colText);
-		
-		text(this.text, this.x + (this.w - textWidth(this.text)) / 2, this.y  + this.h / 2 + 0.25 * textSize());
+		textAlign(CENTER, CENTER);
+		text(this.text, this.x + this.w / 2, this.y  + this.h / 2);
 	}
 }

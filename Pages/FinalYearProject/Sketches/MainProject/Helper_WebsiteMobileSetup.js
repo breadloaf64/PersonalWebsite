@@ -16,10 +16,6 @@ function windowResized() {
 	const h = parent.clientHeight;
 	resizeCanvas(w, h, true);
 
-	capSquareL = w * 0.7;
-	capSquareX = (width - capSquareL) / 2;
-	capSquareY = height * 0.1;
-
 	if (layout) {
 		layout.update();
 	}

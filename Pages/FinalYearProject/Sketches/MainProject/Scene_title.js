@@ -12,6 +12,8 @@ class Scene_title {
 	render() { // essential
 		this.renderText();
 		this.renderImages();
+		//layout.draw();
+		image(imgNoiseTexture, 0, 0);
 	}
 	
 	renderImages() {

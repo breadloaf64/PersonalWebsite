@@ -3,8 +3,6 @@ const maxNote = 39; // C8, the highest note on a piano
 var minFrequency;
 var maxFrequency;
 
-var numQuantisedBeats = 16;
-
 function setupSound() {
 	minFrequency = noteToFrequency(minNote);
 	maxFrequency = noteToFrequency(maxNote);
@@ -13,9 +11,36 @@ function setupSound() {
 }
 
 function handleSound() {
-	for (let voice of voices) {
-		voice.play(playHead.position);
+	if (!playing) return;
+	
+	if (currentScene.name === "sequence") {
+		// Only handle sound of the current sequence
+		playSequence(sequences[currentSequenceIndex]);
+		
+		for (let i = 0; i < 4; i++) { // silence all other sequences
+			if (i != currentSequenceIndex) {
+				sequences[i].silence();
+			}
+		}
 	}
+	else if (currentScene.name === "main") {
+		// play all sequences
+		for (let sequence of sequences) {
+			playSequence(sequence);
+		}
+	}
+	else {
+		// no sound should play on any other scene
+		for (let sequence of sequences) {
+			sequence.silence();
+		}
+	}
+}
+
+function playSequence(sequence) {
+	let t = ((masterTime / beatPeriod) % sequence.numBeats) / sequence.numBeats;
+	//print("sequenceIndex: " + currentSequenceIndex + ", masterTime: " + masterTime + ", beatPeriod: " + beatPeriod + ", sequence.numBeats" + sequence.numBeats + ", t: " + t);
+	sequence.play(t);
 }
 
 function propToFrequency_exp(prop, constrainFreq) {

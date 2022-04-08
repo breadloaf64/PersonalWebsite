@@ -1,12 +1,15 @@
 class Sequence {
 	constructor() {
 		this.initialiseVoices();
-		this.voices.push(new Voice());
 		this.quantiseMode = 0;
-		
-		this.boxX = capSquareX;
-		this.boxY = capSquareY;
-		this.boxL = capSquareL;
+		this.numBeats = 16;
+	}
+	
+	setType(type) {
+		this.type = type;
+			for (let voice of this.voices) {
+				voice.setType(type);
+			}
 	}
 	
 	initialiseVoices() {
@@ -24,19 +27,15 @@ class Sequence {
 		}
 	}
 	
-	setBox(x, y, l) {
-		this.boxX = x;
-		this.boxY = y;
-		this.boxL = l;
-		
+	refreshNumBeats() {
 		for (let voice of this.voices) {
-			voice.setBox(x, y, l);
+			voice.numBeats = this.numBeats;
 		}
 	}
 	
-	draw() {
+	draw(x, y, w, h) {
 		for (let voice of this.voices) {
-			voice.draw();
+			voice.draw(x, y, w, h);
 		}
 	}
 	
@@ -50,7 +49,10 @@ class Sequence {
 	// iterate through the types
 		this.quantiseMode++;
 		this.quantiseMode = this.quantiseMode % 4;
-
+		this.refreshQuantisation();
+	}
+	
+	refreshQuantisation() {
 		let quantisePitch = (this.quantiseMode % 2 == 1);
 		let quantiseTime = (this.quantiseMode >= 2);
 
@@ -70,8 +72,9 @@ class Sequence {
 // the class is also responsible for outputting the voice, both visually and audibly. It also deals with quantisation.
 class Voice {
 	constructor() {
-		this.osc = new p5.Oscillator('square');
-		this.osc.start();
+		this.osc = new p5.Oscillator('sine');
+		this.oscStarted = false;
+		//this.osc.start();
 		
 		this.numTimeSteps = width / 2; // number of individual pitches in the voice's sequence
 		this.sequence = this.freshSequence(); // sequence will hold a value between 0 and 1 for each time step.
@@ -80,25 +83,24 @@ class Voice {
 		this.scale = quantiseScale;
 		
 		this.quantiseTime = false;
-		this.numQuantisedBeats = numQuantisedBeats;
+		this.numBeats = 16;
 		
 		this.c = color(0);
-		
-		this.boxX = capSquareX;
-		this.boxY = capSquareY;
-		this.boxL = capSquareL;
+	
 		
 		this.vol = 0.5;
 	}
 	
-	setVol(vol) {
-		this.vol = vol;
+	setType(type) {
+		this.type = type;
+		if (type == 0) this.osc = new p5.Oscillator('sine');
+		else if (type == 1) this.osc = new p5.Oscillator('triangle');
+		else if (type == 2) this.osc = new p5.Oscillator('square');
+		else this.osc = new p5.Oscillator('saw');
 	}
 	
-	setBox(x, y, l) {
-		this.boxX = x;
-		this.boxY = y;
-		this.boxL = l;
+	setVol(vol) {
+		this.vol = vol;
 	}
 	
 	freshSequence() {
@@ -147,13 +149,13 @@ class Voice {
 	}
 	
 	getQuantisedTimeStep(t) {
-		let quantisedBeat = floor(t * this.numQuantisedBeats); // which beat we are on.
-		let quantisedT = quantisedBeat / this.numQuantisedBeats; // the value of t that corresponds to this beat
+		let quantisedBeat = floor(t * this.numBeats); // which beat we are on.
+		let quantisedT = quantisedBeat / this.numBeats; // the value of t that corresponds to this beat
 		let quantisedTimeStep = this.getNearestTimeStep(quantisedT);
 		return quantisedTimeStep;
 	}
 	
-	draw() {
+	draw(x, y, w, h) {
 		strokeWeight(2);
 		stroke(this.c);
 		
@@ -167,15 +169,15 @@ class Voice {
 			
 			if (v1 >= 0 && v2 >= 0) {
 				// draw a line between this pitch and the next if both are active (>=0)
-				let x1 = map(i, 0, this.numTimeSteps, this.boxX, this.boxX + this.boxL);
-				let x2 = map(i+1, 0, this.numTimeSteps, this.boxX, this.boxX + this.boxL);
+				let x1 = map(i, 0, this.numTimeSteps, x, x + w);
+				let x2 = map(i+1, 0, this.numTimeSteps, x, x + w);
 				
-				let y1 = map(v1, 0, 1, this.boxY + this.boxL, this.boxY);
-				let y2 = map(v2, 0, 1, this.boxY + this.boxL, this.boxY);
+				let y1 = map(v1, 0, 1, y + h, y);
+				let y2 = map(v2, 0, 1, y + h, y);
 				
 				if (this.quantisePitch) {
-					y1 = map(frequencyToProp_exp(this.scale.snapFrequency(propToFrequency_exp(v1, true))), 0, 1, this.boxY + this.boxL, this.boxY);
-					y2 = map(frequencyToProp_exp(this.scale.snapFrequency(propToFrequency_exp(v2, true))), 0, 1, this.boxY + this.boxL, this.boxY);
+					y1 = map(frequencyToProp_exp(this.scale.snapFrequency(propToFrequency_exp(v1, true))), 0, 1, y + h, y);
+					y2 = map(frequencyToProp_exp(this.scale.snapFrequency(propToFrequency_exp(v2, true))), 0, 1, y + h, y);
 				}
 				
 				line(x1, y1, x2, y2);
@@ -190,15 +192,21 @@ class Voice {
 		// handle start/ end of note. We check if a note should be being played
 		if (v >= 0) {
 			// start / continue note
+			
+			if (!this.oscStarted) {
+				this.osc.start();
+				this.oscStarted = true;
+			}
+			
 			let freq = this.getFrequencyFromV(v);
 			this.osc.freq(freq, 0.1);
 
 			// start note
-			this.osc.amp(this.vol, 0.2);
+			this.osc.amp(this.vol);
 		}
 		else {
 			// end note
-			this.osc.amp(0, 0.5); // gradual decay
+			this.osc.amp(0); // gradual decay
 		}
 	}
 	

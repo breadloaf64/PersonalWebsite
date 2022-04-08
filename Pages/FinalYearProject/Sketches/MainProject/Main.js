@@ -5,29 +5,38 @@ var FlipCamera;
 var buttonPressedThisFrame = false;
 
 var currentScene;
-var scene_title;
-var scene_takePhoto;
-var scene_setThreshold;
-var scene_sequence;
+var currentSequenceIndex = -1;
+
+var beatPeriod = 200; //ms
+var masterTime = 0;
+var timeAtStart = 0;
 
 // canvas and capture size
 var w = 400;
 var h = 400;
 
-var capSquareX;
-var capSquareY;
-var capSquareL;
-
 function preload() {
-		// images sourced from https://openmoji.org/library/
-		img_emoji_musicnote = loadImage("img_emoji_musicnote.png");
-		img_emoji_pencil = loadImage("img_emoji_pencil.png");
+	// emoji images sourced from https://openmoji.org/library/
+
+	// title page
+	img_emoji_musicnote = loadImage("img_emoji_musicnote.png");
+	img_emoji_pencil = loadImage("img_emoji_pencil.png");
+
+	// sequence icons
+	img_emoji_drum = loadImage("img_emoji_drum.png");
+	img_icon_sawtooth = loadImage("img_icon_sawtooth.png");
+	img_icon_square = loadImage("img_icon_square.png");
+	img_icon_sine = loadImage("img_icon_sine.png");
+	img_icon_triangle = loadImage("img_icon_triangle.png");
+	
+	instrumentIcons = [img_icon_sine, img_icon_triangle, img_icon_square, img_emoji_drum];
 }
 
 function setup() {
 	layout = new Layout();
 	myStandardSetup();
 	setupSound();
+	setupSequences();
 	setupScenes();
 }
 
@@ -41,29 +50,38 @@ function setupScenes() {
 	currentScene = scene_title;
 }
 
+function setupSequences() {
+	sequence0 = new Sequence();
+	sequence1 = new Sequence();
+	sequence2 = new Sequence();
+	sequence3 = new Sequence();
+	
+	sequences = [sequence0, sequence1, sequence2, sequence3];
+	for (let i = 0; i < 4; i++) {
+		sequences[i].setType(i);
+		sequences[i].numBeats = 16 + i * 4;
+	}
+}
+
 function changeScene(newScene) {
 	newScene.windowResized();
 	currentScene = newScene;
 }
 
 function draw() {
+	handleTime();
+	handleSound();
 	currentScene.mainLoop();
 	render();
 	buttonPressedThisFrame = false;
 	clickedThisFrame = false;
 }
 
+function handleTime() {
+	masterTime = millis() - timeAtStart;
+}
+
 function render() {
 	background(colBackground);
 	currentScene.render();
-	image(imgNoiseTexture, 0, 0);
-}
-
-function takePhoto() {
-	photo = scene_takePhoto.camera.currentImage().get(capSquareX, capSquareY, capSquareL, capSquareL);
-	photo.filter(ERODE);
-}
-
-function mouseIsOnScreen() {
-	return !(mouseX < 0 || width < mouseX || mouseY < 0 || height < mouseY);
 }
