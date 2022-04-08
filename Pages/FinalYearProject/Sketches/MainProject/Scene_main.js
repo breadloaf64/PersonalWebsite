@@ -110,7 +110,7 @@ class Scene_main {
 	}
 
 	render() { // essential
-		layout.draw();
+		//layout.draw();
 		this.drawSequenceBoxes();
 		this.drawButtons();
 		image(imgNoiseTexture, 0, 0);
