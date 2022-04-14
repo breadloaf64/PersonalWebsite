@@ -17,15 +17,15 @@ class Scene_setThreshold {
 		const h = layout.subSecondarySquare_h / 4;
 		const w = layout.subSecondarySquare_w;
 		
-		// retake photo
-			
-		const retakePhotoButtonPressFunction = function() {
-			buttonPressedThisFrame = true;
-			changeScene(scene_takePhoto);
-		}
-		this.btnRetakePhoto = new Button(x, y + h * 0, w, h,
-															 retakePhotoButtonPressFunction, "retake photo", txtSize, typeface,
-															colButtonFill, colButtonBorder, colButtonText);
+		const smallScalar = 0.7;
+		const smallW = w * smallScalar;
+		const smallH = h * smallScalar;
+		const smallTxtSize = txtSize * smallScalar;
+		
+		// thresholding instruction text
+		this.txtInstruction = new Button(x + (w - smallW) / 2, y + h * 0 + (h - smallH) / 2, smallW, smallH,
+															 function(){}, "Drag your finger up and down the image to\nisolate the lines, avoiding blemishes", smallTxtSize, typeface,
+															colTransparent, colTransparent, colButtonText);
 		
 		// convert to sequence
 		const convertToSequenceButtonPressFunction = function() {
@@ -41,8 +41,19 @@ class Scene_setThreshold {
 			changeScene(scene_sequence);
 		}
 		this.btnConvertToSequence = new Button(x, y + h * 1, w, h,
-																	convertToSequenceButtonPressFunction, "convert to sequence", txtSize, typeface,
+																	convertToSequenceButtonPressFunction, "use this photo", txtSize, typeface,
 																 colButtonFill, colButtonBorder, colButtonText);
+		
+		// retake photo
+		const retakePhotoButtonPressFunction = function() {
+			buttonPressedThisFrame = true;
+			changeScene(scene_takePhoto);
+		}
+		this.btnRetakePhoto = new Button(x + (w - smallW) / 2, y + h * 2 + (h - smallH) / 2, smallW, smallH,
+															 retakePhotoButtonPressFunction, "retake photo", txtSize, typeface,
+															colButtonFill, colButtonBorder, colButtonText);
+		
+
 		
 		// cancel and return to previous scene
 		const cancelButtonPressFunction = function() {
@@ -51,11 +62,11 @@ class Scene_setThreshold {
 			}
 			else changeScene(scene_sequence);
 		}
-		this.btnCancel = new Button(x, y + h * 2, w, h,
+		this.btnCancel = new Button(x + (w - smallW) / 2, y + h * 3 + (h - smallH) / 2, smallW, smallH,
 																	cancelButtonPressFunction, "cancel", txtSize, typeface,
 																 colButtonFill, colButtonBorder, colButtonText);
 		
-		this.buttons = [this.btnRetakePhoto, this.btnConvertToSequence, this.btnCancel];
+		this.buttons = [this.btnRetakePhoto, this.txtInstruction, this.btnConvertToSequence, this.btnCancel];
 	}
 	
 	windowResized() { // essential

@@ -7,7 +7,10 @@ var buttonPressedThisFrame = false;
 var currentScene;
 var currentSequenceIndex = -1;
 
-var beatPeriod = 200; //ms
+var metronomeEnabled = true;
+
+var tempo = 120; // beats per minute
+var beatPeriod = 60000 / tempo; //ms per beat
 var masterTime = 0;
 var timeAtStart = 0;
 
@@ -16,6 +19,8 @@ var w = 400;
 var h = 400;
 
 function preload() {
+	img_test = loadImage("filteredsimple2.png");
+	
 	// emoji images sourced from https://openmoji.org/library/
 
 	// title page
@@ -30,6 +35,17 @@ function preload() {
 	img_icon_triangle = loadImage("img_icon_triangle.png");
 	
 	instrumentIcons = [img_icon_sine, img_icon_triangle, img_icon_square, img_emoji_drum];
+	
+	// Drum samples
+	drum_kick = loadSound("909_kick.mp3");
+	drum_snare = loadSound("909_snare.mp3");
+	drum_clap = loadSound("909_clap.mp3");
+	drum_hatClosed = loadSound("909_hatClosed.mp3");
+	drum_crash = loadSound("909_crash.mp3");
+	
+	drumSamples = [drum_kick, drum_snare, drum_clap, drum_hatClosed, drum_crash];
+	
+	drum_click = loadSound("zargon_click.mp3");
 }
 
 function setup() {
@@ -49,6 +65,9 @@ function setupScenes() {
 	scene_setThreshold = new Scene_setThreshold();
 	scene_sequence = new Scene_sequence();
 	
+	//let converted = convertImageToSequence2(img_test);
+	//sequences[currentSequenceIndex] = converted;
+	
 	scene_sequence.setSequence(currentSequenceIndex);
 	changeScene(scene_title);
 }
@@ -62,7 +81,6 @@ function setupSequences() {
 	sequences = [sequence0, sequence1, sequence2, sequence3];
 	for (let i = 0; i < 4; i++) {
 		sequences[i].setType(i);
-		sequences[i].numBeats = 16 + i * 4;
 	}
 }
 

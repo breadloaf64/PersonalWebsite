@@ -81,6 +81,8 @@ function makeSequence(voiceCount, source, mapsCentresToVoices, colsCentres) {
 	sequences[currentSequenceIndex].refreshQuantisation(); // update voice quantisation variables to reflect quantisationMode
 	sequences[currentSequenceIndex].refreshNumBeats();
 	sequences[currentSequenceIndex].refreshType();
+	sequences[currentSequenceIndex].refreshScale();
+	sequences[currentSequenceIndex].refreshSpeedMultiplier();
 	sequences[currentSequenceIndex].setMaxSimultaneousVoices(getMaxSimultaneousVoices(colsCentres));
 	sequences[currentSequenceIndex].setVols();
 	

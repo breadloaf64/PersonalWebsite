@@ -22,12 +22,14 @@ function handleSound() {
 				sequences[i].silence();
 			}
 		}
+		playMetronome();
 	}
 	else if (currentScene.name === "main") {
 		// play all sequences
 		for (let sequence of sequences) {
 			playSequence(sequence);
 		}
+		playMetronome();
 	}
 	else {
 		// no sound should play on any other scene
@@ -37,8 +39,19 @@ function handleSound() {
 	}
 }
 
+let lastBeatMetronomePlayed = -1;
+function playMetronome() {
+	if (metronomeEnabled) {
+		let beatIndex = floor(masterTime / beatPeriod);
+		if (beatIndex != lastBeatMetronomePlayed) {
+			drum_click.play();
+			lastBeatMetronomePlayed = beatIndex;
+		}
+	}
+}
+
 function playSequence(sequence) {
-	let t = ((masterTime / beatPeriod) % sequence.numBeats) / sequence.numBeats;
+	let t = ((masterTime * sequence.speedMultiplier / beatPeriod) % sequence.numBeats) / sequence.numBeats;
 	//print("sequenceIndex: " + currentSequenceIndex + ", masterTime: " + masterTime + ", beatPeriod: " + beatPeriod + ", sequence.numBeats" + sequence.numBeats + ", t: " + t);
 	sequence.play(t);
 }

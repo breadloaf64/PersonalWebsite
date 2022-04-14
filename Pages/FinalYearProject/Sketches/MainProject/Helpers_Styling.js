@@ -16,9 +16,16 @@ function setColours() {
 	colButtonBorder = color("#adc178");
 	colButtonText = color("#6c584c");
 	
+	colSNButtonFillUnselected = colTransparent;
+	colSNButtonFillSelected = color("#ffe18f");
+	
+	colPanelBackground = color("#e2edc5");
+	
 	colGrid = color("#000000");
 	colPlayhead = color("#adc178");
 	colVoice = color("#6c584c");
+	
+	colIconBackground = color(255, 200);
 	
 	colsSequenceBackgrounds = [color("#ffcfd2"), color("#b9fbc0"), color("#90dbf4"), color("#e5e5e5")];
 }

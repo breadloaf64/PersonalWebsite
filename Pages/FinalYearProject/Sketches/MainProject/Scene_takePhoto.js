@@ -8,23 +8,16 @@ class Scene_takePhoto {
 	makeButtons() {
 		const txtSize = layout.subSecondarySquare_w / 15;
 		const typeface = "monospace";
-		textFont(typeface, txtSize);
 		
 		const x = layout.subSecondarySquare_x;
 		const y = layout.subSecondarySquare_y;
 		const h = layout.subSecondarySquare_h / 4;
 		const w = layout.subSecondarySquare_w;
 		
-		// flip camera
-		const flipCameraButtonPressFunction = function() {
-			this.camera.flip();
-			buttonPressedThisFrame = true;
-		}
-		this.btnFlipCamera = new Button(x, y + h * 0, w, h,
-															 flipCameraButtonPressFunction, "flip camera", txtSize, typeface,
-															colButtonFill, colButtonBorder, colButtonText);
-		this.btnFlipCamera.camera = this.camera;
-		
+		const smallScalar = 0.7;
+		const smallW = w * smallScalar;
+		const smallH = h * smallScalar;
+		const smallTxtSize = txtSize * smallScalar;
 		
 		// take photo
 		const takePhotoButtonPressFunction = function() {
@@ -32,9 +25,19 @@ class Scene_takePhoto {
 			changeScene(scene_setThreshold);
 			buttonPressedThisFrame = true;
 		}
-		this.btnQuantise = new Button(x, y + h * 1, w, h,
+		this.btnQuantise = new Button(x, y + h * 0, w, h,
 																	takePhotoButtonPressFunction, "take photo", txtSize, typeface,
 																 colButtonFill, colButtonBorder, colButtonText);
+		
+		// flip camera
+		const flipCameraButtonPressFunction = function() {
+			this.camera.flip();
+			buttonPressedThisFrame = true;
+		}
+		this.btnFlipCamera = new Button(x + (w - smallW) / 2, y + h * 1 + (h - smallH) / 2, smallW, smallH,
+															 flipCameraButtonPressFunction, "flip camera", txtSize, typeface,
+															colButtonFill, colButtonBorder, colButtonText);
+		this.btnFlipCamera.camera = this.camera;
 		
 		// cancel and return to previous scene
 		const cancelButtonPressFunction = function() {
@@ -43,7 +46,7 @@ class Scene_takePhoto {
 			}
 			else changeScene(scene_sequence);
 		}
-		this.btnCancel = new Button(x, y + h * 2, w, h,
+		this.btnCancel = new Button(x + (w - smallW) / 2, y + h * 3 + (h - smallH) / 2, smallW, smallH,
 																	cancelButtonPressFunction, "cancel", txtSize, typeface,
 																 colButtonFill, colButtonBorder, colButtonText);
 		

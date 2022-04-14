@@ -3,7 +3,10 @@ class Sequence {
 		this.initialiseVoices();
 		this.quantisePitch = false;
 		this.quantiseTime = false;
+		this.speedMultiplierParam = 1;
+		this.speedMultiplier = 1;
 		this.numBeats = 16;
+		this.setScaleIndex(0);
 	}
 	
 	toggleQuantisePitch() {
@@ -16,11 +19,56 @@ class Sequence {
 		this.refreshQuantisation();
 	}
 	
+	tickScaleIndex() {
+		let index = this.scaleIndex;
+		index++;
+		if (index >= scales.length) {
+			index = 0;
+		}
+		this.setScaleIndex(index);
+	}
+	
+	setScaleIndex(index) {
+		this.scaleIndex = index;
+		if (0 <= index) {
+			this.scale = scales[index];
+			this.refreshScale();
+		}
+	}
+	
+	setScale(scale) {
+		this.scale = scale;
+		this.refreshScale();
+	}
+	
+	refreshScale() {
+		for (let voice of this.voices) {
+			voice.scale = this.scale;
+		}
+	}
+	
 	setNumBeats(numBeats) {
 		this.numBeats = numBeats;
 		for (let voice of this.voices) {
 			voice.numBeats = numBeats;
 		}
+	}
+	
+	increaseSpeedMultiplier() {
+		this.speedMultiplierParam++;
+		if (this.speedMultiplierParam == -1) this.speedMultiplierParam = 1;
+		this.refreshSpeedMultiplier();
+	}
+	
+	decreaseSpeedMultiplier() {
+		this.speedMultiplierParam--;
+		if (this.speedMultiplierParam == 0) this.speedMultiplierParam = -2;
+		this.refreshSpeedMultiplier();
+	}
+	
+	refreshSpeedMultiplier() {
+		if (this.speedMultiplierParam > 0) this.speedMultiplier = this.speedMultiplierParam;
+		else this.speedMultiplier = pow(-this.speedMultiplierParam, -1);
 	}
 	
 	setType(type) {
@@ -94,7 +142,7 @@ class Voice {
 		this.sequence = this.freshSequence(); // sequence will hold a value between 0 and 1 for each time step.
 		
 		this.quantisePitch = false;
-		this.scale = quantiseScale;
+		this.scale = new Scale(0, [0]);
 		
 		this.quantiseTime = false;
 		this.numBeats = 16;
@@ -102,6 +150,8 @@ class Voice {
 		this.c = color(0);
 	
 		this.vol = 0.5;
+		
+		this.prevDrumIndex = -1;
 	}
 	
 	setType(type) {
@@ -109,7 +159,7 @@ class Voice {
 		if (type == 0) this.osc = new p5.Oscillator('sine');
 		else if (type == 1) this.osc = new p5.Oscillator('triangle');
 		else if (type == 2) this.osc = new p5.Oscillator('square');
-		else this.osc = new p5.Oscillator('saw');
+		else; // is drums
 	}
 	
 	setVol(vol) {
@@ -188,9 +238,13 @@ class Voice {
 				let y1 = map(v1, 0, 1, y + h, y);
 				let y2 = map(v2, 0, 1, y + h, y);
 				
-				if (this.quantisePitch) {
+				if (this.quantisePitch && this.type != 3) { // melody voices
 					y1 = map(frequencyToProp_exp(this.scale.snapFrequency(propToFrequency_exp(v1, true))), 0, 1, y + h, y);
 					y2 = map(frequencyToProp_exp(this.scale.snapFrequency(propToFrequency_exp(v2, true))), 0, 1, y + h, y);
+				}
+				else if (this.quantisePitch && this.type == 3) { // drum voices
+					y1 = map(floor(v1 * drumSamples.length) / drumSamples.length, 0, 1, y + h, y) - h / 2 / drumSamples.length;
+					y2 = map(floor(v2 * drumSamples.length) / drumSamples.length, 0, 1, y + h, y) - h / 2 / drumSamples.length;
 				}
 				
 				line(x1, y1, x2, y2);
@@ -199,6 +253,11 @@ class Voice {
 	}
 	
 	play(t) {
+		if (this.type == 3) this.playRhythmic(t);
+		else this.playMelodic(t);
+	}
+	
+	playMelodic(t) {
 		// t is a value between 0 and 1 indicating how far through the sequence you are. We are accessing the pitch at the timestep neares to t.
 		let v = this.getVfromT(t);
 		
@@ -221,6 +280,22 @@ class Voice {
 			// end note
 			this.osc.amp(0); // gradual decay
 		}
+	}
+	
+	playRhythmic(t) {
+		// t is a value between 0 and 1 indicating how far through the sequence you are. We are accessing the pitch at the timestep neares to t.
+		let v = this.getVfromT(t);
+		// handle start/ end of note. We check if a note should be being played
+		if (v >= 0) {
+			let drumIndex = floor(v * drumSamples.length);
+			
+			if (drumIndex != this.prevDrumIndex) {
+				drumSamples[drumIndex].play();
+			}
+			
+			this.prevDrumIndex = drumIndex;
+		}
+		else this.prevDrumIndex = -1;
 	}
 	
 	getVfromT(t) {

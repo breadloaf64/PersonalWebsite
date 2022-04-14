@@ -1,15 +1,17 @@
-var scale_chromatic;
-var scale_Amaj;
-var scale_Aoct;
-var scale_Cpenta;
-
 function initialiseScales() {
+	scale_Apenta = new Scale(0, [0, 2, 4, 7, 9]);
 	scale_chromatic = new Scale(0, [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11])
 	scale_Amaj = new Scale(0, [0, 2, 4, 5, 7, 9, 11]);
+	scale_Amin = new Scale(0, [0, 2, 3, 5, 7, 8, 10]);
 	scale_Aoct = new Scale(0, [0]);
-	scale_Cpenta = new Scale(3, [0, 2, 4, 7, 9]);
 	
-	quantiseScale = scale_Cpenta;
+	scales = [scale_Apenta, scale_chromatic, scale_Amaj, scale_Amin, scale_Aoct];
+	scaleNames = ["A pentatonic", "chromatic", "A major", "A minor", "A octaves"];
+}
+
+function getScaleName(i) {
+	if (i == -1) return "custom";
+	else return scaleNames[i];
 }
 
 // this class is responsible for holding all the information for a musical scale. It has functions for snapping notes and frequencies to that scale
@@ -88,5 +90,9 @@ class Scale {
 		}
 		
 		this.notes.sort(function(a, b) {return a - b;});
+	}
+	
+	copy() {
+		return new Scale(this.tonic, this.degrees);
 	}
 }

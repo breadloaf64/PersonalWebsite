@@ -30,3 +30,13 @@ function touchEnded() {
 		currentScene.mouseClicked();
 	}
 }
+
+function keyTyped() {
+  if (key === ' ') {
+		let string = "tonic: " + sequences[currentSequenceIndex].scale.tonic + ", Degrees: ";
+		for (let d of sequences[currentSequenceIndex].scale.degrees) {
+			string += d + ", ";
+		}
+    print(string);
+  }
+}

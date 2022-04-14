@@ -5,6 +5,7 @@ class SequenceBox {
 		this.w = width;
 		this.h = height;
 		this.showGrid = true;
+		this.showIcon = true;
 		this.col = color("#ffffff");
 	}
 	
@@ -20,7 +21,7 @@ class SequenceBox {
 		if (this.showGrid) this.drawGrid();
 		if (playing) this.drawPlayhead();
 		if (this.sequence && this.sequence.voices.length > 0) this.sequence.draw(this.x, this.y, this.w, this.h);
-		else this.drawEmpty();
+		if(this.showIcon) this.drawIcon();
 		this.drawBoxFrame();
 	}
 	
@@ -41,10 +42,19 @@ class SequenceBox {
 		}
 
 		// horizontal lines;
-		let originNote = 0; // lines will appear each octave where this note appears
-		for (let note = minNote; note <= maxNote; note++) {
-			if (posMod((note - originNote), 12) == 0) {
-				let y = map(frequencyToProp_exp(noteToFrequency(note)), 0, 1, this.y + this.h, this.y);
+		if (this.sequence.type != 3) { // for melodic sequences
+			let originNote = 0; // lines will appear each octave where this note appears
+			for (let note = minNote; note <= maxNote; note++) {
+				if (posMod((note - originNote), 12) == 0) {
+					let y = map(frequencyToProp_exp(noteToFrequency(note)), 0, 1, this.y + this.h, this.y);
+					line(this.x, y, this.x + this.w, y);
+				}
+			}
+		}
+		else { // drum sequences
+			let dist = this.h / drumSamples.length;
+			for (let i = 1; i < drumSamples.length; i++) {
+				let y = this.y + i * dist;
 				line(this.x, y, this.x + this.w, y);
 			}
 		}
@@ -62,7 +72,7 @@ class SequenceBox {
 	}
 	
 	drawPlayhead() {
-		let t = ((masterTime / beatPeriod) % this.sequence.numBeats) / this.sequence.numBeats;
+		let t = ((masterTime * this.sequence.speedMultiplier  / beatPeriod) % this.sequence.numBeats) / this.sequence.numBeats;
 		let x = map(t, 0, 1, this.x, this.x + this.w);
 		strokeWeight(2);
 		stroke(colPlayhead);
@@ -74,5 +84,20 @@ class SequenceBox {
 		stroke(0);
 		strokeWeight(3);
 		rect(this.x, this.y, this.w, this.h);
+	}
+	
+	drawIcon() {
+		let iconScale = 0.2;
+		let iconL = this.w * iconScale;
+		
+		// draw icon background
+		noStroke();
+		fill(colIconBackground);
+		rect(this.x, this.y, iconL, iconL);
+		
+		// draw icon
+		if (this.instrumentIcon) {
+			image(this.instrumentIcon, this.x, this.y, iconL, iconL);
+		}
 	}
 }

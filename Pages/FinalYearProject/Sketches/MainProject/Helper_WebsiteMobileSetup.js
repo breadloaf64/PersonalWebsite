@@ -15,7 +15,7 @@ function windowResized() {
 	const w = parent.clientWidth;
 	const h = parent.clientHeight;
 	resizeCanvas(w, h, true);
-
+	
 	if (layout) {
 		layout.update();
 	}
