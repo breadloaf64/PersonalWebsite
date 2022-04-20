@@ -93,7 +93,7 @@ class Sequence {
 	}
 	
 	setVols() {
-		let v = 0.25 / this.maxSimultaneousVoices;
+		let v = 0.20 / this.maxSimultaneousVoices * mix[this.type];
 		for (let voice of this.voices) {
 			voice.setVol(v);
 		}
@@ -149,7 +149,7 @@ class Voice {
 		
 		this.c = color(0);
 	
-		this.vol = 0.5;
+		this.vol = 0.25;
 		
 		this.prevDrumIndex = -1;
 	}
@@ -258,7 +258,7 @@ class Voice {
 	}
 	
 	playMelodic(t) {
-		// t is a value between 0 and 1 indicating how far through the sequence you are. We are accessing the pitch at the timestep neares to t.
+		// t is a value between 0 and 1 indicating how far through the sequence you are. We are accessing the pitch at the timestep nearest to t.
 		let v = this.getVfromT(t);
 		
 		// handle start/ end of note. We check if a note should be being played
@@ -271,7 +271,7 @@ class Voice {
 			}
 			
 			let freq = this.getFrequencyFromV(v);
-			this.osc.freq(freq, 0.1);
+			this.osc.freq(freq, this.vol);
 
 			// start note
 			this.osc.amp(this.vol);

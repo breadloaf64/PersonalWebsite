@@ -62,12 +62,22 @@ class Scene_takePhoto {
 	}
 	
 	render() { // essential
+		this.loadingText();
 		drawImage(this.camera.currentImage(), layout.subPrimarySquare_x, layout.subPrimarySquare_y, layout.subPrimarySquare_w, layout.subPrimarySquare_h);
 		this.drawTranslucentMask();
 		//this.drawCapSquare();
 		this.drawOuterCapSquare();
 		this.drawButtons();
 		image(imgNoiseTextureCut, 0, 0);
+	}
+	
+	loadingText() {
+		const txtSize = layout.subSecondarySquare_w / 15;
+		const typeface = "monospace";
+		textFont(typeface, txtSize);
+		fill(0);
+		textAlign(LEFT, TOP);
+		text("loading camera", layout.subSubPrimarySquare_x, layout.subSubPrimarySquare_y);
 	}
 	
 	drawCapSquare() {

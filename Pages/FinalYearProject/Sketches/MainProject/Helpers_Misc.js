@@ -22,7 +22,8 @@ function coordinateIsInBounds(i, j, x, y, w, h) {
 }
 
 function takePhoto() {
-	photo = get(layout.subSubPrimarySquare_x + 1, layout.subSubPrimarySquare_y + 1, layout.subSubPrimarySquare_w - 2, layout.subSubPrimarySquare_h - 2); //we capture from one pixel smaller than the box, so we don't get the transluent mask
+	const border = 6;
+	photo = get(layout.subSubPrimarySquare_x + border, layout.subSubPrimarySquare_y + border, layout.subSubPrimarySquare_w - 2 * border, layout.subSubPrimarySquare_h - 2 * border); //we capture from one pixel smaller than the box, so we don't get the transluent mask
 	photo.filter(ERODE);
 }
 

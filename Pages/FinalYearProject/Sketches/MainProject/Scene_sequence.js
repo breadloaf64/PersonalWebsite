@@ -351,7 +351,7 @@ class Scene_sequence {
 		
 		// length text box
 		this.txtLength = new Button(x, y + h * 3, w / 2, h,
-																function(){}, "length", txtSize, typeface,
+																function(){}, "sequence\nlength", txtSize, typeface,
 																colTransparent, colTransparent, colButtonText);
 		this.buttons_time.push(this.txtLength);
 		

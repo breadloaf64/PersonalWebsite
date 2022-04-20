@@ -1,13 +1,17 @@
 const minNote = -48; // A0, the lowest note on a piano
 const maxNote = 39; // C8, the highest note on a piano
-var minFrequency;
-var maxFrequency;
 
 function setupSound() {
 	minFrequency = noteToFrequency(minNote);
 	maxFrequency = noteToFrequency(maxNote);
 	
 	initialiseScales();
+	
+	mix = [1, 0.8, 0.6, 0.6];
+	
+	for (let d of drumSamples) {
+		d.setVolume(mix[3]);
+	}
 }
 
 function handleSound() {

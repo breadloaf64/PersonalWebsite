@@ -73,10 +73,10 @@ function setupScenes() {
 }
 
 function setupSequences() {
-	sequence0 = new Sequence();
-	sequence1 = new Sequence();
-	sequence2 = new Sequence();
-	sequence3 = new Sequence();
+	sequence0 = new Sequence(); // sine
+	sequence1 = new Sequence(); // triangle
+	sequence2 = new Sequence(); // square
+	sequence3 = new Sequence(); // drum
 	
 	sequences = [sequence0, sequence1, sequence2, sequence3];
 	for (let i = 0; i < 4; i++) {
