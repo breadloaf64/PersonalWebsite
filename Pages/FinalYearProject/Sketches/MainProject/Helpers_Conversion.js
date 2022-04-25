@@ -2,9 +2,9 @@ function convertImageToSequence1(source) {
 	source.filter(BLUR, 3);
 	source.loadPixels();
 	let px = source.pixels;
-	
+
 	let voice = new Voice();
-	
+
 	for (let col = 0; col < floor(source.width); col++) {
 		let colVals = getColVals(px, floor(source.width), floor(source.height), col);
 		colVals = normaliseArr(colVals);
@@ -13,7 +13,7 @@ function convertImageToSequence1(source) {
 
 		let v = map(indexOfMean(colVals), floor(source.height), 0, 0, 1);
 		let t = map(col, 0, floor(source.width), 0, 1);
-		
+
 		if (isNaN(v)) {
 			voice.updateSequence(t, -1);
 		}
@@ -21,62 +21,62 @@ function convertImageToSequence1(source) {
 			voice.updateSequence(t, v);
 		}
 	}
-	
+
 	let out = new Sequence();
 	out.voices.push(voice);
 	return out;
 }
 
 function convertImageToSequence2(source) {
-	
+
 	source.loadPixels();
 	let px = source.pixels;
-	
+
 	// for each column in the image, it contains an array of centres of clusters in that column
-	const colsCentres = getColsCentres(px, source); 
+	const colsCentres = getColsCentres(px, source);
 	//printCentres(colsCentres, source);
-	
+
 	// For each col, it contains an array of voice indices that the corresponding element (with same indices) in colsCentres maps to
 	const mapsCentresToVoices = getMapsCentresToVoices(colsCentres);
-	
+
 	// we get the largest index of a voice that a centre is mapped to. Add 1 to get the number (since voices are zero indexed).
-	const voiceCount = getJagged2DArrMax(mapsCentresToVoices) + 1; 
+	const voiceCount = getJagged2DArrMax(mapsCentresToVoices) + 1;
 	return makeSequence(voiceCount, source, mapsCentresToVoices, colsCentres);
 }
 
 function makeSequence(voiceCount, source, mapsCentresToVoices, colsCentres) {
 	let voices = [];
-	
+
 	for (let i = 0; i < voiceCount; i++) { // loop through the voices that need to be added to the sequence
 		let currentVoice = new Voice();
 
 		for (let col = 0; col < floor(source.width) - 1; col++) { // scroll through the columns
 			let currMapCentresToVoices = mapsCentresToVoices[col];
 			let currColCentres = colsCentres[col];
-			
+
 			let nextMapCentresToVoices = mapsCentresToVoices[col + 1];
 			let nextColCentres = colsCentres[col + 1];
-			
+
 			if (currMapCentresToVoices.includes(i) && nextMapCentresToVoices.includes(i)) { // if one of the col centres is mapped to the current voice
 				let h1 = currColCentres[currMapCentresToVoices.findIndex((element) => element == i)]; // height on image of current col for this voice
-				
+
 				let t1 = map(col, 0, floor(source.width), 0, 1);
 				let v1 = map(h1, floor(source.height), 0, 0, 1);
-				
+
 				let h2 = nextColCentres[nextMapCentresToVoices.findIndex((element) => element == i)]; // height on image of next col for this voice
-				
+
 				let t2 = map(col + 1, 0, floor(source.width), 0, 1);
 				let v2 = map(h2, floor(source.height), 0, 0, 1);
-				
+
 				currentVoice.updateSequenceLerp(t1, v1, t2, v2);
 			}
 		}
 
 		voices.push(currentVoice);
 	}
-	
+
 	sequences[currentSequenceIndex].voices = voices;
-	
+
 	// passes sequence information down into child voices
 	sequences[currentSequenceIndex].refreshQuantisation(); // update voice quantisation variables to reflect quantisationMode
 	sequences[currentSequenceIndex].refreshNumBeats();
@@ -85,7 +85,7 @@ function makeSequence(voiceCount, source, mapsCentresToVoices, colsCentres) {
 	sequences[currentSequenceIndex].refreshSpeedMultiplier();
 	sequences[currentSequenceIndex].setMaxSimultaneousVoices(getMaxSimultaneousVoices(colsCentres));
 	sequences[currentSequenceIndex].setVols();
-	
+
 	return sequences[currentSequenceIndex];
 }
 
@@ -116,10 +116,10 @@ function getJagged2DArrMax(arr) {
 
 function getMapsCentresToVoices(colsCentres) {
 	// For each col, it contains an array of voice indices that the corresponding element (with same indices) in colsCentres maps to
-	let mapsCentresToVoices = []; 
+	let mapsCentresToVoices = [];
 	let voiceCount = 0;
 	let firstColCentres = colsCentres[0];
-	
+
 	// initial map. This needs to be separate because all other maps depend on the previous map.
 	let currMap = [];
 	for (let i = 0; i < firstColCentres.length; i++) {
@@ -127,37 +127,41 @@ function getMapsCentresToVoices(colsCentres) {
 		voiceCount++;
 	}
 	mapsCentresToVoices.push(currMap);
-	
+
 	// get all successive maps
 	for (let i = 1; i < colsCentres.length; i++) {
 		let prevColCentres = colsCentres[i - 1];
 		let currColCentres = colsCentres[i];
-		
+
 		let currMap = [];
-		
+
 		let indicesMatched = [];
 
 		if (prevColCentres.length < currColCentres.length) { // loop over centres of current previous column and look ahead
-			
+
 			// fill currMap with -1s. This way we can track which centres in the current column haven't been mapped to a voice
-			for (let j = 0; j < currColCentres.length; j++) { 
+			for (let j = 0; j < currColCentres.length; j++) {
 				currMap.push(-1);
 			}
 
 			// map each centre in previous column to nearest centre in current column
-			for (let j = 0; j < prevColCentres.length; j++) { 
-				let currPrevCentre = prevColCentres[j];; // the current centre of the previous column we're looking at
+			for (let j = 0; j < prevColCentres.length; j++) {
+				let currPrevCentre = prevColCentres[j]; // the current centre of the previous column we're looking at
 				let nearestCurrCentre = getNearestArrValue(currPrevCentre, currColCentres, indicesMatched); // the nearest centre in the current column
-				
+
 				let indexOfNearest = currColCentres.findIndex((element) => element == nearestCurrCentre);
 				let voice = mapsCentresToVoices[i - 1][j];
 				currMap[indexOfNearest] = voice;
 			}
-			
+
 			// centres that haven't been mapped are still mapped to -1. These need new voices created for them
 			for (let j = 0; j < currMap.length; j++) {
 				if (currMap[j] == -1) {
-					currMap[j] = voiceCount++;
+					let voice = 0;
+					while(currMap.includes(voice)) {
+						voice++;
+					}
+					currMap[j] = voice;
 				}
 			}
 		}
@@ -173,10 +177,10 @@ function getMapsCentresToVoices(colsCentres) {
 
 			}
 		}
-		
+
 		mapsCentresToVoices.push(currMap);
 	}
-	
+
 	//print(mapsCentresToVoices);
 	return mapsCentresToVoices;
 }
@@ -195,7 +199,7 @@ function getNearestArrValue(target, arr, ignoreIndices) {
 
 function getColsCentres(px, source) {
 	let colsCentres = []; // for each column in the image, it contains an array of centres of clusters in that column
-	
+
 	for (let col = 0; col < floor(source.width); col++) {
 		let colVals = getColVals(px, floor(source.width), floor(source.height), col);
 		colVals = normaliseArr(colVals);
@@ -213,7 +217,7 @@ function printCentres(colsCentres, source) {
 	noFill();
 	strokeWeight(3);
 	stroke(255, 0, 0);
-	
+
 	for (let col = 0; col < floor(source.width); col++) {
 		let centres = colsCentres[col];
 		for (let centre of centres) {
@@ -282,7 +286,7 @@ function invertArrVals(arr) {
 	// remaps the values
 	let arrMax = max(arr);
 	let out = [];
-	
+
 	for (let v of arr) {
 		out.push(arrMax - v);
 	}
@@ -297,12 +301,12 @@ function normaliseArr(arr) {
 function getColVals(px, w, h, col) {
 	// returns an array which colds the pixel values (brightnesses) for the column specified
 	let colVals = [];
-	
+
 	for (let row = 0; row < h; row++) {
 		let pixelCol = getPixelByCoord(px, w, h, col, row);
 		colVals.push(colourVal(pixelCol));
 	}
-	
+
 	return colVals;
 }
 
@@ -317,12 +321,12 @@ function getPixelByCoord(px, w, h, x, y) {
 		print("invalid coordinates: " + x + ", " + y);
 		return color(255, 255, 255, 255);
 	}
-	
+
 	let r = px[pixelIndex];
 	let g = px[pixelIndex + 1];
 	let b = px[pixelIndex + 2];
 	let a = px[pixelIndex + 3];
-	
+
 	return color(r, g, b, a);
 }
 
