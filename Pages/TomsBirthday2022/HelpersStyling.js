@@ -46,7 +46,7 @@ function setCanvas () {
 		try {
 			canvas.parent('sketch-holder');
 		}
-		catch {}
+		catch {print("failed to parent")}
 		windowResized();
 	}
 	else {
