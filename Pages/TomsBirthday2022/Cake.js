@@ -4,12 +4,12 @@ class Cake {
 		this.hp = 100;
 		this.eatRadius = u * 5;
 	}
-	
+
 	draw() {
 		// noStroke();
 		// fill(0, 255, 255);
 		// ellipse(this.pos.x, this.pos.y, u * 3);
-		let scalar = 3;
+		let scalar = 3 * u / 5.376;
 		noSmooth();
 		let frame = 0;
 		if (this.hp == 100) frame = 0;
@@ -20,7 +20,7 @@ class Cake {
 		else return; // draw nothing
 		image(imgs_cake[frame], this.pos.x, this.pos.y, imgs_cake[0].width * scalar, imgs_cake[0].height * scalar);
 	}
-	
+
 	damage(damage) {
 		this.hp -= damage;
 		random(sfxs_bite).play();
