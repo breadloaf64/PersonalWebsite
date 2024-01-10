@@ -18,8 +18,8 @@ function setup() {
   );
   imgNoiseTexture = generateNoiseTexture();
   seed = random(100);
-  mainLeafLayer = new LeafLayer();
-  overlayLeafLayer = new LeafLayer();
+  mainLeafLayer = new LeafLayer(0);
+  overlayLeafLayer = new LeafLayer(1);
 }
 
 function draw() {

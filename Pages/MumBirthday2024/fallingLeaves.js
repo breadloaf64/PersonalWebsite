@@ -1,6 +1,7 @@
 class LeafLayer {
-  constructor() {
+  constructor(type) {
     this.leaves = [];
+    this.type = type;
   }
 
   tick() {
@@ -21,7 +22,7 @@ class LeafLayer {
 
   draw() {
     this.leaves.map((leaf) => {
-      leaf.draw();
+      leaf.draw(this.type);
     });
   }
 }
@@ -61,9 +62,9 @@ class Leaf {
     }
   }
 
-  draw() {
+  draw(colour) {
     noStroke();
-    fill("#ffafcc");
+    fill(colour === 0 ? "#ffc8dd" : "#ffafcc");
 
     push();
     translate(this.x, this.y);
