@@ -15,8 +15,13 @@ function changeLastEvent(eventText) {
 }
 
 function strTime() {
-    //return Date();
-    return forceDigits(hour()) + ':' + forceDigits(second())
+    return (
+        forceDigits(hour()) +
+        ':' +
+        forceDigits(minute()) +
+        ':' +
+        forceDigits(second())
+    )
 }
 
 function forceDigits(n) {
