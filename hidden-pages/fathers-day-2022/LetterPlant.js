@@ -2,7 +2,7 @@ var stemIncrementSize = 2
 
 class LetterPlant {
     constructor(x, y, fci) {
-        this.seedPos = create(x, y)
+        this.seedPos = createVector(x, y)
         this.age = 0
         this.maxAge = 100
         this.minHeight = width / 80

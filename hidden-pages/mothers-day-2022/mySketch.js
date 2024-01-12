@@ -15,7 +15,7 @@ function setup() {
 
 function generateNoiseTexture() {
     let amount = 0.2
-    let img = createImage(int(squareWidth), int(height))
+    let img = createImage(int(width), int(height))
     img.loadPixels()
     for (let i = 0; i < img.width; i++) {
         for (let j = 0; j < img.height; j++) {
@@ -55,7 +55,7 @@ function makeVine() {
     let sideways = random(1) > 0.5
 
     if (sideways) {
-        let x = random(squareWidth)
+        let x = random(width)
         let up = random(1) > 0.5
         if (up) {
             vines.push(new Vine(x, height + 10, -PI / 2))
@@ -68,7 +68,7 @@ function makeVine() {
         if (right) {
             vines.push(new Vine(-10, y, 0))
         } else {
-            vines.push(new Vine(squareWidth + 10, PI))
+            vines.push(new Vine(width + 10, PI))
         }
     }
     print('made')
@@ -89,16 +89,8 @@ function tickVines() {
 function render() {
     background(colBackground)
     drawObjects()
-    drawMessage(
-        "happy mother's day",
-        height / 2,
-        min(squareWidth, height) * 0.07
-    )
-    drawMessage(
-        'love from peter',
-        height * 0.6,
-        min(squareWidth, height) * 0.03
-    )
+    drawMessage("happy mother's day", height / 2, min(width, height) * 0.07)
+    drawMessage('love from peter', height * 0.6, min(width, height) * 0.03)
     image(imgNoiseTexture, 0, 0)
 }
 
@@ -130,7 +122,7 @@ function drawMessage(message, y, size) {
         var c = message.charAt(x)
         letter(
             c,
-            squareWidth / 2 - messageWidth / 2 + x * letterSpace,
+            width / 2 - messageWidth / 2 + x * letterSpace,
             y,
             x,
             (2 * size) / 20
@@ -161,11 +153,11 @@ function letter(c, x, y, i, randomAmount) {
 function drawMessage2() {
     noStroke()
     fill(colMessage)
-    let txtSize = min(squareWidth, height) * 0.1
+    let txtSize = min(width, height) * 0.1
     textFont('monospace', txtSize)
     let message = "happy mother's day"
     textAlign(CENTER, CENTER)
-    text(message, squareWidth / 2, height / 2)
+    text(message, width / 2, height / 2)
 }
 
 function mouseClicked() {

@@ -2,7 +2,7 @@ class Flower {
     constructor(x, y, fci) {
         this.x = x
         this.y = y
-        this.maxR = (random(1) + 2) * squareWidth * 0.028
+        this.maxR = (random(1) + 2) * width * 0.028
         this.r = 0
         this.petalCount = 10
         this.age = 0
