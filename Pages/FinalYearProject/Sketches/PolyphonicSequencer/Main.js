@@ -1,43 +1,43 @@
-var paused = true;
-var playHead;
+var paused = true
+var playHead
 
-var numQuantisedBeats;
-var quantiseScale;
+var numQuantisedBeats
+var quantiseScale
 
 function setup() {
-  myStandardSetup();
-  setupSound();
+    myStandardSetup()
+    setupSound()
 
-  numQuantisedBeats = 16;
-  quantiseScale = scale_Cpenta;
+    numQuantisedBeats = 16
+    quantiseScale = scale_Cpenta
 
-  initialiseVoices();
-  playHead = new PlayHead();
-  makeButtons();
+    initialiseVoices()
+    playHead = new PlayHead()
+    makeButtons()
 }
 
 function myStandardSetup() {
-  setCanvas();
-  createMetaTag();
-  setColours();
-  setNoiseTexture();
+    setCanvas()
+    createMetaTag()
+    setColours()
+    setNoiseTexture()
 }
 
 function draw() {
-  handleMouseDrag();
-  render();
-  updatePrevMouse();
+    handleMouseDrag()
+    render()
+    updatePrevMouse()
 
-  if (!paused) {
-    playHead.advance();
-    handleSound();
-  }
+    if (!paused) {
+        playHead.advance()
+        handleSound()
+    }
 }
 
 function pauseUnpause() {
-  paused = !paused;
-  if (!paused) {
-  } else {
-    stopSound();
-  }
+    paused = !paused
+    if (!paused) {
+    } else {
+        stopSound()
+    }
 }

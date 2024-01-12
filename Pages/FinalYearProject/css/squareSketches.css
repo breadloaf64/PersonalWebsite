@@ -1,51 +1,51 @@
 body {
-  margin: 0;
-  padding: 0;
-  /* position:fixed; */
-  width: 100%;
-  /* overflow: hidden */
+    margin: 0;
+    padding: 0;
+    /* position:fixed; */
+    width: 100%;
+    /* overflow: hidden */
 }
 
 canvas {
-  height: inherit;
-  width: inherit;
-  touch-action: none;
+    height: inherit;
+    width: inherit;
+    touch-action: none;
 }
 
 .sketch-title {
-  font-family: monospace;
-  text-align: center;
+    font-family: monospace;
+    text-align: center;
 }
 
 .sketch-desc {
-  font-family: monospace;
-  text-align: center;
+    font-family: monospace;
+    text-align: center;
 }
 
 .sketch-info {
-  text-align: justify;
+    text-align: justify;
 }
 
 .square-box {
-  position: relative;
-  width: 100%;
-  overflow: hidden;
-  max-height: 100%;
-  background: #cccccc;
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    max-height: 100%;
+    background: #cccccc;
 }
 
 .square-box:before {
-  content: "";
-  display: block;
-  padding-top: 100%;
+    content: '';
+    display: block;
+    padding-top: 100%;
 }
 
 .square-content {
-  position: absolute;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  right: 0;
-  color: white;
-  text-align: center;
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    color: white;
+    text-align: center;
 }

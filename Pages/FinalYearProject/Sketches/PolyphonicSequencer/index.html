@@ -1,67 +1,72 @@
 <html>
-  <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta charset="utf-8" />
-    <title>Polyphonic Sequencer</title>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <title>Polyphonic Sequencer</title>
 
-    <!-- Bootstrap -->
-    <link
-      rel="stylesheet"
-      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
-      crossorigin="anonymous"
-    />
+        <!-- Bootstrap -->
+        <link
+            rel="stylesheet"
+            href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+            integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+            crossorigin="anonymous"
+        />
 
-    <!-- My css -->
-    <link rel="stylesheet" , href="../../css/squareSketches.css" />
+        <!-- My css -->
+        <link rel="stylesheet" , href="../../css/squareSketches.css" />
 
-    <!-- Sketch -->
-    <script src="Main.js" type="text/javascript"></script>
-    <script src="Voice.js" type="text/javascript"></script>
-    <script src="PlayHead.js" type="text/javascript"></script>
-    <script src="Scale.js" type="text/javascript"></script>
-    <script src="Button.js" type="text/javascript"></script>
-    <script src="HelpersDrawing.js" type="text/javascript"></script>
-    <script src="HelpersVoices.js" type="text/javascript"></script>
-    <script src="HelpersMouse.js" type="text/javascript"></script>
-    <script src="HelpersSound.js" type="text/javascript"></script>
-    <script src="HelpersStyling.js" type="text/javascript"></script>
-    <script src="HelpersWebsiteMobileSetup.js" type="text/javascript"></script>
-    <script src="HelpersMaths.js" type="text/javascript"></script>
+        <!-- Sketch -->
+        <script src="Main.js" type="text/javascript"></script>
+        <script src="Voice.js" type="text/javascript"></script>
+        <script src="PlayHead.js" type="text/javascript"></script>
+        <script src="Scale.js" type="text/javascript"></script>
+        <script src="Button.js" type="text/javascript"></script>
+        <script src="HelpersDrawing.js" type="text/javascript"></script>
+        <script src="HelpersVoices.js" type="text/javascript"></script>
+        <script src="HelpersMouse.js" type="text/javascript"></script>
+        <script src="HelpersSound.js" type="text/javascript"></script>
+        <script src="HelpersStyling.js" type="text/javascript"></script>
+        <script
+            src="HelpersWebsiteMobileSetup.js"
+            type="text/javascript"
+        ></script>
+        <script src="HelpersMaths.js" type="text/javascript"></script>
 
-    <!-- P5js -->
-    <script
-      src="https://cdn.jsdelivr.net/npm/p5@1.4.1/lib/p5.js"
-      type="text/javascript"
-    ></script>
-    <script
-      src="https://cdn.jsdelivr.net/npm/p5@v1.4.1/lib/addons/p5.sound.min.js"
-      type="text/javascript"
-    ></script>
+        <!-- P5js -->
+        <script
+            src="https://cdn.jsdelivr.net/npm/p5@1.4.1/lib/p5.js"
+            type="text/javascript"
+        ></script>
+        <script
+            src="https://cdn.jsdelivr.net/npm/p5@v1.4.1/lib/addons/p5.sound.min.js"
+            type="text/javascript"
+        ></script>
 
-    <!-- Don't forget this one if using sound! -->
-    <script
-      src="https://unpkg.com/@free-side/audioworklet-polyfill/dist/audioworklet-polyfill.js"
-      type="text/javascript"
-    ></script>
-  </head>
-  <body>
-    <!-- sketch holder -->
-    <div class="square-box">
-      <div id="sketch-holder" class="square-content">
-        <!-- Our sketch will go here! -->
-      </div>
-    </div>
+        <!-- Don't forget this one if using sound! -->
+        <script
+            src="https://unpkg.com/@free-side/audioworklet-polyfill/dist/audioworklet-polyfill.js"
+            type="text/javascript"
+        ></script>
+    </head>
+    <body>
+        <!-- sketch holder -->
+        <div class="square-box">
+            <div id="sketch-holder" class="square-content">
+                <!-- Our sketch will go here! -->
+            </div>
+        </div>
 
-    <div class="container">
-      <div class="col-sm">
-        <!-- sketch title and description -->
-        <h1 class="sketch-title">Polyphonic Sequencer</h1>
-        <p class="sketch-desc">Drag to add a new voice to the sequence.</p>
+        <div class="container">
+            <div class="col-sm">
+                <!-- sketch title and description -->
+                <h1 class="sketch-title">Polyphonic Sequencer</h1>
+                <p class="sketch-desc">
+                    Drag to add a new voice to the sequence.
+                </p>
 
-        <!-- Sketch info -->
-        <!-- <p class="sketch-info"></p> -->
-      </div>
-    </div>
-  </body>
+                <!-- Sketch info -->
+                <!-- <p class="sketch-info"></p> -->
+            </div>
+        </div>
+    </body>
 </html>
