@@ -39,7 +39,7 @@ function trunk() {
 function getTrunkSegVector(index) {
   return createVector(
     0 + ((noise(seed + index * 100) - 0.5) * s * index) / 2,
-    -s * 0.5 - noise(seed + index * 200) * s * 0.1
+    -s * 0.5 - noise(seed + index * 200) * s * 0.1,
   );
 }
 

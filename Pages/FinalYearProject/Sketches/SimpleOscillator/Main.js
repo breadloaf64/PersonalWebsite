@@ -9,52 +9,55 @@ var btnPause;
 var paused = true;
 
 function preload() {
-	preloadSound();
+  preloadSound();
 }
 
 function setup() {
-	myStandardSetup();
-	setupSound();
-	makePauseButton();
+  myStandardSetup();
+  setupSound();
+  makePauseButton();
 }
 
 function keyPressed() {
-	if (key == ' ' || key == 'p'){ //spacebar or p to pause/unpause
+  if (key == " " || key == "p") {
+    //spacebar or p to pause/unpause
     pauseUnpause();
   }
-	return false;
+  return false;
 }
 
 function pauseUnpause() {
-	paused = !paused;
-	if (!paused) {
-		sine.loop();
-	}
-	else {
-		sine.stop();
-	}
+  paused = !paused;
+  if (!paused) {
+    sine.loop();
+  } else {
+    sine.stop();
+  }
 }
 
 function mouseClicked() {
-	if (embeddedOnWebsite && (mouseX < 0 || width < mouseX || mouseY < 0 || height < mouseY)) {
-		// if on a website, don't register the click if it's off the sketch
-		return;
-	}
+  if (
+    embeddedOnWebsite &&
+    (mouseX < 0 || width < mouseX || mouseY < 0 || height < mouseY)
+  ) {
+    // if on a website, don't register the click if it's off the sketch
+    return;
+  }
 
-	if (paused) pauseUnpause();
-	btnPause.tryClick();
+  if (paused) pauseUnpause();
+  btnPause.tryClick();
 }
 
 function handleCurrentMouse() {
-	if (!paused) {
-		currentMouseX = mouseX;
-		currentMouseY = mouseY;
-	}
+  if (!paused) {
+    currentMouseX = mouseX;
+    currentMouseY = mouseY;
+  }
 }
 
 function draw() {
-	handleSound();
-	handleCurrentMouse();
-	render();
-	counter++;
+  handleSound();
+  handleCurrentMouse();
+  render();
+  counter++;
 }

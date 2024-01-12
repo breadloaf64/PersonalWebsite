@@ -14,7 +14,7 @@ function setup() {
   s = (squareWidth / 455) * 100;
   margin = createVector(
     (windowWidth - squareWidth) / 2,
-    (windowHeight - squareWidth) / 2
+    (windowHeight - squareWidth) / 2,
   );
   imgNoiseTexture = generateNoiseTexture();
   seed = random(100);
@@ -44,7 +44,7 @@ function render() {
   drawMessage(
     "happy birthday mum",
     height * 0.85,
-    min(squareWidth, height) * 0.07
+    min(squareWidth, height) * 0.07,
   );
   noiseLayer();
 }
@@ -105,13 +105,13 @@ function handleWind() {
       ? additionalWindStrength + gustPower
       : additionalWindStrength * WIND_DAMPING_COEFFICIENT,
     0,
-    1
+    1,
   );
 
   const windStrength = constrain(
     MIN_WIND_STRENGTH + additionalWindStrength,
     0,
-    1
+    1,
   );
 
   const RUFFLE_SPEED = 0.15;

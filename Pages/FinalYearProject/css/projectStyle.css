@@ -1,13 +1,18 @@
 p {
-    text-align: justify;
+  text-align: justify;
 }
 
-h1, h2, h3, h4, h5, h6 {
-    font-family: monospace;
-    text-align: center;
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: monospace;
+  text-align: center;
 }
 
 ul {
-    text-align: center;
-    font-family: monospace;
+  text-align: center;
+  font-family: monospace;
 }

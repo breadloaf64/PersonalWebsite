@@ -6,46 +6,42 @@ var currentMouseY = 0;
 var btnPause;
 var paused = true;
 
-function preload() {
-	
-}
+function preload() {}
 
 function setup() {
-	myStandardSetup();
-	makePauseButton();
+  myStandardSetup();
+  makePauseButton();
 }
 
 function keyPressed() {
-	if (key == ' ' || key == 'p'){ //spacebar or p to pause/unpause
+  if (key == " " || key == "p") {
+    //spacebar or p to pause/unpause
     pauseUnpause();
-  } 
-	return false;
+  }
+  return false;
 }
 
 function pauseUnpause() {
-	paused = !paused;
-	if (!paused) {
-		
-	}
-	else {
-		
-	}
+  paused = !paused;
+  if (!paused) {
+  } else {
+  }
 }
 
 function mouseClicked() {
-	if (paused) pauseUnpause();
-	btnPause.tryClick();
+  if (paused) pauseUnpause();
+  btnPause.tryClick();
 }
 
 function handleCurrentMouse() {
-	if (!paused) {
-		currentMouseX = mouseX;
-		currentMouseY = mouseY;
-	}
+  if (!paused) {
+    currentMouseX = mouseX;
+    currentMouseY = mouseY;
+  }
 }
 
 function draw() {
-	handleCurrentMouse();
-	render();
-	counter++;
+  handleCurrentMouse();
+  render();
+  counter++;
 }

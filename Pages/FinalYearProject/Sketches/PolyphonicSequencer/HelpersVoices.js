@@ -36,7 +36,7 @@ function updateCurrentVoice() {
         for (let i = round(ml.x); i <= round(mr.x); i++) {
           let lerpMouseX = i;
           let lerpMouseY = round(
-            ml.y + ((mr.y - ml.y) * (i - ml.x)) / (mr.x - ml.x)
+            ml.y + ((mr.y - ml.y) * (i - ml.x)) / (mr.x - ml.x),
           );
           let t = map(lerpMouseX, 0, squareWidth, 0, 1, true);
           let v = map(lerpMouseY, height, 0, 0, 1, true);
@@ -52,7 +52,7 @@ function updateCurrentVoice() {
                 mr.x +
                 ", " +
                 mr.y +
-                ")"
+                ")",
             );
           }
           currentVoice.updateSequence(t, v);

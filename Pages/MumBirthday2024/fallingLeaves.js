@@ -52,7 +52,7 @@ class Leaf {
         this.swayAmount;
 
     this.rotation = sin(
-      this.age * 0.001 * this.swayAmount + this.swayAmount * 3
+      this.age * 0.001 * this.swayAmount + this.swayAmount * 3,
     );
 
     this.x -= getWindStrength(0) * 2 * this.windEffect;

@@ -14,7 +14,7 @@ function drawMessage(message, y, size) {
       squareWidth / 2 - messageWidth / 2 + x * letterSpace + margin.x,
       y,
       x,
-      (2 * size) / 20
+      (2 * size) / 20,
     );
   }
 }
@@ -29,7 +29,7 @@ function letter(c, x, y, i, randomAmount) {
     0,
     1,
     -angleVariance,
-    angleVariance
+    angleVariance,
   );
 
   push();

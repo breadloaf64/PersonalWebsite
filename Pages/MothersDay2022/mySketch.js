@@ -92,7 +92,7 @@ function render() {
   drawMessage(
     "happy mother's day",
     height / 2,
-    min(squareWidth, height) * 0.07
+    min(squareWidth, height) * 0.07,
   );
   drawMessage("love from peter", height * 0.6, min(squareWidth, height) * 0.03);
   image(imgNoiseTexture, 0, 0);
@@ -129,7 +129,7 @@ function drawMessage(message, y, size) {
       squareWidth / 2 - messageWidth / 2 + x * letterSpace,
       y,
       x,
-      (2 * size) / 20
+      (2 * size) / 20,
     );
   }
 }
@@ -144,7 +144,7 @@ function letter(c, x, y, i, randomAmount) {
     0,
     1,
     -angleVariance,
-    angleVariance
+    angleVariance,
   );
 
   push();

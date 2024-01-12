@@ -38,7 +38,7 @@ class Flower {
         this.y,
         (i * PI * 2) / this.petalCount + this.rot,
         this.r,
-        this.r * 0.3
+        this.r * 0.3,
       );
     }
   }

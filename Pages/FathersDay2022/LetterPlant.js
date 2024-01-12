@@ -20,7 +20,7 @@ class LetterPlant {
     this.flower = new Flower(
       this.stemPosAtY(this.maxHeight),
       -this.maxHeight,
-      fci
+      fci,
     );
     this.flower.visible = false;
     this.leaves = [];
@@ -53,7 +53,7 @@ class LetterPlant {
         this.stemPosAtY(stemY),
         stemY,
         this.stemPosAtY(nextStemY),
-        nextStemY
+        nextStemY,
       );
       stemY -= stemIncrementSize;
     }
@@ -83,7 +83,7 @@ class LetterPlant {
       -1,
       1,
       (-PI / 16) * this.waveAmount,
-      (PI / 16) * this.waveAmount
+      (PI / 16) * this.waveAmount,
     );
     this.flower.tick();
   }
@@ -96,7 +96,7 @@ class LetterPlant {
         0,
         this.maxAge,
         this.minHeight,
-        this.maxHeight
+        this.maxHeight,
       );
 
       //spawn new leaf
@@ -114,8 +114,8 @@ class LetterPlant {
             -y,
             (this.maxLeafSize - (numLeaves * width) / 71) *
               map(random(1), 0, 1, 0.8, 1.2),
-            angle
-          )
+            angle,
+          ),
         );
       }
     }

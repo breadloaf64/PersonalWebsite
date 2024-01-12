@@ -8,54 +8,57 @@ var currentMouseY = 0;
 var prevMouseIsPressed = false; // counts if finger is pressed too
 
 function preload() {
-	preloadSound();
+  preloadSound();
 }
 
 function setup() {
-	myStandardSetup();
-	initialiseSequence();
+  myStandardSetup();
+  initialiseSequence();
 }
 
 function keyPressed() {
-	if (key == ' ' || key == 'p'){ //this means space bar, since it is a space inside of the single quotes
+  if (key == " " || key == "p") {
+    //this means space bar, since it is a space inside of the single quotes
     pauseUnpause();
   }
 }
 
 function mousePressed() {
-	if (embeddedOnWebsite && (mouseX < 0 || width < mouseX || mouseY < 0 || height < mouseY)) {
-		// if on a website, don't register the click if it's off the sketch
-		return;
-	}
-	
-	if (paused) pauseUnpause();
-	btnPause.tryClick();
+  if (
+    embeddedOnWebsite &&
+    (mouseX < 0 || width < mouseX || mouseY < 0 || height < mouseY)
+  ) {
+    // if on a website, don't register the click if it's off the sketch
+    return;
+  }
+
+  if (paused) pauseUnpause();
+  btnPause.tryClick();
 }
 
 function pauseUnpause() {
-	paused = ! paused;
-	if (paused) {
-		sine.stop();
-	}
-	else {
-		sine.loop();
-		handleCurrentMouse();
-	}
+  paused = !paused;
+  if (paused) {
+    sine.stop();
+  } else {
+    sine.loop();
+    handleCurrentMouse();
+  }
 }
 
 function draw() {
-	setPlaySpeed();
-	handlePlayHead();
-	handleEditSequence();
-	handleCurrentMouse();
-	handleSound();
-	render();
-	counter++;
+  setPlaySpeed();
+  handlePlayHead();
+  handleEditSequence();
+  handleCurrentMouse();
+  handleSound();
+  render();
+  counter++;
 }
 
 function handleCurrentMouse() {
-	if (!paused) {
-		currentMouseX = mouseX;
-		currentMouseY = mouseY;
-	}
+  if (!paused) {
+    currentMouseX = mouseX;
+    currentMouseY = mouseY;
+  }
 }

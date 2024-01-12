@@ -15,10 +15,13 @@ function draw() {
 }
 
 function mouseClicked() {
-	if (embeddedOnWebsite && (mouseX < 0 || width < mouseX || mouseY < 0 || height < mouseY)) {
-		// if on a website, don't register the click if it's off the sketch
-		return;
-	}
+  if (
+    embeddedOnWebsite &&
+    (mouseX < 0 || width < mouseX || mouseY < 0 || height < mouseY)
+  ) {
+    // if on a website, don't register the click if it's off the sketch
+    return;
+  }
 
   facingUser = !facingUser;
   setupCapture();
@@ -34,11 +37,11 @@ function setupCapture() {
 
   capture = createCapture({
     video: {
-			width: w,
-			height: h,
-      facingMode: facingUser ? 'user' : 'environment'
+      width: w,
+      height: h,
+      facingMode: facingUser ? "user" : "environment",
     },
-    audio: false
+    audio: false,
   });
   capture.hide();
 }
