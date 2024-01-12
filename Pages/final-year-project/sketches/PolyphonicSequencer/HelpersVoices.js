@@ -22,9 +22,9 @@ function updateCurrentVoice() {
 
         // scale ml and mr slightly so it's easier to hit t = 0 and t = 1 (you don't actually need your finger all the way on the edge of the screen)
         let scaleFactor = 1.01
-        let margin = (squareWidth * scaleFactor - squareWidth) / 2
-        ml.x = map(ml.x, 0 + margin, squareWidth - margin, 0, squareWidth, true)
-        mr.x = map(mr.x, 0 + margin, squareWidth - margin, 0, squareWidth, true)
+        let margin = (width * scaleFactor - width) / 2
+        ml.x = map(ml.x, 0 + margin, width - margin, 0, width, true)
+        mr.x = map(mr.x, 0 + margin, width - margin, 0, width, true)
 
         if (mouseIsPressed && prevMouseIsPressed) {
             // this is so that on touch screen, if the user puts their finger down, there won't be a line between the position and previous position.
@@ -41,7 +41,7 @@ function updateCurrentVoice() {
                     let lerpMouseY = round(
                         ml.y + ((mr.y - ml.y) * (i - ml.x)) / (mr.x - ml.x)
                     )
-                    let t = map(lerpMouseX, 0, squareWidth, 0, 1, true)
+                    let t = map(lerpMouseX, 0, width, 0, 1, true)
                     let v = map(lerpMouseY, height, 0, 0, 1, true)
                     if (isNaN(v)) {
                         print(
