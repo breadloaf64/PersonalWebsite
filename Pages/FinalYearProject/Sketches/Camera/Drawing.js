@@ -1,24 +1,22 @@
 function render() {
-	background(colBackground);
+    background(colBackground)
 
-	drawCapture(0, 0, w, h);
+    drawCapture(0, 0, w, h)
 
-	image(imgNoiseTexture, 0, 0);
-	drawFrame();
+    image(imgNoiseTexture, 0, 0)
+    drawFrame()
 }
 
 function drawCapture(x, y, wi, he) {
     if (facingUser) {
-        push();
-		translate(x + wi, y);
-        scale(-1, 1);
+        push()
+        translate(x + wi, y)
+        scale(-1, 1)
 
-		image(capture, 0, 0, wi, he);
+        image(capture, 0, 0, wi, he)
 
-		pop();
+        pop()
+    } else {
+        image(capture, x, y, wi, he)
     }
-    else {
-        image(capture, x, y, wi, he);
-    }
-
 }

@@ -1,71 +1,92 @@
-var FlipCamera;
-var buttonPressedThisFrame = false;
+var FlipCamera
+var buttonPressedThisFrame = false
 
-var filterSelection = 0;
-var filterNames = ["None", "Threshold", "Gray", "Invert", "Posterize", "Blur", "Erode", "Dilate"];
+var filterSelection = 0
+var filterNames = [
+    'None',
+    'Threshold',
+    'Gray',
+    'Invert',
+    'Posterize',
+    'Blur',
+    'Erode',
+    'Dilate',
+]
 
 // canvas and capture size
-var w = 400;
-var h = 400;
+var w = 400
+var h = 400
 
 function setup() {
-	myStandardSetup();
-	setupCapture();
-	makeFlipCameraButton();
+    myStandardSetup()
+    setupCapture()
+    makeFlipCameraButton()
 }
 
 function makeFlipCameraButton() {
-	let btnHeight = height * 0.08;
-	let btnWidth = btnHeight * 7/2;
-	let text = "flip";
-	btnFlipCamera = new Button(width - btnWidth - 20, height - btnHeight - 20, btnWidth, btnHeight, flipCamera, text,
-														 colFlipCameraButtonFill, colFlipCameraButtonBorder, colFlipCameraButtonText);
+    let btnHeight = height * 0.08
+    let btnWidth = (btnHeight * 7) / 2
+    let text = 'flip'
+    btnFlipCamera = new Button(
+        width - btnWidth - 20,
+        height - btnHeight - 20,
+        btnWidth,
+        btnHeight,
+        flipCamera,
+        text,
+        colFlipCameraButtonFill,
+        colFlipCameraButtonBorder,
+        colFlipCameraButtonText
+    )
 }
 
 function draw() {
-	render();
-	buttonPressedThisFrame = false;
-	clickedThisFrame = false;
+    render()
+    buttonPressedThisFrame = false
+    clickedThisFrame = false
 }
 
-var clickedThisFrame = false;
+var clickedThisFrame = false
 
 function mouseClicked() {
-	if (clickedThisFrame) return false;
+    if (clickedThisFrame) return false
 
-	clickedThisFrame = true;
-	click();
+    clickedThisFrame = true
+    click()
 }
 
-var timeAtTouchStart = 0;
+var timeAtTouchStart = 0
 function touchStarted() {
-	if (embeddedOnWebsite && mouseIsOnScreen()) {
-		// if on a website, don't register the click if it's off the sketch
-		return false;
-	}
-	timeAtTouchStart = millis();
+    if (embeddedOnWebsite && mouseIsOnScreen()) {
+        // if on a website, don't register the click if it's off the sketch
+        return false
+    }
+    timeAtTouchStart = millis()
 }
 
 function touchEnded() {
-	if (clickedThisFrame) return false;
+    if (clickedThisFrame) return false
 
-	// check for just a quick tap
-	if (millis() - timeAtTouchStart < 500) {
-		clickedThisFrame = true;
-		click();
-	}
+    // check for just a quick tap
+    if (millis() - timeAtTouchStart < 500) {
+        clickedThisFrame = true
+        click()
+    }
 }
 
 function click() {
-	if (embeddedOnWebsite && (mouseX < 0 || width < mouseX || mouseY < 0 || height < mouseY)) {
-		// if on a website, don't register the click if it's off the sketch
-		return;
-	}
+    if (
+        embeddedOnWebsite &&
+        (mouseX < 0 || width < mouseX || mouseY < 0 || height < mouseY)
+    ) {
+        // if on a website, don't register the click if it's off the sketch
+        return
+    }
 
-	btnFlipCamera.tryClick();
+    btnFlipCamera.tryClick()
 
-	if (!buttonPressedThisFrame) {
-		filterSelection++;
-		if (filterSelection >= 8) filterSelection = 0;
-	}
+    if (!buttonPressedThisFrame) {
+        filterSelection++
+        if (filterSelection >= 8) filterSelection = 0
+    }
 }

@@ -1,6 +1,6 @@
 body {
-    margin:0;
-    padding:0;
+    margin: 0;
+    padding: 0;
     /* position:fixed; */
     width: 100%;
     /* overflow: hidden */
@@ -23,25 +23,25 @@ canvas {
 }
 
 .sketch-info {
-    text-align:justify;
+    text-align: justify;
 }
 
-.square-box{
+.square-box {
     position: relative;
     width: 100%;
     overflow: hidden;
     max-height: 100%;
-    background: #CCCCCC;
+    background: #cccccc;
 }
 
-.square-box:before{
-    content: "";
+.square-box:before {
+    content: '';
     display: block;
     padding-top: 100%;
 }
 
-.square-content{
-    position:  absolute;
+.square-content {
+    position: absolute;
     top: 0;
     left: 0;
     bottom: 0;
