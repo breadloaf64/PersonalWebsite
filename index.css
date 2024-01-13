@@ -1,20 +1,38 @@
+* {
+    font-family: monospace;
+}
+
 h1,
 h2,
 h3,
 h4,
 h5,
 h6 {
-    font-family: monospace;
     text-align: center;
 }
 
 ul {
     text-align: center;
-    font-family: monospace;
+}
+
+.centre-column {
+    background: white;
+    min-height: 100vh;
+    width: min-content;
+    padding-right: 20%;
+    padding-left: 20%;
 }
 
 .centerer {
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+body {
+    background-image: url(./background.png);
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
