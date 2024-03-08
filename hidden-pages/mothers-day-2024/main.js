@@ -11,8 +11,8 @@ function setup() {
     imgNoiseTexture = generateNoiseTexture()
     console.log(`width ${width}, height ${height}, squareWidth ${squareWidth}`)
     margin = createVector(0, 0)
-    stitch = new Stitch()
     makeHeartPoints()
+    stitch = new Stitch()
 }
 
 function draw() {
@@ -120,7 +120,7 @@ class Stitch {
     stitchLength = (width / 569) * 15
 
     // movement
-    position = createVector(width / 2, height / 2)
+    position = heartPoints[0] ?? createVector(width / 2, height / 2)
     maxSpeed = 1.5
     target = createVector(width / 2, height / 2)
 
@@ -166,7 +166,7 @@ class Stitch {
             if (this.nextHeartPoint >= heartPoints.length)
                 this.drawHeart = false
             else this.target = heartPoints[this.nextHeartPoint]
-        } else this.target = createVector(mouseX, mouseY)
+        } else if (mouseIsPressed) this.target = createVector(mouseX, mouseY)
 
         const movementDirection = this.target.copy().sub(this.position)
         const movementAmount = min(this.maxSpeed, movementDirection.mag())
