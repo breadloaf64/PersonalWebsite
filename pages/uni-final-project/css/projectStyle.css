@@ -1,3 +1,12 @@
+body {
+    max-width: 1200px;
+    margin: 0 auto;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS',
+        sans-serif;
+    background-image: url(../background-tile.png);
+    background-repeat: repeat;
+}
+
 p {
     text-align: justify;
 }
@@ -7,10 +16,9 @@ h2,
 h3,
 h4,
 h5,
-h6,
-ul {
+h6 {
     font-family: monospace;
-    text-align: center;
+    color: #5c4033;
 }
 
 ul.sketch-tiles {
@@ -18,15 +26,35 @@ ul.sketch-tiles {
     flex-wrap: wrap;
     justify-content: center;
     list-style-type: none;
+    text-align: center;
+    font-family: monospace;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+}
+
+.sketch-tiles > li :hover {
+    background-color: burlywood;
 }
 
 .sketch-tiles > li > a {
     display: flex;
     flex-direction: column;
-    margin: 1rem;
+    padding: 0.4rem;
+    margin: 0;
+    width: 12rem;
+    font-size: larger;
+    text-decoration: none;
 }
 
 .sketch-tiles > li > a > img {
-    width: 15rem;
+    width: 100%;
     height: auto;
+}
+
+.column {
+    max-width: 650px;
+    margin: 0 auto;
+    padding: 2em;
+    background: white;
 }

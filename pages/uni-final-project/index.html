@@ -7,233 +7,222 @@
         <meta charset="utf-8" />
         <title>Uni Undergrad Final Project</title>
 
-        <!-- Bootstrap -->
-        <link
-            rel="stylesheet"
-            href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-            integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
-            crossorigin="anonymous"
-        />
-
-        <!-- My css -->
         <link rel="stylesheet" , href="css/projectStyle.css" />
     </head>
 
     <body>
-        <div class="container">
-            <div class="col-sm">
-                <h1>My Undergrad Final Year Project</h1>
+        <div class="column">
+            <h1>Undergrad Final Year Project</h1>
 
-                <section>
-                    <h2>Intro</h2>
-                    <p>
-                        Back in 2022 when I was in my final year of undergrad
-                        (Maths and Computer Science at the University of
-                        Bristol), I undertook an individual project. I was free
-                        to choose the subject and direction, and so I chose to
-                        do something that links my interest in music to
-                        programming. This is what I came up with!
-                    </p>
+            <section>
+                <h2>Intro</h2>
+                <p>
+                    Back in 2022 when I was in my final year of undergrad (Maths
+                    and Computer Science at the University of Bristol), I
+                    undertook an individual project. I was free to choose the
+                    subject and direction, and so I chose to do something that
+                    links my interest in music to programming. This is what I
+                    came up with!
+                </p>
 
-                    <p>
-                        Thanks to my supervisor Dr Pete Bennett for steering me
-                        in some cool directions that I never would have found by
-                        myself!
-                    </p>
+                <p>
+                    Thanks to my supervisor Dr Pete Bennett for steering me in
+                    some cool directions that I never would have found by
+                    myself!
+                </p>
 
-                    <p>
-                        A note on accessibility: Much of the stuff I made for
-                        the project has interfaces build within p5.js.
-                        Unfortunately this makes them very hard to access unless
-                        you can use a mouse and can read the onscreen text.
-                        These days I know better!
-                    </p>
-                </section>
+                <p>
+                    A note on accessibility: Much of the stuff I made for the
+                    project has interfaces build within p5.js. Unfortunately
+                    this makes them very hard to access unless you can use a
+                    mouse and can read the onscreen text. These days I know
+                    better!
+                </p>
+            </section>
 
-                <section>
-                    <h2>The Inspiration</h2>
+            <section>
+                <h2>The Inspiration</h2>
 
-                    <p>
-                        If you’re a music nerd like me and frequent the youtube
-                        music theory rabbit hole, you may have come across the
-                        new trend of drawing pictures and text using
-                        <a
-                            href="https://cecm.indiana.edu/361/midi.html#:~:text=MIDI%20is%20an%20acronym%20that,each%20other%2C%20using%20MIDI%20messages."
-                            >midi</a
+                <p>
+                    If you’re a music nerd like me and frequent the youtube
+                    music theory rabbit hole, you may have come across the new
+                    trend of drawing pictures and text using
+                    <a
+                        href="https://cecm.indiana.edu/361/midi.html#:~:text=MIDI%20is%20an%20acronym%20that,each%20other%2C%20using%20MIDI%20messages."
+                        >midi</a
+                    >
+                    on a
+                    <a
+                        href="https://www.admiralbumblebee.com/music/2018/06/24/30-days-with-FLStudio-20-Piano-Roll-Basics.html#what-is-a-piano-roll-and-what-should-it-do"
+                        >piano roll</a
+                    >. (a forewarning, I will attempt not to use too much
+                    jargon, but sometimes it is the quickest way to explain
+                    things). The earliest example I know of (Feb 2017) is
+                    Savant’s
+                    <a
+                        href="https://twitter.com/savantofficial/status/834284637450969089"
+                        >Bird in the Rain</a
+                    >, which both looks and sounds delightful. Andrew huang made
+                    a
+                    <a href="https://youtu.be/lVybwjl_GI0">great video</a>
+                    about his own version and the creative process behind it.
+                    Recently, people have taken the idea further by performing
+                    these sequences live, so that the audience can watch the
+                    drawing unfurl before their very eyes in real time. Some
+                    good examples are Jacob Collier’s
+                    <a
+                        href="https://twitter.com/jacobcollier/status/1345095162524037120"
+                        >Happy 2021</a
+                    >, and GLASYS’
+                    <a
+                        href="https://youtube.com/shorts/Ij_0gxbzxXo?feature=share"
+                        >Pacman drawing</a
+                    >.
+                </p>
+
+                <!-- embedded example from Savant's Twitter -->
+                <blockquote class="twitter-tweet tw-align-center">
+                    <p lang="fr" dir="ltr">
+                        Baroque Midi Bird
+                        <a href="https://t.co/8WmoAerz75"
+                            >pic.twitter.com/8WmoAerz75</a
                         >
-                        on a
-                        <a
-                            href="https://www.admiralbumblebee.com/music/2018/06/24/30-days-with-FLStudio-20-Piano-Roll-Basics.html#what-is-a-piano-roll-and-what-should-it-do"
-                            >piano roll</a
-                        >. (a forewarning, I will attempt not to use too much
-                        jargon, but sometimes it is the quickest way to explain
-                        things). The earliest example I know of (Feb 2017) is
-                        Savant’s
-                        <a
-                            href="https://twitter.com/savantofficial/status/834284637450969089"
-                            >Bird in the Rain</a
-                        >, which both looks and sounds delightful. Andrew huang
-                        made a
-                        <a href="https://youtu.be/lVybwjl_GI0">great video</a>
-                        about his own version and the creative process behind
-                        it. Recently, people have taken the idea further by
-                        performing these sequences live, so that the audience
-                        can watch the drawing unfurl before their very eyes in
-                        real time. Some good examples are Jacob Collier’s
-                        <a
-                            href="https://twitter.com/jacobcollier/status/1345095162524037120"
-                            >Happy 2021</a
-                        >, and GLASYS’
-                        <a
-                            href="https://youtube.com/shorts/Ij_0gxbzxXo?feature=share"
-                            >Pacman drawing</a
-                        >.
                     </p>
+                    &mdash; Savant (@SavantOfficial)
+                    <a
+                        href="https://twitter.com/SavantOfficial/status/834284637450969089?ref_src=twsrc%5Etfw"
+                        >February 22, 2017</a
+                    >
+                </blockquote>
+                <script
+                    async
+                    src="https://platform.twitter.com/widgets.js"
+                    charset="utf-8"
+                ></script>
 
-                    <!-- embedded example from Savant's Twitter -->
-                    <blockquote class="twitter-tweet tw-align-center">
-                        <p lang="fr" dir="ltr">
-                            Baroque Midi Bird
-                            <a href="https://t.co/8WmoAerz75"
-                                >pic.twitter.com/8WmoAerz75</a
-                            >
-                        </p>
-                        &mdash; Savant (@SavantOfficial)
-                        <a
-                            href="https://twitter.com/SavantOfficial/status/834284637450969089?ref_src=twsrc%5Etfw"
-                            >February 22, 2017</a
-                        >
-                    </blockquote>
-                    <script
-                        async
-                        src="https://platform.twitter.com/widgets.js"
-                        charset="utf-8"
-                    ></script>
+                <p>
+                    Inspired by this new “genre” exploring the synergy between
+                    audio and visuals, I set out to create an app that does the
+                    inverse of this. The app will take a photo of a drawing on a
+                    piece of paper and convert those lines into pitch
+                    information. Hopefully, using a few musical tricks, the
+                    output will sound melodious! At the very least, the app can
+                    serve as an inspiration tool, generating melodies that you
+                    might not have thought of otherwise. I called the app draw
+                    music!
+                </p>
+            </section>
 
-                    <p>
-                        Inspired by this new “genre” exploring the synergy
-                        between audio and visuals, I set out to create an app
-                        that does the inverse of this. The app will take a photo
-                        of a drawing on a piece of paper and convert those lines
-                        into pitch information. Hopefully, using a few musical
-                        tricks, the output will sound melodious! At the very
-                        least, the app can serve as an inspiration tool,
-                        generating melodies that you might not have thought of
-                        otherwise. I called the app draw music!
-                    </p>
-                </section>
+            <section>
+                <h2>Experimenting in P5.js</h2>
 
-                <section>
-                    <h2>Experimenting in P5.js</h2>
+                <p>
+                    I knew I wanted to host the app on the web, and at the time
+                    I was well acquainted with a library called p5.js, which was
+                    easy to develop interactive graphics for websites. So I
+                    decided that my app would be implemented using it (though I
+                    now realise I should have created the majority of the UI
+                    using standard html).
+                </p>
 
-                    <p>
-                        I knew I wanted to host the app on the web, and at the
-                        time I was well acquainted with a library called p5.js,
-                        which was easy to develop interactive graphics for
-                        websites. So I decided that my app would be implemented
-                        using it (though I now realise I should have created the
-                        majority of the UI using standard html).
-                    </p>
+                <p>
+                    However, before diving in to the main project, I began
+                    tinkering with some mini projects which allowed to me to
+                    become acquainted with p5.js, as well as its sound and image
+                    libraries and see what kind of interactions the user can
+                    have. Here they are - have a play!
+                </p>
 
-                    <p>
-                        However, before diving in to the main project, I began
-                        tinkering with some mini projects which allowed to me to
-                        become acquainted with p5.js, as well as its sound and
-                        image libraries and see what kind of interactions the
-                        user can have. Here they are - have a play!
-                    </p>
+                <ul class="sketch-tiles">
+                    <li>
+                        <a href="./sketches/simpleOscillator/">
+                            <img
+                                src="./sketch-thumbnails/thumbnail-simple-oscillator.png"
+                                alt=""
+                            />
+                            Simple Oscillator
+                        </a>
+                    </li>
+                    <li>
+                        <a href="./sketches/smoothSequencer/">
+                            <img
+                                src="./sketch-thumbnails/thumbnail-smooth-sequencer.png"
+                                alt=""
+                            />
+                            Smooth Sequencer
+                        </a>
+                    </li>
+                    <li>
+                        <a href="./sketches/scales/">
+                            <img
+                                src="./sketch-thumbnails/thumbnail-scales.png"
+                                alt=""
+                            />
+                            Scales
+                        </a>
+                    </li>
+                    <li>
+                        <a href="./sketches/polyphonicSequencer/">
+                            <img
+                                src="./sketch-thumbnails/thumbnail-polyphonic-sequencer.png"
+                                alt=""
+                            />
+                            Polyphonic Sequencer
+                        </a>
+                    </li>
+                    <li>
+                        <a href="./sketches/camera/">
+                            <img
+                                src="./sketch-thumbnails/thumbnail-replaceme.png"
+                                alt=""
+                            />
+                            Camera
+                        </a>
+                    </li>
+                    <li>
+                        <a href="./sketches/thresholdCamera/">
+                            <img
+                                src="./sketch-thumbnails/thumbnail-replaceme.png"
+                                alt=""
+                            />
+                            Threshold Camera
+                        </a>
+                    </li>
+                    <li>
+                        <a href="./sketches/imageFilters/">
+                            <img
+                                src="./sketch-thumbnails/thumbnail-replaceme.png"
+                                alt=""
+                            />
+                            Image Filters
+                        </a>
+                    </li>
+                    <li>
+                        <a href="./sketches/eventLog/">
+                            <img
+                                src="./sketch-thumbnails/thumbnail-event-log.png"
+                                alt=""
+                            />
+                            Event Log
+                        </a>
+                    </li>
+                    <li>
+                        <a href="./sketches/projectAlpha/">
+                            <img
+                                src="./sketch-thumbnails/thumbnail-replaceme.png"
+                                alt=""
+                            />
+                            Alpha version
+                        </a>
+                    </li>
+                </ul>
+            </section>
 
-                    <ul class="sketch-tiles">
-                        <li>
-                            <a href="./sketches/simpleOscillator/">
-                                <img
-                                    src="./sketch-thumbnails/thumbnail-simple-oscillator.png"
-                                    alt=""
-                                />
-                                Simple Oscillator
-                            </a>
-                        </li>
-                        <li>
-                            <a href="./sketches/smoothSequencer/">
-                                <img
-                                    src="./sketch-thumbnails/thumbnail-smooth-sequencer.png"
-                                    alt=""
-                                />
-                                Smooth Sequencer
-                            </a>
-                        </li>
-                        <li>
-                            <a href="./sketches/scales/">
-                                <img
-                                    src="./sketch-thumbnails/thumbnail-scales.png"
-                                    alt=""
-                                />
-                                Scales
-                            </a>
-                        </li>
-                        <li>
-                            <a href="./sketches/polyphonicSequencer/">
-                                <img
-                                    src="./sketch-thumbnails/thumbnail-polyphonic-sequencer.png"
-                                    alt=""
-                                />
-                                Polyphonic Sequencer
-                            </a>
-                        </li>
-                        <li>
-                            <a href="./sketches/camera/">
-                                <img
-                                    src="./sketch-thumbnails/thumbnail-replaceme.png"
-                                    alt=""
-                                />
-                                Camera
-                            </a>
-                        </li>
-                        <li>
-                            <a href="./sketches/thresholdCamera/">
-                                <img
-                                    src="./sketch-thumbnails/thumbnail-replaceme.png"
-                                    alt=""
-                                />
-                                Threshold Camera
-                            </a>
-                        </li>
-                        <li>
-                            <a href="./sketches/imageFilters/">
-                                <img
-                                    src="./sketch-thumbnails/thumbnail-replaceme.png"
-                                    alt=""
-                                />
-                                Image Filters
-                            </a>
-                        </li>
-                        <li>
-                            <a href="./sketches/eventLog/">
-                                <img
-                                    src="./sketch-thumbnails/thumbnail-event-log.png"
-                                    alt=""
-                                />
-                                Event Log
-                            </a>
-                        </li>
-                        <li>
-                            <a href="./sketches/projectAlpha/">
-                                <img
-                                    src="./sketch-thumbnails/thumbnail-replaceme.png"
-                                    alt=""
-                                />
-                                Alpha version
-                            </a>
-                        </li>
-                    </ul>
-                </section>
+            <section>
+                <h2>draw music!</h2>
 
-                <section>
-                    <h2>draw music!</h2>
-
-                    <a href="projectWelcome.html">Main Project</a>
-                </section>
-            </div>
+                <a href="projectWelcome.html">Main Project</a>
+            </section>
         </div>
     </body>
 </html>
