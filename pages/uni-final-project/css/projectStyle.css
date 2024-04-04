@@ -33,11 +33,11 @@ ul.sketch-tiles {
     width: 100%;
 }
 
-.sketch-tiles > li :hover {
+ul.sketch-tiles > li :hover {
     background-color: burlywood;
 }
 
-.sketch-tiles > li > a {
+ul.sketch-tiles > li > a {
     display: flex;
     flex-direction: column;
     padding: 0.4rem;
@@ -47,7 +47,7 @@ ul.sketch-tiles {
     text-decoration: none;
 }
 
-.sketch-tiles > li > a > img {
+ul.sketch-tiles > li > a > img {
     width: 100%;
     height: auto;
 }
@@ -57,4 +57,24 @@ ul.sketch-tiles {
     margin: 0 auto;
     padding: 2em;
     background: white;
+}
+
+div.drawMusicTile {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+div.drawMusicTile > a {
+    width: 90%;
+    height: auto;
+    text-align: center;
+    text-decoration: none;
+    font-size: larger;
+}
+
+div.drawMusicTile > a > img {
+    width: 100%;
+    height: auto;
 }
