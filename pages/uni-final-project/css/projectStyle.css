@@ -12,3 +12,21 @@ ul {
     font-family: monospace;
     text-align: center;
 }
+
+ul.sketch-tiles {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    list-style-type: none;
+}
+
+.sketch-tiles > li {
+    display: flex;
+    flex-direction: column;
+    margin: 1rem;
+}
+
+.sketch-tiles > li > img {
+    width: 15rem;
+    height: auto;
+}
