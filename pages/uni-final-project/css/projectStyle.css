@@ -20,13 +20,13 @@ ul.sketch-tiles {
     list-style-type: none;
 }
 
-.sketch-tiles > li {
+.sketch-tiles > li > a {
     display: flex;
     flex-direction: column;
     margin: 1rem;
 }
 
-.sketch-tiles > li > img {
+.sketch-tiles > li > a > img {
     width: 15rem;
     height: auto;
 }
