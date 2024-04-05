@@ -41,6 +41,12 @@
             src="https://unpkg.com/@free-side/audioworklet-polyfill/dist/audioworklet-polyfill.js"
             type="text/javascript"
         ></script>
+
+        <!-- MathJax for displaying math in html -->
+        <script
+            type="text/javascript"
+            src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"
+        ></script>
     </head>
     <body>
         <!-- sketch holder -->
@@ -87,14 +93,17 @@
                     <a href="https://en.wikipedia.org/wiki/12_equal_temperament"
                         >12-tone equal temperament (12-TET)</a
                     >. You can spend hours in the music theory rabbit hole of
-                    why this works, but here’s the function f which maps note
-                    index n to its frequency: f(n)=440*(sqrt(2))^n.
+                    why this works, but here’s the function \(f\) which maps
+                    note index \(n\) to its frequency:
+                    \(f(n)=440\cdot2^{n/12}\).
+                    <math></math>
                 </p>
                 <p class="sketch-info">
-                    Altogether, to quantise a frequency to the chromatic scale,
-                    apply f^-1(freq) to get the real-valued unquantised note
-                    index. Round it to the nearest note index, then apply f
-                    again to get the quantised frequency.
+                    Altogether, to quantise a frequency \(x\) to the chromatic
+                    scale, apply the inverse of the above \(f^{-1}(x)\) to get
+                    the real-valued unquantised note index. Round it to the
+                    nearest note index, then apply f again to get the quantised
+                    frequency. \[quantise(x) = f(round(f^{-1}(x)))\]
                 </p>
                 <p class="sketch-info">
                     Finally, in order to quantise to a scale I created a Scale
