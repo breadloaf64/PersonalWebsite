@@ -66,14 +66,14 @@
                 </p>
 
                 <!-- Sketch info -->
-                <p class="sketch-info">
+                <p>
                     The focus behind this sketch was pitch quantisation. That
                     is, how can we map the continuous spectrum of pitch onto a
                     discrete musical scale? This will become important if we
                     want to use the final program to come up with harmonious
                     melodies.
                 </p>
-                <p class="sketch-info">
+                <p>
                     To make this work, I first came up with a way to index
                     notes. By convention we start with
                     <a
@@ -85,7 +85,7 @@
                     below has index -1 etc. So each musical note is given an
                     integer.
                 </p>
-                <p class="sketch-info">
+                <p>
                     The second part of the puzzle is a continuous bijection
                     between frequencies and notes (including the real numbers
                     between note indices). There are many ways to do this, but
@@ -98,14 +98,14 @@
                     \(f(n)=440\cdot2^{n/12}\).
                     <math></math>
                 </p>
-                <p class="sketch-info">
+                <p>
                     Altogether, to quantise a frequency \(x\) to the chromatic
                     scale, apply the inverse of the above \(f^{-1}(x)\) to get
                     the real-valued unquantised note index. Round it to the
                     nearest note index, then apply f again to get the quantised
                     frequency. \[quantise(x) = f(round(f^{-1}(x)))\]
                 </p>
-                <p class="sketch-info">
+                <p>
                     Finally, in order to quantise to a scale I created a Scale
                     class. It takes a tonic (root note of the scale) and a set
                     of notes in one octave relative to that tonic and generates

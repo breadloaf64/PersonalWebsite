@@ -52,15 +52,15 @@
                 </p>
 
                 <!-- Sketch info -->
-                <!-- <p class="sketch-info"></p> -->
-                <p class="sketch-info">
+                <!-- <p></p> -->
+                <p>
                     Now we have the camera image coming through, we can move to
                     the next step. Remember: our final goal is to take images of
                     doodles on a post-it note and convert it into a musical
                     sequence. So we will need the computer to “see” the drawn
                     lines!
                 </p>
-                <p class="sketch-info">
+                <p>
                     To make it easier, we first simplify the image. The process
                     we use here is called thresholding. For each pixel in the
                     image, we compare its grayscale “brightness” value to a
@@ -69,7 +69,7 @@
                     This way we obtain an image composed of only fully black and
                     fully white pixels.
                 </p>
-                <p class="sketch-info">
+                <p>
                     Just before we apply the threshold filter to the image, we
                     actually introduce a bit of blur. Why? To deal with noise,
                     which is a phenomenon found in photography where stray
@@ -80,11 +80,11 @@
                     regions of pixels which have values near to the thresholding
                     limit.
                 </p>
-                <p class="sketch-info">
+                <p>
                     Finally for purely aesthetic reasons we remap the black and
                     white pixels to two lovely contrasting pastel shades!
                 </p>
-                <p class="sketch-info">
+                <p>
                     This sketch was my first time using openCV, which is a very
                     widely used computer vision library. I used the javascript
                     distribution which is, in contrast, not widely used at all
