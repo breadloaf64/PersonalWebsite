@@ -1,0 +1,85 @@
+body {
+    max-width: 1200px;
+    margin: 0 auto;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS',
+        sans-serif;
+    background-image: url(../background-tile.png);
+    background-repeat: repeat;
+}
+
+p {
+    text-align: justify;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+em {
+    font-family: monospace;
+    color: #5c4033;
+}
+
+em {
+    color: #5c4033;
+}
+
+ul.sketch-tiles {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    list-style-type: none;
+    text-align: center;
+    font-family: monospace;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+}
+
+ul.sketch-tiles > li :hover {
+    background-color: burlywood;
+}
+
+ul.sketch-tiles > li > a {
+    display: flex;
+    flex-direction: column;
+    padding: 0.4rem;
+    margin: 0;
+    width: 12rem;
+    font-size: larger;
+    text-decoration: none;
+}
+
+ul.sketch-tiles > li > a > img {
+    width: 100%;
+    height: auto;
+}
+
+.column {
+    max-width: 650px;
+    margin: 0 auto;
+    padding: 2em;
+    background: white;
+}
+
+div.drawMusicTile {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+div.drawMusicTile > a {
+    width: 90%;
+    height: auto;
+    text-align: center;
+    text-decoration: none;
+    font-size: larger;
+}
+
+div.drawMusicTile > a > img {
+    width: 100%;
+    height: auto;
+}

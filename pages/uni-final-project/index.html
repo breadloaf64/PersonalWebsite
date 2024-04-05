@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <!-- head of the file -->
+
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <title>Uni Undergrad Final Project</title>
+
+        <link rel="stylesheet" , href="css/projectStyle.css" />
+    </head>
+
+    <body>
+        <div class="column">
+            <h1>Undergrad Final Year Project</h1>
+
+            <section>
+                <h2>Intro</h2>
+                <p>
+                    Back in 2022 when I was in the final year of my undergrad
+                    (Maths and Computer Science at the University of Bristol), I
+                    undertook an individual project. I was free to choose the
+                    subject and direction, and so I chose to do something that
+                    links my interest in music to programming. This is what I
+                    came up with!
+                </p>
+
+                <p>
+                    Thanks to my supervisor Dr Pete Bennett for steering me in
+                    some cool directions that I never would have found by
+                    myself!
+                </p>
+
+                <p>
+                    A note on accessibility: Much of the stuff I made for the
+                    project has interfaces build within p5.js. Unfortunately
+                    this makes them very hard to access unless you can use a
+                    mouse and can read the onscreen text. These days I know
+                    better!
+                </p>
+            </section>
+
+            <section>
+                <h2>The Inspiration</h2>
+
+                <p>
+                    If you’re a music nerd like me and frequent the youtube
+                    music theory rabbit hole, you may have come across the new
+                    trend of drawing pictures and text using
+                    <a
+                        href="https://cecm.indiana.edu/361/midi.html#:~:text=MIDI%20is%20an%20acronym%20that,each%20other%2C%20using%20MIDI%20messages."
+                        >midi</a
+                    >
+                    on a
+                    <a
+                        href="https://www.admiralbumblebee.com/music/2018/06/24/30-days-with-FLStudio-20-Piano-Roll-Basics.html#what-is-a-piano-roll-and-what-should-it-do"
+                        >piano roll</a
+                    >. (a forewarning, I will attempt not to use too much
+                    jargon, but sometimes it is the quickest way to explain
+                    things). The earliest example I know of (Feb 2017) is
+                    Savant’s
+                    <a
+                        href="https://twitter.com/savantofficial/status/834284637450969089"
+                        >Bird in the Rain</a
+                    >, which both looks and sounds delightful. Andrew huang made
+                    a
+                    <a href="https://youtu.be/lVybwjl_GI0">great video</a>
+                    about his own version and the creative process behind it.
+                    Recently, people have taken the idea further by performing
+                    these sequences live, so that the audience can watch the
+                    drawing unfurl before their very eyes in real time. Some
+                    good examples are Jacob Collier’s
+                    <a
+                        href="https://twitter.com/jacobcollier/status/1345095162524037120"
+                        >Happy 2021</a
+                    >, and GLASYS’
+                    <a
+                        href="https://youtube.com/shorts/Ij_0gxbzxXo?feature=share"
+                        >Pacman drawing</a
+                    >.
+                </p>
+
+                <!-- embedded example from Savant's Twitter -->
+                <blockquote class="twitter-tweet tw-align-center">
+                    <p lang="fr" dir="ltr">
+                        Baroque Midi Bird
+                        <a href="https://t.co/8WmoAerz75"
+                            >pic.twitter.com/8WmoAerz75</a
+                        >
+                    </p>
+                    &mdash; Savant (@SavantOfficial)
+                    <a
+                        href="https://twitter.com/SavantOfficial/status/834284637450969089?ref_src=twsrc%5Etfw"
+                        >February 22, 2017</a
+                    >
+                </blockquote>
+                <script
+                    async
+                    src="https://platform.twitter.com/widgets.js"
+                    charset="utf-8"
+                ></script>
+
+                <p>
+                    Inspired by this new “genre” exploring the synergy between
+                    audio and visuals, I set out to create an app that does the
+                    inverse of this. The app will take a photo of a drawing on a
+                    piece of paper and convert those lines into pitch
+                    information. Hopefully, using a few musical tricks, the
+                    output will sound melodious! At the very least, the app can
+                    serve as an inspiration tool, generating melodies that you
+                    might not have thought of otherwise. I called the app
+                    <em>draw music!</em>
+                </p>
+            </section>
+
+            <section>
+                <h2>Experimenting in P5.js</h2>
+
+                <p>
+                    I knew I wanted to host the app on the web, and at the time
+                    I was well acquainted with a library called p5.js, which was
+                    easy to develop interactive graphics for websites. So I
+                    decided that my app would be implemented using it (though I
+                    now realise I should have created the majority of the UI
+                    using standard html).
+                </p>
+
+                <p>
+                    However, before diving in to the main project, I began
+                    tinkering with some mini projects which allowed to me to
+                    become acquainted with p5.js, as well as its sound and image
+                    libraries and see what kind of interactions the user can
+                    have. Here they are - have a play!
+                </p>
+
+                <ul class="sketch-tiles">
+                    <li>
+                        <a href="./sketches/simpleOscillator/">
+                            <img
+                                src="./sketch-thumbnails/thumbnail-simple-oscillator.png"
+                                alt=""
+                            />
+                            Simple Oscillator
+                        </a>
+                    </li>
+                    <li>
+                        <a href="./sketches/smoothSequencer/">
+                            <img
+                                src="./sketch-thumbnails/thumbnail-smooth-sequencer.png"
+                                alt=""
+                            />
+                            Smooth Sequencer
+                        </a>
+                    </li>
+                    <li>
+                        <a href="./sketches/scales/">
+                            <img
+                                src="./sketch-thumbnails/thumbnail-scales.png"
+                                alt=""
+                            />
+                            Scales
+                        </a>
+                    </li>
+                    <li>
+                        <a href="./sketches/polyphonicSequencer/">
+                            <img
+                                src="./sketch-thumbnails/thumbnail-polyphonic-sequencer.png"
+                                alt=""
+                            />
+                            Polyphonic Sequencer
+                        </a>
+                    </li>
+                    <li>
+                        <a href="./sketches/camera/">
+                            <img
+                                src="./sketch-thumbnails/thumbnail-camera.png"
+                                alt=""
+                            />
+                            Camera
+                        </a>
+                    </li>
+                    <li>
+                        <a href="./sketches/thresholdCamera/">
+                            <img
+                                src="./sketch-thumbnails/thumbnail-threshold-camera.png"
+                                alt=""
+                            />
+                            Threshold Camera
+                        </a>
+                    </li>
+                    <li>
+                        <a href="./sketches/imageFilters/">
+                            <img
+                                src="./sketch-thumbnails/thumbnail-image-filters.png"
+                                alt=""
+                            />
+                            Image Filters
+                        </a>
+                    </li>
+                    <li>
+                        <a href="./sketches/eventLog/">
+                            <img
+                                src="./sketch-thumbnails/thumbnail-event-log.png"
+                                alt=""
+                            />
+                            Event Log
+                        </a>
+                    </li>
+                    <li>
+                        <a href="./sketches/imageConversion/">
+                            <img
+                                src="./sketch-thumbnails/thumbnail-image-conversion.png"
+                                alt=""
+                            />
+                            Image Conversion
+                        </a>
+                    </li>
+                </ul>
+
+                <p>
+                    By the way, all the source code for the experiments as well
+                    as the finished app can be found on
+                    <a
+                        href="https://github.com/breadloaf64/PersonalWebsite/tree/main/pages/final-year-project/sketches"
+                    >
+                        GitHub </a
+                    >.
+                </p>
+            </section>
+
+            <section>
+                <h2>draw music!</h2>
+
+                <p>
+                    Finally I was ready to implement the app itself, using all
+                    the things I'd learned whilst creating the experiments. I
+                    worked on polish, and had a particular focus on allowing it
+                    to work on both desktop and mobile. Given the UI was build
+                    from scratch within p5.js, this required a lot of maths!
+                </p>
+
+                <p>Without further waffle, here is the app:</p>
+
+                <div class="drawMusicTile">
+                    <a href="./sketches/mainProject/">
+                        <img
+                            src="./sketch-thumbnails/thumbnail-draw-music.png"
+                            alt=""
+                        />
+                        <em>draw music!</em>
+                    </a>
+                </div>
+            </section>
+
+            <section>
+                <h2>The Study</h2>
+
+                <p>
+                    The app was cool, but not enough to get a good grade. So I
+                    took the project in a research direction. I collected some
+                    participants to test the app with the goal of answering the
+                    question: "Does <em>draw music!</em> act as a good interface
+                    for non-musicians to create music?".
+                </p>
+
+                <p>
+                    The participants (who mostly comprised of my uni buddies)
+                    were directed to the
+                    <a href="./projectWelcome.html">participant welcome page</a
+                    >, and told to use the app for a week, with a couple of
+                    goals in mind. At the end of the study, I interviewed each
+                    of them to find out about their experience.
+                </p>
+            </section>
+
+            <section>
+                <h2>The Write-Up</h2>
+
+                <p>
+                    The writup of the project was the deliverable bit of work
+                    that would be assessed. It is fully fleshed out with a
+                    history of graphical user interfaces, implementation details
+                    and study outcomes. I'm pretty proud of it.
+                </p>
+
+                <p>
+                    <a href="draw-music!-write-up.pdf"
+                        >Read the full write-up</a
+                    >
+                </p>
+            </section>
+
+            <section>
+                <h2>The Feedback</h2>
+
+                <p>
+                    In the end my project scored a nifty 77% which I was chuffed
+                    with. While the app was fun to create and play around with,
+                    ultimately it was neither very useful or technically
+                    impressive. I think what made up for it was the clean and
+                    thorough write-up which I was particularly proud of.
+                </p>
+
+                <p><a href="Feedback.txt">Read the full marker feedback</a></p>
+            </section>
+
+            <section>
+                <h2>Reflection</h2>
+
+                <p>
+                    As I write this it is April 2024, two years since completing
+                    the project. Since entering the software industry I have
+                    made great progress on a technical level. It is amusing to
+                    look back on this project and remember the trials and
+                    tribulations, the setbacks and how daunting the tech seemed
+                    to me at the time. While my theory was very strong, Uni
+                    never was great for building up my practical skills.
+                </p>
+
+                <p>
+                    It would be very interesting to see how the project would
+                    differ if I were to complete it now with my newfound
+                    industry skills. For starters I would make the app using a
+                    normal framework. P5.js is great for making small
+                    interactive elements and generative art, but it was not
+                    designed for building whole UIs from scratch. I had to
+                    implement buttons from scratch - talk about reinventing the
+                    wheel! Using a frontend framework would save me lots of time
+                    and effort, not to mentioning resolving a myriad of
+                    accessibility issues (which I was not aware of at the time).
+                    Further, it would have allowed me much more freedom to
+                    optimise how the app works behind the scenes. I touch more
+                    on this in Chapter 6 of the write-up.
+                </p>
+
+                <p>
+                    The hilarious secret behind this project is that I did all
+                    the development in a website called
+                    <a href="https://openprocessing.org/">OpenProcessing</a>.
+                    It's a great platform for sharing p5.js creations, and even
+                    contains an extremely lightweight web-based IDE. Nifty
+                    indeed... But not so effective for developing a larger
+                    project over a long stretch of time. Looking back, it's
+                    franky a miracle that I completed the project without
+                    version control, debugging tools or even intellisense. I may
+                    as well have coded in notepad! I have come to understand and
+                    thank the heavens for proper software tooling now that I
+                    develop software full-time. I do, however, recommmend having
+                    a go at p5.js, and OpenProcessing is a great and quick way
+                    to tip your tow in. And while we're here, I may as well plug
+                    <a href="https://openprocessing.org/user/187401/"
+                        >my own OpenProcessing account page</a
+                    >.
+                </p>
+
+                <p>
+                    While it is fun to laugh at my past self and pity his
+                    naivety, I'm still proud of the project. I managed to create
+                    something quite cool in only a handful of months, whilst
+                    juggling other modules and the busiest social life life I'd
+                    yet seen at Uni. Here's hoping that I get to explore this
+                    fun intersection of music and software again!
+                </p>
+            </section>
+        </div>
+    </body>
+</html>
