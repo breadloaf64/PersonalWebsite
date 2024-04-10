@@ -1,4 +1,6 @@
 ---
+import '../styles/index.css';
+
 interface Props {
 	title: string;
 }
@@ -20,12 +22,3 @@ const { title } = Astro.props;
 		<slot />
 	</body>
 </html>
-<style is:global>
-	html {
-		font-family: monospace;
-		color: black;
-	}
-	h1, h2, p {
-		color: black;
-	}
-</style>
