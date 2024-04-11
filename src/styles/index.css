@@ -30,7 +30,7 @@ ul {
 }
 
 body {
-  background-image: url(../../public/mainPageBackground.svg);
+  background-image: url(/mainPageBackground.svg);
   background-size: cover;
   display: flex;
   justify-content: center;
