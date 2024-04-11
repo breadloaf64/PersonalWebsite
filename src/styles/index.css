@@ -1,0 +1,42 @@
+* {
+  font-family: monospace;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  text-align: center;
+}
+
+ul {
+  text-align: center;
+  list-style-type: none;
+  padding: 0;
+}
+
+.column {
+  max-width: 650px;
+  margin: 0 auto;
+  padding: 2em;
+  background: white;
+  height: 100%;
+}
+
+.centerer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+body {
+  background-image: url(/mainPageBackground.svg);
+  background-size: cover;
+  max-width: 1200px;
+  margin: 0 auto;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  height: 100vh;
+}
