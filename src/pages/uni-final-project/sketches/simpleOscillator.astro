@@ -1,21 +1,29 @@
 ---
 import UniFinalProjectSketch from '../../../layouts/UniFinalProjectSketch.astro'
+
+const sketchScriptSRCs = [
+	'Main.js',
+	'Styling.js',
+	'Sound.js',
+	'Drawing.js',
+	'Button.js',
+]
 ---
 
 <UniFinalProjectSketch
 	title="Simple Oscillator"
 	description="Use your mouse or finger to change the pitch and volume."
 >
-	<script slot="scripts" is:inline src="Main.js" type="text/javascript"
-	></script>
-	<script slot="scripts" is:inline src="Styling.js" type="text/javascript"
-	></script>
-	<script slot="scripts" is:inline src="Sound.js" type="text/javascript"
-	></script>
-	<script slot="scripts" is:inline src="Drawing.js" type="text/javascript"
-	></script>
-	<script slot="scripts" is:inline src="Button.js" type="text/javascript"
-	></script>
+	{
+		sketchScriptSRCs.map((sketchScriptSrc) => (
+			<script
+				slot="scripts"
+				is:inline
+				src={sketchScriptSrc}
+				type="text/javascript"
+			/>
+		))
+	}
 	<section>
 		<p>
 			Starting off, I found the simplest way to generate sound in a sketch,
