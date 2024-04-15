@@ -1,0 +1,48 @@
+---
+import UniFinalProjectSketch from '../../../layouts/UniFinalProjectSketch.astro'
+
+const sketchScriptSRCs = [
+	'Main.js',
+	'Styling.js',
+	'Drawing.js',
+	'WebsiteMobileSetup.js',
+]
+---
+
+<UniFinalProjectSketch
+	title="Camera"
+	description="Tap to rotate to switch camera."
+>
+	{
+		sketchScriptSRCs.map((sketchScriptSrc) => (
+			<script
+				slot="scripts"
+				is:inline
+				src={sketchScriptSrc}
+				type="text/javascript"
+			/>
+		))
+	}
+	<section>
+		<p>
+			Obviously a key component to the app is camera access, so that we can take
+			pictures of the drawings! I did this by creating “capture”, which is a
+			<code>&lt;video&gt;</code> DOM element in the webpage. This element sits on
+			the page separate from the canvas, so to show the camera output in our sketch
+			we must hide it and instead print the data onto the canvas. This is easily
+			done with p5.js.
+		</p>
+		<p>
+			The hard part was making it responsive. We want to be able to access both
+			the front and back cameras on a smartphone. We also want to make sure that
+			the video captured by the camera sits cleanly on our page. So any time the
+			user taps to switch camera, or resizes the webpage we must reinitialize
+			this “capture” object with new parameters as appropriate. Finally I
+			flipped the image output for the selfie camera, as per convention.
+		</p>
+		<p>
+			As simple as this sketch is, it took a lot of headache and trial and error
+			to figure out!
+		</p>
+	</section>
+</UniFinalProjectSketch>

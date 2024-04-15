@@ -1,0 +1,50 @@
+body {
+	margin: 0;
+	padding: 0;
+	width: 100%;
+}
+
+canvas {
+	height: inherit;
+	width: inherit;
+	touch-action: none;
+}
+
+.sketch-title {
+	font-family: monospace;
+	text-align: center;
+}
+
+.sketch-desc {
+	font-family: monospace;
+	text-align: center;
+}
+
+.sketch-info {
+	text-align: justify;
+}
+
+/* This could do with a better name */
+.square-box {
+	position: relative;
+	overflow: hidden;
+	background: #cccccc;
+	width: 100%;
+	max-height: 100vh;
+}
+
+.square-box:before {
+	content: '';
+	display: block;
+	padding-top: 100%;
+}
+
+.square-content {
+	position: absolute;
+	top: 0;
+	left: 0;
+	bottom: 0;
+	right: 0;
+	color: white;
+	text-align: center;
+}

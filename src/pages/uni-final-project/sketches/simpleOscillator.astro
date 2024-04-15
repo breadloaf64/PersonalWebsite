@@ -1,0 +1,51 @@
+---
+import UniFinalProjectSketch from '../../../layouts/UniFinalProjectSketch.astro'
+
+const sketchScriptSRCs = [
+	'Main.js',
+	'Styling.js',
+	'Sound.js',
+	'Drawing.js',
+	'Button.js',
+]
+---
+
+<UniFinalProjectSketch
+	title="Simple Oscillator"
+	description="Use your mouse or finger to change the pitch and volume."
+	usesSound={true}
+>
+	{
+		sketchScriptSRCs.map((sketchScriptSrc) => (
+			<script
+				slot="scripts"
+				is:inline
+				src={sketchScriptSrc}
+				type="text/javascript"
+			/>
+		))
+	}
+	<section>
+		<p>
+			Starting off, I found the simplest way to generate sound in a sketch,
+			which is by playing a sample. By loading in a sample of a sine wave, I
+			could then use the mouse's x and y positions to influence the pitch and
+			volume!
+		</p>
+		<p>
+			Simply setting the pitch required more thought than anticipated. You see,
+			we can only use the p5.js function sample.rate(s), which causes the sample
+			to be played back at s times the regular speed. To find the frequency of
+			the resultant wave, we must multiply this rate by the frequency of our
+			wave sample (sf) which is 1000Hz in this case. Thus, to play a desired
+			frequency f we must set the rate to f/sf.
+		</p>
+		<p>
+			A final nuance to mention: the map from x position to frequency is linear.
+			However, there is an exponential relationship between frequency and pitch;
+			doubling a frequency always increases the pitch by an octave! Explore this
+			listening to a small frequency change at a low frequency, vs the same
+			change at a high frequency.
+		</p>
+	</section>
+</UniFinalProjectSketch>
