@@ -1,6 +1,6 @@
 ---
 import UniFinalProjectSketch from '../../../layouts/UniFinalProjectSketch.astro'
-
+import Latex from '../../../components/Latex.astro'
 const sketchScriptSRCs = [
 	'Main.js',
 	'Styling.js',
@@ -52,15 +52,19 @@ const sketchScriptSRCs = [
 			<a href="https://en.wikipedia.org/wiki/12_equal_temperament"
 				>12-tone equal temperament (12-TET)</a
 			>. You can spend hours in the music theory rabbit hole of why this works,
-			but here's the function \(f\) which maps note index \(n\) to its
-			frequency:
-			<!-- \(f(n)=440\cdot2^{n / 12}\). -->
+			but here's the function <Latex formula="f" /> which maps note index <Latex
+				formula="n"
+			/> to its frequency:
+			<Latex formula="f(n)=440\cdot2^{n / 12}" />
 		</p>
 		<p>
 			Altogether, to quantise a frequency \(x\) to the chromatic scale, apply
-			the inverse of the above \(f^{-1}(x)\) to get the real-valued unquantised
-			note index. Round it to the nearest note index, then apply f again to get
-			the quantised frequency. \[quantise(x) = f(round(f^{-1}(x)))\]
+			the inverse of the above <Latex formula="f^{-1}(x)" /> to get the real-valued
+			unquantised note index. Round it to the nearest note index, then apply f again
+			to get the quantised frequency. <Latex
+				formula="quantise(x) = f(round(f^{-1}(x)))"
+				showAs="display"
+			/>
 		</p>
 		<p>
 			Finally, in order to quantise to a scale I created a Scale class. It takes
