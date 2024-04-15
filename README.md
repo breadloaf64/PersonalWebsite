@@ -2,4 +2,8 @@
 
 Find here the source code for my personal website https://peterkaku.com/
 
-To run it while developing, run `http-server`, after having installed it with npm. For more info, and other options read [this](https://learn.microsoft.com/en-us/gaming/playfab/features/authentication/platform-specific-authentication/running-an-http-server-for-testing).
+This project is made with [Astro](https://astro.build/), and the build static website is deployed to GitHub pages.
+
+# Development
+
+To run in dev mode (with live update and hot reloading courtesy of Vite) use `npm run dev`

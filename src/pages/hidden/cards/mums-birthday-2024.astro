@@ -1,0 +1,63 @@
+---
+import '../../../styles/squareSketches.css'
+
+const sketchScriptSRCs = [
+	'main.js',
+	'utilities.js',
+	'fallingLeaves.js',
+	'message.js',
+	'sakura.js',
+	'https://cdn.jsdelivr.net/npm/p5@1.4.1/lib/p5.js',
+]
+---
+
+<html>
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="description" content="Astro description" />
+		<meta name="viewport" content="width=device-width" />
+		<link rel="icon" type="image/svg+xml" href="/uke-icon.svg" />
+		<meta name="generator" content={Astro.generator} />
+		<title>Mum's Birthday 2024</title>
+
+		<!-- Bootstrap -->
+		<link
+			rel="stylesheet"
+			href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+			integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+			crossorigin="anonymous"
+		/>
+
+		{
+			sketchScriptSRCs.map((sketchScriptSrc) => (
+				<script
+					slot="scripts"
+					is:inline
+					src={sketchScriptSrc}
+					type="text/javascript"
+				/>
+			))
+		}
+
+		<style>
+			body {
+				margin: 0;
+				padding: 0;
+				position: fixed;
+				width: 100%;
+				overflow: hidden;
+			}
+			audio {
+				position: absolute;
+				bottom: 0;
+				left: 0;
+			}
+		</style>
+	</head>
+	<body
+		><audio controls loop autoplay>
+			<source src="./shittalk.mp3" type="audio/mpeg" />
+			Your browser does not support the audio element.
+		</audio></body
+	>
+</html>

@@ -1,0 +1,34 @@
+---
+import UniFinalProjectSketch from '../../../layouts/UniFinalProjectSketch.astro'
+
+const sketchScriptSRCs = [
+	'Main.js',
+	'HelpersStyling.js',
+	'HelpersDrawing.js',
+	'HelpersWebsiteMobileSetup.js',
+	'Events.js',
+]
+---
+
+<UniFinalProjectSketch
+	title="Event Log"
+	description="Interact with the sketch to see which event methods are called!"
+>
+	{
+		sketchScriptSRCs.map((sketchScriptSrc) => (
+			<script
+				slot="scripts"
+				is:inline
+				src={sketchScriptSrc}
+				type="text/javascript"
+			/>
+		))
+	}
+	<section>
+		<p>
+			p5.js provides a handy simple way of running code on specific events. I
+			made this sketch to help me understand which user actions would trigger
+			which events.
+		</p>
+	</section>
+</UniFinalProjectSketch>

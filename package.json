@@ -1,0 +1,24 @@
+{
+  "name": "digital-debris",
+  "type": "module",
+  "version": "0.0.1",
+  "scripts": {
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro check && astro build",
+    "preview": "astro preview",
+    "astro": "astro"
+  },
+  "dependencies": {
+    "@astro-community/astro-embed-youtube": "^0.5.2",
+    "@astrojs/check": "^0.5.10",
+    "astro": "^4.5.16",
+    "katex": "^0.16.10",
+    "typescript": "^5.4.4"
+  },
+  "devDependencies": {
+    "@types/katex": "^0.16.7",
+    "prettier": "^3.2.5",
+    "prettier-plugin-astro": "^0.13.0"
+  }
+}

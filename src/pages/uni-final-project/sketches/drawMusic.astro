@@ -1,0 +1,66 @@
+---
+import '../../../styles/fullSketches.css'
+
+const sketchScriptSRCs = [
+	'Main.js',
+	'Button.js',
+	'Camera.js',
+	'Sequence.js',
+	'SequenceBox.js',
+	'Scale.js',
+	'PlayHead.js',
+	'Layout.js',
+	'Helpers_Drawing.js',
+	'Helpers_Styling.js',
+	'Helper_WebsiteMobileSetup.js',
+	'Helpers_Conversion.js',
+	'Helpers_Sound.js',
+	'Helpers_Events.js',
+	'Helpers_Misc.js',
+	'Scene_title.js',
+	'Scene_main.js',
+	'Scene_takePhoto.js',
+	'Scene_setThreshold.js',
+	'Scene_sequence.js',
+	'https://cdn.jsdelivr.net/npm/p5@1.2.0/lib/p5.js',
+	'https://cdn.jsdelivr.net/npm/p5@v1.4.1/lib/addons/p5.sound.min.js',
+	'https://unpkg.com/@free-side/audioworklet-polyfill/dist/audioworklet-polyfill.js',
+]
+---
+
+<html>
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="description" content="Astro description" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="icon" type="image/svg+xml" href="/uke-icon.svg" />
+		<meta name="generator" content={Astro.generator} />
+		<title>draw music!</title>
+
+		<!-- Bootstrap -->
+		<link
+			rel="stylesheet"
+			href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+			integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+			crossorigin="anonymous"
+		/>
+
+		{
+			sketchScriptSRCs.map((sketchScriptSrc) => (
+				<script
+					slot="scripts"
+					is:inline
+					src={sketchScriptSrc}
+					type="text/javascript"
+				/>
+			))
+		}
+	</head>
+	<body>
+		<body>
+			<div id="sketch-holder" class="full-content">
+				<!-- Our sketch will go here! -->
+			</div>
+		</body>
+	</body>
+</html>
