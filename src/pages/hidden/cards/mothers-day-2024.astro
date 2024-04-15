@@ -1,0 +1,51 @@
+---
+import '../../../styles/squareSketches.css'
+
+const sketchScriptSRCs = [
+	'main.js',
+	'utilities.js',
+	'message.js',
+	'https://cdn.jsdelivr.net/npm/p5@1.4.1/lib/p5.js',
+]
+---
+
+<html>
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="description" content="Astro description" />
+		<meta name="viewport" content="width=device-width" />
+		<link rel="icon" type="image/svg+xml" href="/uke-icon.svg" />
+		<meta name="generator" content={Astro.generator} />
+		<title>Mothers' Day 2024</title>
+
+		<!-- Bootstrap -->
+		<link
+			rel="stylesheet"
+			href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+			integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+			crossorigin="anonymous"
+		/>
+
+		{
+			sketchScriptSRCs.map((sketchScriptSrc) => (
+				<script
+					slot="scripts"
+					is:inline
+					src={sketchScriptSrc}
+					type="text/javascript"
+				/>
+			))
+		}
+
+		<style>
+			body {
+				margin: 0;
+				padding: 0;
+				position: fixed;
+				width: 100%;
+				overflow: hidden;
+			}
+		</style>
+	</head>
+	<body></body>
+</html>

@@ -1,0 +1,55 @@
+---
+import '../../../styles/squareSketches.css'
+
+const sketchScriptSRCs = [
+	'Main.js',
+	'HelpersDrawing.js',
+	'HelpersStyling.js',
+	'HelpersWebsiteMobileSetup.js',
+	'LetterPlant.js',
+	'MoreHalp.js',
+	'Leaf.js',
+	'Flower.js',
+	'RainDrop.js',
+	'RevealPanel.js',
+	'https://cdn.jsdelivr.net/npm/p5@1.4.1/lib/p5.js',
+]
+---
+
+<html>
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="description" content="Astro description" />
+		<meta name="viewport" content="width=device-width" />
+		<link rel="icon" type="image/svg+xml" href="/uke-icon.svg" />
+		<meta name="generator" content={Astro.generator} />
+		<title>Fathers' Day 2022</title>
+
+		<!-- Bootstrap -->
+		<link
+			rel="stylesheet"
+			href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+			integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+			crossorigin="anonymous"
+		/>
+
+		{
+			sketchScriptSRCs.map((sketchScriptSrc) => (
+				<script
+					slot="scripts"
+					is:inline
+					src={sketchScriptSrc}
+					type="text/javascript"
+				/>
+			))
+		}
+	</head>
+	<body>
+		<!-- sketch holder -->
+		<div class="square-box">
+			<div id="sketch-holder" class="square-content">
+				<!-- Our sketch will go here! -->
+			</div>
+		</div>
+	</body>
+</html>

@@ -1,0 +1,51 @@
+---
+import '../../../styles/squareSketches.css'
+
+const sketchScriptSRCs = [
+	'mySketch.js',
+	'Button.js',
+	'Styling.js',
+	'WebsiteMobileSetup.js',
+	'https://cdn.jsdelivr.net/npm/p5@1.4.1/lib/p5.js',
+	'https://cdn.jsdelivr.net/npm/p5@v1.4.2/lib/addons/p5.sound.min.js',
+	'https://unpkg.com/@free-side/audioworklet-polyfill/dist/audioworklet-polyfill.js',
+]
+---
+
+<html>
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="description" content="Astro description" />
+		<meta name="viewport" content="width=device-width" />
+		<link rel="icon" type="image/svg+xml" href="/uke-icon.svg" />
+		<meta name="generator" content={Astro.generator} />
+		<title>random willhelm generator</title>
+
+		<!-- Bootstrap -->
+		<link
+			rel="stylesheet"
+			href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+			integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+			crossorigin="anonymous"
+		/>
+
+		{
+			sketchScriptSRCs.map((sketchScriptSrc) => (
+				<script
+					slot="scripts"
+					is:inline
+					src={sketchScriptSrc}
+					type="text/javascript"
+				/>
+			))
+		}
+	</head>
+	<body>
+		<!-- sketch holder -->
+		<div class="square-box">
+			<div id="sketch-holder" class="square-content">
+				<!-- Our sketch will go here! -->
+			</div>
+		</div>
+	</body>
+</html>
