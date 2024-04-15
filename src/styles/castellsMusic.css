@@ -1,0 +1,24 @@
+body {
+	max-width: 1200px;
+	margin: 0 auto;
+	font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+	background-image: url(../../background.svg);
+	background-size: cover;
+}
+
+img {
+	max-width: 100%;
+	height: auto;
+	margin: 2rem 0;
+}
+
+.column {
+	max-width: 650px;
+	margin: 0 auto;
+	padding: 2em;
+	background: white;
+}
+
+iframe {
+	width: 100%;
+}
