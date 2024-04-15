@@ -1,0 +1,84 @@
+---
+import UniFinalProjectSketch from '../../../layouts/UniFinalProjectSketch.astro'
+
+const sketchScriptSRCs = [
+	'Main.js',
+	'Button.js',
+	'Helpers_Drawing.js',
+	'Helpers_Styling.js',
+	'Helper_WebsiteMobileSetup.js',
+	'Helpers_Image.js',
+	'Helpers_Events.js',
+	'Scene_takePhoto.js',
+	'Scene_setThreshold.js',
+	'Scene_sequence.js',
+	'Helpers_Conversion.js',
+	'Sequence.js',
+	'Helpers_Sound.js',
+	'Scale.js',
+	'PlayHead.js',
+	'Camera.js',
+]
+---
+
+<UniFinalProjectSketch
+	title="Image Conversion"
+	description="Take a photo and hear what it sounds like!"
+>
+	{
+		sketchScriptSRCs.map((sketchScriptSrc) => (
+			<script
+				slot="scripts"
+				is:inline
+				src={sketchScriptSrc}
+				type="text/javascript"
+			/>
+		))
+	}
+	<section>
+		<p>
+			Remember the goal of the project is to take an image and convert it into
+			music. In this experiment we finally do that! You could call it the
+			Minimum Viable Product, I suppose. It combines all of the techniques
+			learned in previous sketches.
+		</p>
+
+		<p>
+			So how to we convert an image to a sequence? Obviously we begin by taking
+			a picture. The next step is to apply a threshold filter. The motivation
+			behind this is that users can draw their sequence on a bit of paper. When
+			we apply a threshold, the dark ink on the lighter paper will come out to a
+			very clean sequence. On the thresholding page, click and drag up and down
+			to change the threshold value, to allow for the cleanest (low noise)
+			image. leaner images result in cleaner sequences.
+		</p>
+
+		<p>
+			Then click "convert to sequence". The conversion process that takes place
+			at this point is the heart of this experiment, and it is explained in full
+			in the project write-up. The aridged explanation goes as follows:
+		</p>
+
+		<ol>
+			<li>Take a thresholded image.</li>
+			<li>Scan the image left to right, examining each column of pixels.</li>
+			<li>
+				For each column, identify the groups of neighbouring black pixels.
+				<em
+					>Suppose the image is a photograph of some hand-drawn lines. Well
+					those lines are probably going to be more than one pixel thick! So we
+					identify which pixels belong to each of those lines by seeing which
+					pixels neighbour each other.</em
+				>
+			</li>
+			<li>
+				Find the centre points of each of those groups.
+				<em
+					>The goal here is to remove the thickness of each of the lines
+					mentioned in the example above.</em
+				>
+			</li>
+			<li>Map those lines onto voices in the sequence.</li>
+		</ol>
+	</section>
+</UniFinalProjectSketch>
