@@ -1,0 +1,43 @@
+---
+import UniFinalProjectSketch from '../../../layouts/UniFinalProjectSketch.astro'
+
+const sketchScriptSRCs = [
+	'Main.js',
+	'Styling.js',
+	'Drawing.js',
+	'Capture.js',
+	'Button.js',
+	'WebsiteMobileSetup.js',
+]
+---
+
+<UniFinalProjectSketch
+	title="Image Filters"
+	description="Tap / click to switch the filter. The height of the tap / mouse affects filter parameters (where relevant)."
+>
+	{
+		sketchScriptSRCs.map((sketchScriptSrc) => (
+			<script
+				slot="scripts"
+				is:inline
+				src={sketchScriptSrc}
+				type="text/javascript"
+			/>
+		))
+	}
+	<section>
+		<p>
+			After the fun, albeit rather frustrating challenge of implementing a
+			<a href="../thresholdCamera/">Threshold Camera</a> with openCV, I realised
+			that p5.js already comes with a bunch of filters implemented! So I kicked myself,
+			then put together this simple sketch to see how those filters behaved.
+		</p>
+		<p>
+			The best part is that they are well optimised and have little impact on
+			frame rate which was not the case with
+			<a href="../thresholdCamera/">Threshold Camera</a>! Thus I will most
+			likely utilise these in my final project. Make sure to wiggle the mouse
+			around to change the filter parameters in real time.
+		</p>
+	</section>
+</UniFinalProjectSketch>
