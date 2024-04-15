@@ -1,0 +1,74 @@
+---
+import UniFinalProjectSketch from '../../../layouts/UniFinalProjectSketch.astro'
+import Latex from '../../../components/Latex.astro'
+const sketchScriptSRCs = [
+	'Main.js',
+	'Voice.js',
+	'PlayHead.js',
+	'Scale.js',
+	'Button.js',
+	'Scale.js',
+	'HelpersDrawing.js',
+	'HelpersVoices.js',
+	'HelpersMouse.js',
+	'HelpersSound.js',
+	'HelpersStyling.js',
+	'HelpersWebsiteMobileSetup.js',
+	'HelpersMaths.js',
+]
+---
+
+<UniFinalProjectSketch
+	title="Polyphonic Sequencer"
+	description="Drag to add a new voice to the sequence."
+>
+	{
+		sketchScriptSRCs.map((sketchScriptSrc) => (
+			<script
+				slot="scripts"
+				is:inline
+				src={sketchScriptSrc}
+				type="text/javascript"
+			/>
+		))
+	}
+	<section>
+		<p>
+			Polyphonic Sequencer is the natural progression from
+			<a href="../smoothSequencer/">Smooth Sequencer</a>. I adapted the original
+			logic to a <code>Voice</code> class, which can "sing" a maximum of one note
+			at any point in the sequence. Naturally, then an array of <code
+				>Voice</code
+			>s represents a sequence where multiple notes can be played in polyphony
+			across the sequence.
+		</p>
+
+		<p>
+			I then adpated code from
+			<a href="../scales/">Scales</a> which allowed 2 things:
+		</p>
+		<ol>
+			<li>
+				The Y axis now represents musical pitch linearly. That is, a movement a
+				certain distance along the y axis will always result in the same step in
+				pitch along the music scale. This is in contrast to
+				<a href="../smoothSequencer/">Smooth Sequencer</a> where the y axis represented
+				frequency, which has an exponential relationship with musical pitch.
+			</li>
+			<li>
+				The sequences can now be quantised! The scale is set to C major
+				pentatonic.
+			</li>
+		</ol>
+
+		<p>
+			Since we can quantise the pitch, It seemed sensible to also allow
+			quantisation of time. This was much simpler than pitch quantisation. We
+			begin by breaking up the length of the sequence into a number of time
+			steps (16 in this case). Then, at any point along the sequence, instead of
+			accessing the current note we access the note that's at the start of the
+			current time step! In practise this means that when we play a sequence,
+			notes may only change, begin or end at the beginning of a time step.
+		</p>
+	</section>
+</UniFinalProjectSketch>
