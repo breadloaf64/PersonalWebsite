@@ -2,7 +2,7 @@ function render() {
     background(255)
     drawSky()
     drawSea()
-    drawBoat(width * 0.6, height * 0.55, 0.35)
+    drawBoat(width * 0.7, height * 0.75, 0.35)
     // drawMessage("happy father's day", height * 0.8, width * 0.05)
     // drawMessage('love, peter', height * 0.9, width * 0.03)
     image(imgNoiseTexture, 0, 0)
@@ -27,11 +27,26 @@ function drawSea() {
 }
 
 function drawBoat(x, y, scaleAmt) {
+    const ROCK_AMOUNT = PI * 0.003
+    const ROCK_SPEED = 0.0015
+    const BOB_SPEED = ROCK_SPEED
+    const BOB_AMOUNT = 2
+
+    const angle = map(sin(t * ROCK_SPEED), -1, 1, -ROCK_AMOUNT, ROCK_AMOUNT)
+    const bob = map(cos(t * BOB_SPEED), -1, 1, 0, BOB_AMOUNT)
+
+    const MOORING_LINE_LENGTH = 50
+
+    stroke(0)
+    strokeWeight(4)
+
     push()
-    translate(x, y)
-    scale(scaleAmt)
-    image(boatImg, 0, 0)
+    translate(x, y + bob)
+    line(-boatImg.width * scaleAmt * 0.5, 0, -boatImg.width * scaleAmt * 0.5-MOORING_LINE_LENGTH, MOORING_LINE_LENGTH)
+    rotate(angle - 0.05)
+    image(boatImg, -boatImg.width * 0.5 * scaleAmt, -boatImg.height * 0.7 * scaleAmt, boatImg.width * scaleAmt, boatImg.height * scaleAmt)
     pop()
+   
 }
 
 function drawVerticalGradient(y1, y2, color1, color2) {
