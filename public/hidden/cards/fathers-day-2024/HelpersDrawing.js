@@ -2,40 +2,49 @@ function render() {
     background(255)
     drawSky()
     drawSea()
-    drawBoat(width * 0.7, height * 0.75, 0.35)
-    // drawMessage("happy father's day", height * 0.8, width * 0.05)
-    // drawMessage('love, peter', height * 0.9, width * 0.03)
+    drawBoat(w * 0.7 , h * 0.75 , 0.35 * baseUnit)
+    drawLand(w * -0.1, h * 0.6, 0.7 * baseUnit)
+    drawMessage("Thanks for", width * 0.1, height * 0.1, width * 0.04)
+    drawMessage('looking out for me', width * 0.18, height * 0.14, width * 0.04)
+    drawMessage('love, Peter', width * 0.32, height * 0.2, width * 0.03)
     image(imgNoiseTexture, 0, 0)
     drawFrame()
+}
+
+function drawLand(x, y, scaleAmt) {
+    push()
+    translate(x, y)
+    image(landImg, 0, 0, landImg.width * scaleAmt, landImg.height * scaleAmt);
+    pop()
 }
 
 function drawSky() {
     noStroke()
 
-    const darkCutoffY = height * 0.3
+    const darkCutoffY = h * 0.3
 
     // dark top
     fill(skyColDark)
-    rect(0, 0, width, darkCutoffY)   
+    rect(0, 0, w, darkCutoffY)   
     
     //gradient
     drawVerticalGradient(darkCutoffY, horizonY, skyColDark, skyColLight)
 }
 
 function drawSea() {
-    rect(0, horizonY, width, height)
+    rect(0, horizonY, w, h)
 }
 
 function drawBoat(x, y, scaleAmt) {
-    const ROCK_AMOUNT = PI * 0.003
-    const ROCK_SPEED = 0.0015
+    const ROCK_AMOUNT = PI * 0.006
+    const ROCK_SPEED = 0.0018
     const BOB_SPEED = ROCK_SPEED
-    const BOB_AMOUNT = 2
+    const BOB_AMOUNT = 2 * baseUnit
 
     const angle = map(sin(t * ROCK_SPEED), -1, 1, -ROCK_AMOUNT, ROCK_AMOUNT)
     const bob = map(cos(t * BOB_SPEED), -1, 1, 0, BOB_AMOUNT)
 
-    const MOORING_LINE_LENGTH = 50
+    const MOORING_LINE_LENGTH = 50 * baseUnit
 
     stroke(0)
     strokeWeight(4)
@@ -66,11 +75,13 @@ function drawVerticalGradient(y1, y2, color1, color2) {
 var waveSpeed = 0.023
 var counter = 0
 
-function drawMessage(message, y, size) {
+function drawMessage(message, x,  y, size) {
+    push()
+    translate(x, 0)
     noStroke()
     let letterSpace = size * 0.7
     textFont('serif', size)
-    fill(0)
+    fill(skyColLight)
     let messageWidth = letterSpace * message.length
 
     for (var x = 0; x < message.length; x++) {
@@ -83,15 +94,18 @@ function drawMessage(message, y, size) {
             (2 * size) / 20
         )
     }
+    pop()
 }
+
+var waveSpeed = 0.001
 
 function letter(c, x, y, i, randomAmount) {
     let letterSpeed = waveSpeed * 0.2
-    let posX = x + noise(counter * letterSpeed, i * 5) * randomAmount
-    let posY = y + noise(counter * letterSpeed, -i * 7) * randomAmount
+    let posX = x + noise(t * letterSpeed, i * 5) * randomAmount
+    let posY = y + noise(t * letterSpeed, -i * 7) * randomAmount
     let angleVariance = randomAmount * 0.02
     let theta = map(
-        noise(counter * letterSpeed, i * 13),
+        noise(t * letterSpeed, i * 13),
         0,
         1,
         -angleVariance,

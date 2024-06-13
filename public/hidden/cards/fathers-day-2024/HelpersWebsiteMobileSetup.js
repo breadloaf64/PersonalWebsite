@@ -18,4 +18,7 @@ function windowResized() {
     resizeCanvas(size, size, true)
     w = size
     h = size
+    baseUnit = size / 692
+    horizonY = h * varHorizonProportionFromTop
+
 }
