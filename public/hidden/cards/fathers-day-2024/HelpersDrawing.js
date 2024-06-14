@@ -5,11 +5,72 @@ function render() {
     drawBoat(w * 0.7 , h * 0.78 , 0.35 * baseUnit)
     drawLand(w * -0.1, h * 0.6, 0.7 * baseUnit)
     drawLightHouse()
+    drawStars()
     drawMessage("Thanks for", width * 0.1, height * 0.1, width * 0.04)
     drawMessage('looking out for me', width * 0.18, height * 0.14, width * 0.04)
     drawMessage('love, Peter', width * 0.32, height * 0.2, width * 0.03)
     image(imgNoiseTexture, 0, 0)
     drawFrame()
+}
+
+function mouseClicked() {
+    console.log(mouseX, mouseY)
+}
+
+const stars = [
+    {
+        x: 36,
+        y: 92,
+        twinkleSpeedModifier: 1.3,
+        twinkleOffsetModifier: 1
+    },
+    {
+        x: 123,
+        y: 79,
+        twinkleSpeedModifier: 1.4,
+        twinkleOffsetModifier: 9
+    },
+    {
+        x: 182,
+        y: 131,
+        twinkleSpeedModifier: 1,
+        twinkleOffsetModifier: 3
+    },
+    {
+        x: 264,
+        y: 174,
+        twinkleSpeedModifier: 1.5,
+        twinkleOffsetModifier: 2
+    },
+    {
+        x: 274,
+        y: 246,
+        twinkleSpeedModifier: 1.9,
+        twinkleOffsetModifier: 7
+    },
+    {
+        x: 372,
+        y: 271,
+        twinkleSpeedModifier: 0.8,
+        twinkleOffsetModifier: 6
+    },
+    {
+        x: 448,
+        y: 212,
+        twinkleSpeedModifier: 0.7,
+        twinkleOffsetModifier: -1
+    },
+]
+
+const baseTwinkleSpeed = 0.001;
+const twinkleOffsetModifierMultiplier = 10;
+
+function drawStars() {
+    stars.forEach((star) => {
+        const alpha = map(noise(t * baseTwinkleSpeed * star.twinkleSpeedModifier + twinkleOffsetModifierMultiplier * star.twinkleOffsetModifier), 0, 1, -50, 300)
+        fill(255, alpha)
+        circle(star.x * baseUnit, star.y * baseUnit, baseUnit * 3)
+    })
 }
 
 function drawLightHouse() {
