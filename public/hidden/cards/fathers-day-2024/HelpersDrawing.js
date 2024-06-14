@@ -2,13 +2,33 @@ function render() {
     background(255)
     drawSky()
     drawSea()
-    drawBoat(w * 0.7 , h * 0.75 , 0.35 * baseUnit)
+    drawBoat(w * 0.7 , h * 0.78 , 0.35 * baseUnit)
     drawLand(w * -0.1, h * 0.6, 0.7 * baseUnit)
+    drawLightHouse()
     drawMessage("Thanks for", width * 0.1, height * 0.1, width * 0.04)
     drawMessage('looking out for me', width * 0.18, height * 0.14, width * 0.04)
     drawMessage('love, Peter', width * 0.32, height * 0.2, width * 0.03)
     image(imgNoiseTexture, 0, 0)
     drawFrame()
+}
+
+function drawLightHouse() {
+    noStroke()
+    fill(0)
+    rect(baseUnit * 240, baseUnit * 458, baseUnit * 8, baseUnit * 20, baseUnit * 2)
+
+    const blinkSpeed = 0.001;
+    const brightness = map(((sin(blinkSpeed * t) + 1) * 0.5) ** 2, 0, 1, 0, 255)
+
+    // draw light haze
+    skyColLight.setAlpha(brightness * 0.6)
+    fill(skyColLight)
+    skyColLight.setAlpha(255)
+    circle(baseUnit * 244, baseUnit * 462, baseUnit * 60)
+
+    // draw Light point
+    fill(255, brightness)
+    circle(baseUnit * 244, baseUnit * 462, baseUnit * 6)
 }
 
 function drawLand(x, y, scaleAmt) {
@@ -22,17 +42,24 @@ function drawSky() {
     noStroke()
 
     const darkCutoffY = h * 0.3
-
     // dark top
     fill(skyColDark)
     rect(0, 0, w, darkCutoffY)   
     
-    //gradient
-    drawVerticalGradient(darkCutoffY, horizonY, skyColDark, skyColLight)
+    const lightY = darkCutoffY + (horizonY - darkCutoffY) * 0.8
+    //gradient dark to light
+    drawVerticalGradient(darkCutoffY, lightY, skyColDark, skyColLight)
+
+    // gradient light to red
+    drawVerticalGradient(lightY, horizonY, skyColLight, skyColRed)
+
 }
 
 function drawSea() {
-    rect(0, horizonY, w, h)
+    const darkCutoffY = horizonY + (h - horizonY) * 0.3
+    drawVerticalGradient(horizonY, darkCutoffY, colSeaLight, colSea)
+    fill(colSea)
+    rect(0, darkCutoffY, w, h)
 }
 
 function drawBoat(x, y, scaleAmt) {
@@ -59,14 +86,13 @@ function drawBoat(x, y, scaleAmt) {
 }
 
 function drawVerticalGradient(y1, y2, color1, color2) {
+    strokeWeight(2)
     const yLower = min(y1, y2)
     const yHigher = max(y1, y2)
 
-    const difference = yHigher - yLower
-
     for (var y = yLower; y <= yHigher; y++) {
-        const t = (y - yLower) / difference
-        const color = lerpColor(color1, color2, t)
+        const x = map(y, yLower, yHigher, 0, 1)
+        const color = lerpColor(color1, color2, x)
         stroke(color)
         line(0, y, width, y)
     }

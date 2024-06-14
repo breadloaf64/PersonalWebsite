@@ -18,7 +18,7 @@ function setup() {
     t = 0
     baseUnit = h / 692
 
-    varHorizonProportionFromTop = 0.7
+    varHorizonProportionFromTop = 0.725
     horizonY = h * varHorizonProportionFromTop
 }
 

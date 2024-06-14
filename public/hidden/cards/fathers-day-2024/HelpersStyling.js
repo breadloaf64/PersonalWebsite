@@ -2,10 +2,13 @@ var imgNoiseTexture
 
 var skyColDark
 var skyColLight
+var skyColRed
 
 function setColours() {
     skyColDark = color("#202e53")
     skyColLight = color("#d5b79f")
+    skyColRed = color("#ce6a6c")
+    colSeaLight = color("#4e4091")
     colSea = skyColDark
 }
 
