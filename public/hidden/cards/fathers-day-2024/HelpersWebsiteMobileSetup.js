@@ -20,5 +20,5 @@ function windowResized() {
     h = size
     baseUnit = size / 692
     horizonY = h * varHorizonProportionFromTop
-
+    setNoiseTexture()
 }

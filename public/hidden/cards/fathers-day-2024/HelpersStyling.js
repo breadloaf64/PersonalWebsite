@@ -19,7 +19,7 @@ function setNoiseTexture() {
     for (let i = 0; i < img.width; i++) {
         for (let j = 0; j < img.height; j++) {
             if (random(1) < amount) {
-                img.set(i, j, color(random(255), 15))
+                img.set(i, j, color(random(255), 50))
             } else {
                 img.set(i, j, color(0, 0))
             }

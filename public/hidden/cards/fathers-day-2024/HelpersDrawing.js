@@ -6,10 +6,10 @@ function render() {
     drawLand(w * -0.1, h * 0.6, 0.7 * baseUnit)
     drawLightHouse()
     drawStars()
+    image(imgNoiseTexture, 0, 0)
     drawMessage("Thanks for", width * 0.1, height * 0.1, width * 0.04)
     drawMessage('looking out for me', width * 0.18, height * 0.14, width * 0.04)
     drawMessage('love, Peter', width * 0.32, height * 0.2, width * 0.03)
-    image(imgNoiseTexture, 0, 0)
     drawFrame()
 }
 
