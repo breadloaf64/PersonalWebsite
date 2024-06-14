@@ -69,7 +69,7 @@ function drawStars() {
     stars.forEach((star) => {
         const alpha = map(noise(t * baseTwinkleSpeed * star.twinkleSpeedModifier + twinkleOffsetModifierMultiplier * star.twinkleOffsetModifier), 0, 1, -50, 300)
         fill(255, alpha)
-        circle(star.x * baseUnit, star.y * baseUnit, baseUnit * 3)
+        circle(star.x * baseUnit, star.y * baseUnit, baseUnit * 5)
     })
 }
 

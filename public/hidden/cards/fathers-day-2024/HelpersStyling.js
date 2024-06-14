@@ -13,7 +13,7 @@ function setColours() {
 }
 
 function setNoiseTexture() {
-    let amount = 0.2
+    let amount = 0.2 * baseUnit
     let img = createImage(int(width), int(height))
     img.loadPixels()
     for (let i = 0; i < img.width; i++) {
