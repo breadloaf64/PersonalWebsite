@@ -1,0 +1,43 @@
+---
+interface Props {
+	title: string
+	description: string
+	date: Date
+	url: string
+	image?: string
+}
+
+const { title, description, date, url, image } = Astro.props
+---
+
+<a href={url} class="card">
+	{image && <img src={image} alt="" loading="lazy" />}
+	<div class="content">
+		<h3>{title}</h3>
+		<p>{description}</p>
+		<time datetime={date.toISOString()}>
+			{date.toLocaleDateString()}
+		</time>
+	</div>
+</a>
+
+<style>
+	.card {
+		display: flex;
+		flex-direction: column;
+		border-radius: 12px;
+		overflow: hidden;
+		text-decoration: none;
+		background: var(--card-bg);
+		transition: transform 0.15s ease;
+	}
+
+	.card:hover {
+		transform: translateY(-4px);
+	}
+
+	img {
+		aspect-ratio: 16 / 9;
+		object-fit: cover;
+	}
+</style>

@@ -1,0 +1,24 @@
+---
+import { getCollection } from 'astro:content'
+import FeedCard from './feedCard.astro'
+
+const feed = await getCollection('feed')
+
+const sortedFeed = feed.sort(
+	(a, b) => b.data.date.valueOf() - a.data.date.valueOf(),
+)
+---
+
+<h1>Feed</h1>
+
+<section class="feed-grid">
+	{sortedFeed.map((item) => <FeedCard {...item.data} />)}
+</section>
+
+<style>
+	.feed-grid {
+		display: grid;
+		grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+		gap: 1.5rem;
+	}
+</style>
