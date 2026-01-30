@@ -3,14 +3,23 @@ interface Props {
 	title: string
 	description: string
 	date: Date
-	url: string
+	pageReference?: {
+		id: string
+	}
+	url?: string
 	image?: string
 }
 
-const { title, description, date, url, image } = Astro.props
+const { title, description, date, pageReference, url, image } = Astro.props
+if (pageReference === undefined && url === undefined)
+	throw Error(
+		`\nThe feed content with title '${title}' needs a pageReference or url`,
+	)
+
+const linkAddress = pageReference ? pageReference.id : url
 ---
 
-<a href={url} class="card">
+<a href={linkAddress} class="card">
 	{image && <img src={image} alt="" loading="lazy" />}
 	<div class="content">
 		<h3>{title}</h3>
