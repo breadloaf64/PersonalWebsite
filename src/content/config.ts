@@ -8,7 +8,7 @@ const feed = defineCollection({
     pageReference: reference("pages").optional(), // if we link to a page on the website
     url: z.string().url().optional(), // if we link to an external site
     image: z.string().optional(),
-    tags: z.array(z.string()).optional(),
+    categories: z.array(z.string()).optional(),
   }),
 });
 

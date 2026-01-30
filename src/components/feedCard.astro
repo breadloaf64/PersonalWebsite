@@ -8,9 +8,12 @@ interface Props {
 	}
 	url?: string
 	image?: string
+	categories?: string[]
 }
 
-const { title, description, date, pageReference, url, image } = Astro.props
+const { title, description, date, pageReference, url, image, categories } =
+	Astro.props
+
 if (pageReference === undefined && url === undefined)
 	throw Error(
 		`\nThe feed content with title '${title}' needs a pageReference or url`,
@@ -23,6 +26,13 @@ const linkAddress = pageReference ? pageReference.id : url
 	{image && <img src={image} alt="" loading="lazy" />}
 	<div class="content">
 		<h3>{title}</h3>
+		<p>
+			{
+				categories?.map((category, i) => (
+					<span>{category + (i < categories.length - 1 ? ', ' : '')}</span>
+				))
+			}
+		</p>
 		<p>{description}</p>
 		<time datetime={date.toISOString()}>
 			{date.toLocaleDateString()}
