@@ -20,13 +20,19 @@ if (pageReference === undefined && url === undefined)
 	)
 
 const linkAddress = pageReference ? pageReference.id : url
+
+const dateText = date.toLocaleDateString('en', {
+	year: 'numeric',
+	month: 'long',
+	day: 'numeric',
+})
 ---
 
 <a href={linkAddress} class="card">
 	{image && <img src={image} alt="" loading="lazy" />}
 	<div class="content">
-		<h3>{title}</h3>
-		<p>
+		<h2><b>{title}</b></h2>
+		<p class="categories">
 			{
 				categories?.map((category, i) => (
 					<span>{category + (i < categories.length - 1 ? ', ' : '')}</span>
@@ -35,7 +41,7 @@ const linkAddress = pageReference ? pageReference.id : url
 		</p>
 		<p>{description}</p>
 		<time datetime={date.toISOString()}>
-			{date.toLocaleDateString()}
+			{dateText}
 		</time>
 	</div>
 </a>
@@ -47,12 +53,21 @@ const linkAddress = pageReference ? pageReference.id : url
 		border-radius: 12px;
 		overflow: hidden;
 		text-decoration: none;
-		background: var(--card-bg);
 		transition: transform 0.15s ease;
+	}
+
+	a {
+		color: black;
+	}
+
+	.content {
+		height: 100%;
+		padding: 10px;
 	}
 
 	.card:hover {
 		transform: translateY(-4px);
+		background-color: whitesmoke;
 	}
 
 	img {
