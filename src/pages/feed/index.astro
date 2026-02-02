@@ -1,6 +1,7 @@
 ---
 import { getCollection } from 'astro:content'
 import FeedCard from '../../components/feedCard.astro'
+import '../../styles/index.css'
 
 const feed = await getCollection('feed')
 
@@ -9,18 +10,33 @@ const sortedFeed = feed.sort(
 )
 ---
 
-<a href="../">home</a>
+<!doctype html>
+<html lang="en" dir="ltr">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="description" content="Astro description" />
+		<meta name="viewport" content="width=device-width" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<meta name="generator" content={Astro.generator} />
+		<title>Feed</title>
+	</head>
+	<body>
+		<div class="column">
+			<a href="../">back</a>
 
-<h1>Feed</h1>
+			<h1>Feed</h1>
 
-<section class="feed-grid">
-	{sortedFeed.map((item) => <FeedCard {...item.data} />)}
-</section>
+			<section class="feed-grid">
+				{sortedFeed.map((item) => <FeedCard {...item.data} />)}
+			</section>
+		</div>
+	</body>
 
-<style>
-	.feed-grid {
-		display: grid;
-		grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-		gap: 1.5rem;
-	}
-</style>
+	<style>
+		.feed-grid {
+			display: grid;
+			grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+			gap: 1.5rem;
+		}
+	</style>
+</html>
