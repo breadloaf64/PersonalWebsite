@@ -1,3 +1,7 @@
+---
+layout: ../../layouts/BlogPostLayout.astro
+---
+
 ## Day 1
 
 Iceland is either flat or very hilly and it seems there's no in between. Gnarled black rocks jut from the landscape, black powder stretches to the sea and from the plains you can spy the white hooded hills marching all along the horizon. It's an old land, forged by ice and fire. It feels as gnarled and wise as Scotland, perhaps even more so.
