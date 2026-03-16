@@ -18,8 +18,6 @@
 }
 
 body {
-	background-image: url(/mainPageBackground.svg);
-	background-size: cover;
 	max-width: 1200px;
 	margin: 0 auto;
 	min-height: 100%;
