@@ -21,3 +21,9 @@ At the minute the project is develped using node 18. This is relevant for deploy
 # Deployment
 
 The project is deployed using a GitHub action according to [instructions on the Astro Docs](https://docs.astro.build/en/guides/deploy/github/).
+
+# Blog
+
+To add a blog post, go to src/content/feed/ and add a new md file. Define the type in the frontmatter as "blog". I suggest copying an existing blog and then editing it.
+
+Blogs are rendered via src/pages/blog/[slug].md
