@@ -9,6 +9,7 @@ const feed = defineCollection({
     url: z.string().url().optional(), // if we link to an external site
     image: z.string().optional(),
     categories: z.array(z.string()).optional(),
+    type: z.enum(["blog", "link"]), // blog has body content to be automatically turned into a page. Link should point to an existing page
   }),
 });
 

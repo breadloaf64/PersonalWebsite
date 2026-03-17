@@ -5,4 +5,5 @@ date: 2026-01-28
 url: https://blog.scottlogic.com/2026/01/28/Introduction-to-Energy-Trading-for-Novices.html
 image: https://blog.scottlogic.com/pmarsh/assets/trader_drawing.GIF
 categories: [blog, work]
+type: 'link'
 ---
