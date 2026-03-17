@@ -5,4 +5,5 @@ date: 2024-04-15
 pageReference: '/uni-final-project/'
 image: '/uni-final-project/sketch-thumbnails/thumbnail-draw-music.png'
 categories: [music, tech]
+type: 'link'
 ---

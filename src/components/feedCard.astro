@@ -9,17 +9,29 @@ interface Props {
 	url?: string
 	image?: string
 	categories?: string[]
+	type: 'post' | 'link'
+	slug: string
 }
 
-const { title, description, date, pageReference, url, image, categories } =
-	Astro.props
+const {
+	title,
+	description,
+	date,
+	pageReference,
+	url,
+	image,
+	categories,
+	type,
+	slug,
+} = Astro.props
 
-if (pageReference === undefined && url === undefined)
+if (type === 'link' && pageReference === undefined && url === undefined)
 	throw Error(
-		`\nThe feed content with title '${title}' needs a pageReference or url`,
+		`\nThe feed content with title '${title}' is a link type so it needs a pageReference or url`,
 	)
 
-const linkAddress = pageReference ? pageReference.id : url
+const linkAddress =
+	type === 'post' ? `/posts/${slug}/` : pageReference ? pageReference.id : url
 
 const dateText = date.toLocaleDateString('en', {
 	year: 'numeric',

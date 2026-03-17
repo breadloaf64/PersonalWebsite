@@ -27,7 +27,7 @@ const sortedFeed = feed.sort(
 			<h1>Feed</h1>
 
 			<section class="feed-grid">
-				{sortedFeed.map((item) => <FeedCard {...item.data} />)}
+				{sortedFeed.map((item) => <FeedCard slug={item.slug} {...item.data} />)}
 			</section>
 		</div>
 	</body>

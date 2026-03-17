@@ -1,0 +1,35 @@
+---
+import '../../styles/blogPost.css'
+
+import { getCollection } from 'astro:content'
+
+export async function getStaticPaths() {
+	const items = await getCollection('feed')
+
+	const posts = items.filter((item) => item.data.type === 'post')
+
+	return posts.map((post) => ({
+		params: { slug: post.slug },
+		props: { post },
+	}))
+}
+
+const { post } = Astro.props
+const { Content } = await post.render()
+---
+
+<html>
+	<head>
+		<meta charset="utf-8" />
+	</head>
+	<body>
+		<div class="column">
+			<a href="/feed/">back to feed</a>
+			<h1 style="text-align: center;">{post.data.title}</h1>
+			<p style="text-align: end; font-style: italic;">
+				{post.data.date.toDateString()}
+			</p>
+			<Content />
+		</div>
+	</body>
+</html>
