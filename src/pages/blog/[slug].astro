@@ -6,7 +6,7 @@ import { getCollection } from 'astro:content'
 export async function getStaticPaths() {
 	const items = await getCollection('feed')
 
-	const posts = items.filter((item) => item.data.type === 'post')
+	const posts = items.filter((item) => item.data.type === 'blog')
 
 	return posts.map((post) => ({
 		params: { slug: post.slug },

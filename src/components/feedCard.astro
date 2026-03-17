@@ -9,7 +9,7 @@ interface Props {
 	url?: string
 	image?: string
 	categories?: string[]
-	type: 'post' | 'link'
+	type: 'blog' | 'link'
 	slug: string
 }
 
@@ -31,7 +31,7 @@ if (type === 'link' && pageReference === undefined && url === undefined)
 	)
 
 const linkAddress =
-	type === 'post' ? `/posts/${slug}/` : pageReference ? pageReference.id : url
+	type === 'blog' ? `/blog/${slug}/` : pageReference ? pageReference.id : url
 
 const dateText = date.toLocaleDateString('en', {
 	year: 'numeric',
