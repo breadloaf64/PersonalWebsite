@@ -20,7 +20,12 @@ const { Content } = await post.render()
 
 <html>
 	<head>
-		<meta charset="utf-8" />
+		<meta charset="UTF-8" />
+		<meta name="description" content="Astro description" />
+		<meta name="viewport" content="width=device-width" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<meta name="generator" content={Astro.generator} />
+		<title>{"blog: " + post.data.title}</title>
 	</head>
 	<body>
 		<div class="column">
