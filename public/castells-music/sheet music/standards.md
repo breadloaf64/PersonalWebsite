@@ -22,6 +22,11 @@ To change space between staves in Musescore, go to Format/style.../spacing
 - Min system distance 8.5sp
 - Max system distance 32.0sp
 
+If this doesn't work, then try
+
+- Select "Disable vertical justification of staves"
+- Min and Max system distance to 20sp
+
 # Cropping the SVG
 
 If you export an SVG from musescore it will come with all the whitespace at the bottom of the A4 page musescore works in. To make it fit better on the webpage do this:
