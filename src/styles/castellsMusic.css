@@ -2,8 +2,7 @@ body {
 	max-width: 1200px;
 	margin: 0 auto;
 	font-family: Calibri;
-	background-image: url(/mainPageBackground.svg);
-	background-size: cover;
+	background-image: url(/castells-music/panot.png);
 }
 
 img {
