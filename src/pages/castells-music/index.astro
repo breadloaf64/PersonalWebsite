@@ -1,5 +1,6 @@
 ---
 import '../../styles/castellsMusic.css'
+import PasswordProtectedLink from '../../components/PasswordProtectedLink.astro'
 ---
 
 <!doctype html>
@@ -191,6 +192,14 @@ import '../../styles/castellsMusic.css'
 
 					<li>
 						<a href="./music-library/toc-de-castells/">Toc de Castells</a>
+					</li>
+
+					<li>
+						<PasswordProtectedLink
+							label="Toc dels Cardats (Edinburgh version of Toc de Castells)"
+							href="./music-library/toc-de-castells-edinburgh-version/"
+							passwordHash="-1991882225"
+						/>
 					</li>
 
 					<li>
