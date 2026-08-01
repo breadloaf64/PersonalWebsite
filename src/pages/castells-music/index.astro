@@ -1,7 +1,6 @@
 ---
 import '../../styles/castellsMusic.css'
-
-import { YouTube } from '@astro-community/astro-embed-youtube'
+import PasswordProtectedLink from '../../components/PasswordProtectedLink.astro'
 ---
 
 <!doctype html>
@@ -25,28 +24,36 @@ import { YouTube } from '@astro-community/astro-embed-youtube'
 					to play music for
 					<a href="https://en.wikipedia.org/wiki/Castell">castells</a>. I'm sure
 					there's plenty of good stuff online, but as a non-catalan speaker, I
-					find it hard to locate, let alone understand! Now, I am not of the
-					Catalan culture and I only started taking part in Castells in the
-					summer of 2023, so I cannot claim to authentically represent
-					traditions and culture. Any mistakes are my own.
+					find it hard to locate, let alone understand! Here is my best attempt
+					and capturing everything I've learned during my time in castells.
 				</p>
 				<p>
-					Thanks to David Vivanco for teaching me all I know about castells
-					music.
+					Disclaimer: I am not from Catalunya so I cannot claim to authentically
+					represent Catalan tradition and culture. Any mistakes are my own.
 				</p>
 				<p>
-					This is a living document. I am editing it over time. Expect things to
-					move and shift and change, but please use it for your learning if it
-					helps!
+					Thanks to David Vivanco for mentoring me and teaching be all the
+					fundamentals and more. Thanks to the lovely musics as well for
+					teaching me so much about the catalan culture and for showing me so
+					many new songs!
 				</p>
 				<p>
-					I also have a YouTube channel where I aim to post similar content
-					regarding the music of castells! You can find that <a
+					I also have a YouTube channel where I post tutorials, music and
+					practice tracks. You can find that <a
 						href="https://www.youtube.com/@CastellsMusicEdinburgh">here</a
 					>.
 				</p>
-				<p>- Peter Marsh (Cap de musics, Colla Castellera d'Edinburgh)</p>
+				<p>- Peter Marsh</p>
+				<p>
+					<em
+						>former Cap de musics, Colla Castellera d'Edinburgh, Feb 2024 - June
+						2026</em
+					>
+				</p>
+			</section>
 
+			<section>
+				<h2>Contents</h2>
 				<ol>
 					<li>
 						<a href="#the-gralla">The Gralla</a>
@@ -113,7 +120,8 @@ import { YouTube } from '@astro-community/astro-embed-youtube'
 					<strong>Storing the inxa: </strong> The inxa is a delicate piece of wood.
 					If it breaks or becomes mishapen, it won't sound effectively and you will
 					have to replace it. It is worth detaching from the instrument after each
-					use and storing in a rigid case. I keep mine in a small sewing tin.
+					use and storing it in a rigid case to protect it. I keep mine in a small
+					sewing tin. Make sure you air-out your inxes so they don't get mouldy!
 				</p>
 
 				<p>
@@ -184,6 +192,14 @@ import { YouTube } from '@astro-community/astro-embed-youtube'
 
 					<li>
 						<a href="./music-library/toc-de-castells/">Toc de Castells</a>
+					</li>
+
+					<li>
+						<PasswordProtectedLink
+							label="Toc dels Cardats (Edinburgh version of Toc de Castells)"
+							href="./music-library/toc-de-castells-edinburgh-version/"
+							passwordHash="-1991882225"
+						/>
 					</li>
 
 					<li>
