@@ -16,14 +16,16 @@ This project is made with [Astro](https://astro.build/), and the build static we
 
 To run in dev mode (with live update and hot reloading courtesy of Vite) use `npm run dev`
 
-At the minute the project is develped using node 18. This is relevant for deployment, because the build step in the workflow requires a node version.
+At the minute the project is developed using node 18. This is relevant for deployment, because the build step in the workflow requires a node version.
 
 # Deployment
 
 The project is deployed using a GitHub action according to [instructions on the Astro Docs](https://docs.astro.build/en/guides/deploy/github/).
 
-# Blog
+# Feed
 
-To add a blog post, go to src/content/feed/ and add a new md file. Define the type in the frontmatter as "blog". I suggest copying an existing blog and then editing it.
+To add a new item to the feed, go to src/content/feed/ and add a new md file. I suggest copying an existing feed md file and then editing it.
 
-Blogs are rendered via src/pages/blog/[slug].md
+Feed items are either entire blog posts which contain the contents of the blog as well (e.g. the [iceland blog](./src/content/feed/2026-03-15-iceland-2026.md)) or links to external pages (e.g. [Giraffe EP](./src/content/feed/2020-06-21-Giraffe-EP.md)). Make sure you set the `type` in the frontmatter accordingly.
+
+Blog posts are rendered via [src/pages/blog/[slug].astro](./src/pages/blog/[slug].astro)
